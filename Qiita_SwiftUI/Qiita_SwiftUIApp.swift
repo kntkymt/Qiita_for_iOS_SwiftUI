@@ -12,8 +12,8 @@ struct Qiita_SwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            LaunchView(authRepository: AuthStubService())
-                .environmentObject(AuthState(authRepository: AuthStubService()))
+            LaunchView(authRepository: AppContainer.shared.authRepository)
+                .environmentObject(AuthState(authRepository: AppContainer.shared.authRepository))
         }
     }
 }
@@ -24,13 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupLogger()
         readEnvironmentVariables()
 
-        return true
-    }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        AppContainer.shared.authRepository.handleDeepLink(url: url)
-        Logger.debug("DeepLink: \(url)")
-        
         return true
     }
 

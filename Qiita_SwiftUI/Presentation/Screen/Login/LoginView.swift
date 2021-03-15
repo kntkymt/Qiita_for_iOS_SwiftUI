@@ -12,6 +12,7 @@ struct LoginView: View {
     // MARK: - Property
 
     @EnvironmentObject var authState: AuthState
+    @State private var isPresented = false
 
     @ObservedObject private var viewModel: LoginViewModel
 
@@ -25,9 +26,16 @@ struct LoginView: View {
 
     var body: some View {
         Button("Login") {
+            isPresented = true
             viewModel.login() {
                 authState.isSignedin = true
+                isPresented = false
             }
+        }.sheet(isPresented: $isPresented, content: {
+            SafariView(url: AppConstant.Auth.signinURL)
+        }).onOpenURL { url in
+            Logger.debug("DeepLink: \(url)")
+            viewModel.handleDeepLink(url: url)
         }
     }
 }

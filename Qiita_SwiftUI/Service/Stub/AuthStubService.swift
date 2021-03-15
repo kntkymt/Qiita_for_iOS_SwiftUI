@@ -22,6 +22,10 @@ final class AuthStubService: AuthRepository {
 
     var isSignedin: Bool = false
 
+    func handleDeepLink(url: URL) {
+        
+    }
+
     func getCurrentUser() -> AnyPublisher<User, Error> {
         return Future { $0(.success(self.user)) }.eraseToAnyPublisher()
     }

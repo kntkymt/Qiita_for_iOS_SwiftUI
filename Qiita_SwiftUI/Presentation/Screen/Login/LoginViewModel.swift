@@ -38,4 +38,8 @@ final class LoginViewModel: ObservableObject, Identifiable {
                 success()
             }).store(in: &cancellables)
     }
+
+    func handleDeepLink(url: URL) {
+        authRepository.handleDeepLink(url: url)
+    }
 }
