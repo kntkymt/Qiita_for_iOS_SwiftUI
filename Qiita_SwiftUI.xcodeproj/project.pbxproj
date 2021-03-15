@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,35 @@
 		E20DD31525FF403D00735B0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31025FF403D00735B0A /* User.swift */; };
 		E20DD31625FF403D00735B0A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31125FF403D00735B0A /* AuthModel.swift */; };
 		E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31225FF403D00735B0A /* ItemTag.swift */; };
+		E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31D25FF40EE00735B0A /* ItemRepository.swift */; };
+		E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31E25FF40EE00735B0A /* LikeRepository.swift */; };
+		E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31F25FF40EE00735B0A /* StockRepository.swift */; };
+		E20DD32625FF40EE00735B0A /* TagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32025FF40EE00735B0A /* TagRepository.swift */; };
+		E20DD32725FF40EE00735B0A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32125FF40EE00735B0A /* AuthRepository.swift */; };
+		E20DD32825FF40EE00735B0A /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32225FF40EE00735B0A /* UserRepository.swift */; };
+		E20DD33225FF40FC00735B0A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32C25FF40FC00735B0A /* UserService.swift */; };
+		E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32D25FF40FC00735B0A /* LikeService.swift */; };
+		E20DD33425FF40FC00735B0A /* ItemService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32E25FF40FC00735B0A /* ItemService.swift */; };
+		E20DD33525FF40FC00735B0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD32F25FF40FC00735B0A /* AuthService.swift */; };
+		E20DD33625FF40FC00735B0A /* StockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD33025FF40FC00735B0A /* StockService.swift */; };
+		E20DD33725FF40FC00735B0A /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD33125FF40FC00735B0A /* TagService.swift */; };
+		E20DD34525FF44BA00735B0A /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34025FF44BA00735B0A /* BaseTarget.swift */; };
+		E20DD34625FF44BA00735B0A /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34125FF44BA00735B0A /* API.swift */; };
+		E20DD34725FF44BA00735B0A /* APIProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34225FF44BA00735B0A /* APIProviderFactory.swift */; };
+		E20DD34825FF44BA00735B0A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34325FF44BA00735B0A /* Auth.swift */; };
+		E20DD34925FF44BA00735B0A /* LoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34425FF44BA00735B0A /* LoggerPlugin.swift */; };
+		E20DD35125FF44C600735B0A /* UserTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34D25FF44C600735B0A /* UserTarget.swift */; };
+		E20DD35225FF44C600735B0A /* ItemTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34E25FF44C600735B0A /* ItemTarget.swift */; };
+		E20DD35325FF44C600735B0A /* AuthTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD34F25FF44C600735B0A /* AuthTarget.swift */; };
+		E20DD35425FF44C600735B0A /* TagTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD35025FF44C600735B0A /* TagTarget.swift */; };
+		E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD35825FF44D300735B0A /* Interceptor.swift */; };
+		E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD35D25FF44DC00735B0A /* AuthTokenInterceptor.swift */; };
+		E20DD36425FF460500735B0A /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = E20DD36325FF460500735B0A /* Moya */; };
+		E20DD37425FF479E00735B0A /* Keychains.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD37325FF479E00735B0A /* Keychains.swift */; };
+		E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = E20DD37C25FF47E600735B0A /* KeychainAccess */; };
+		E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = E20DD38225FF483200735B0A /* SwiftyBeaver */; };
+		E20DD38825FF484000735B0A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38725FF484000735B0A /* Logger.swift */; };
+		E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38D25FF48A000735B0A /* URLRequest+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +92,32 @@
 		E20DD31025FF403D00735B0A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E20DD31125FF403D00735B0A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		E20DD31225FF403D00735B0A /* ItemTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTag.swift; sourceTree = "<group>"; };
+		E20DD31D25FF40EE00735B0A /* ItemRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
+		E20DD31E25FF40EE00735B0A /* LikeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRepository.swift; sourceTree = "<group>"; };
+		E20DD31F25FF40EE00735B0A /* StockRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockRepository.swift; sourceTree = "<group>"; };
+		E20DD32025FF40EE00735B0A /* TagRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagRepository.swift; sourceTree = "<group>"; };
+		E20DD32125FF40EE00735B0A /* AuthRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		E20DD32225FF40EE00735B0A /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		E20DD32C25FF40FC00735B0A /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		E20DD32D25FF40FC00735B0A /* LikeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeService.swift; sourceTree = "<group>"; };
+		E20DD32E25FF40FC00735B0A /* ItemService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemService.swift; sourceTree = "<group>"; };
+		E20DD32F25FF40FC00735B0A /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		E20DD33025FF40FC00735B0A /* StockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockService.swift; sourceTree = "<group>"; };
+		E20DD33125FF40FC00735B0A /* TagService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagService.swift; sourceTree = "<group>"; };
+		E20DD34025FF44BA00735B0A /* BaseTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
+		E20DD34125FF44BA00735B0A /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		E20DD34225FF44BA00735B0A /* APIProviderFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProviderFactory.swift; sourceTree = "<group>"; };
+		E20DD34325FF44BA00735B0A /* Auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
+		E20DD34425FF44BA00735B0A /* LoggerPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerPlugin.swift; sourceTree = "<group>"; };
+		E20DD34D25FF44C600735B0A /* UserTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTarget.swift; sourceTree = "<group>"; };
+		E20DD34E25FF44C600735B0A /* ItemTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTarget.swift; sourceTree = "<group>"; };
+		E20DD34F25FF44C600735B0A /* AuthTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTarget.swift; sourceTree = "<group>"; };
+		E20DD35025FF44C600735B0A /* TagTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTarget.swift; sourceTree = "<group>"; };
+		E20DD35825FF44D300735B0A /* Interceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
+		E20DD35D25FF44DC00735B0A /* AuthTokenInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTokenInterceptor.swift; sourceTree = "<group>"; };
+		E20DD37325FF479E00735B0A /* Keychains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychains.swift; sourceTree = "<group>"; };
+		E20DD38725FF484000735B0A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		E20DD38D25FF48A000735B0A /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +125,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
+				E20DD36425FF460500735B0A /* Moya in Frameworks */,
+				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +174,12 @@
 				E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */,
 				E20DD2F325FF354B00735B0A /* Configuration */,
 				E20DD2F525FF36AF00735B0A /* Application */,
+				E20DD37125FF478700735B0A /* Common */,
 				E20DD2F925FF384A00735B0A /* Presentation */,
 				E20DD30D25FF400200735B0A /* Model */,
+				E20DD31B25FF40B000735B0A /* Repository */,
+				E20DD31C25FF40BA00735B0A /* Service */,
+				E20DD33B25FF422500735B0A /* Network */,
 				E20DD2F425FF355600735B0A /* Resource */,
 			);
 			path = Qiita_SwiftUI;
@@ -165,6 +227,7 @@
 				E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */,
 				E20DD30425FF3EAA00735B0A /* AppError.swift */,
 				E20DD2FA25FF3DE000735B0A /* AppConstant.swift */,
+				E20DD38725FF484000735B0A /* Logger.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -189,6 +252,91 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E20DD31B25FF40B000735B0A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD32125FF40EE00735B0A /* AuthRepository.swift */,
+				E20DD31D25FF40EE00735B0A /* ItemRepository.swift */,
+				E20DD31E25FF40EE00735B0A /* LikeRepository.swift */,
+				E20DD31F25FF40EE00735B0A /* StockRepository.swift */,
+				E20DD32025FF40EE00735B0A /* TagRepository.swift */,
+				E20DD32225FF40EE00735B0A /* UserRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		E20DD31C25FF40BA00735B0A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD32F25FF40FC00735B0A /* AuthService.swift */,
+				E20DD32E25FF40FC00735B0A /* ItemService.swift */,
+				E20DD32D25FF40FC00735B0A /* LikeService.swift */,
+				E20DD33025FF40FC00735B0A /* StockService.swift */,
+				E20DD33125FF40FC00735B0A /* TagService.swift */,
+				E20DD32C25FF40FC00735B0A /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E20DD33B25FF422500735B0A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD34125FF44BA00735B0A /* API.swift */,
+				E20DD34225FF44BA00735B0A /* APIProviderFactory.swift */,
+				E20DD34325FF44BA00735B0A /* Auth.swift */,
+				E20DD34025FF44BA00735B0A /* BaseTarget.swift */,
+				E20DD34425FF44BA00735B0A /* LoggerPlugin.swift */,
+				E20DD33E25FF430700735B0A /* Target */,
+				E20DD33C25FF42F400735B0A /* Interceptor */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E20DD33C25FF42F400735B0A /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD35825FF44D300735B0A /* Interceptor.swift */,
+				E20DD33D25FF430000735B0A /* Auth */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		E20DD33D25FF430000735B0A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD35D25FF44DC00735B0A /* AuthTokenInterceptor.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		E20DD33E25FF430700735B0A /* Target */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD34F25FF44C600735B0A /* AuthTarget.swift */,
+				E20DD34E25FF44C600735B0A /* ItemTarget.swift */,
+				E20DD35025FF44C600735B0A /* TagTarget.swift */,
+				E20DD34D25FF44C600735B0A /* UserTarget.swift */,
+			);
+			path = Target;
+			sourceTree = "<group>";
+		};
+		E20DD37125FF478700735B0A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD37325FF479E00735B0A /* Keychains.swift */,
+				E20DD38C25FF489300735B0A /* Extensions */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E20DD38C25FF489300735B0A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD38D25FF48A000735B0A /* URLRequest+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,6 +353,11 @@
 			dependencies = (
 			);
 			name = Qiita_SwiftUI;
+			packageProductDependencies = (
+				E20DD36325FF460500735B0A /* Moya */,
+				E20DD37C25FF47E600735B0A /* KeychainAccess */,
+				E20DD38225FF483200735B0A /* SwiftyBeaver */,
+			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -276,6 +429,11 @@
 				Base,
 			);
 			mainGroup = E20DD2B625FF325600735B0A;
+			packageReferences = (
+				E20DD36225FF460500735B0A /* XCRemoteSwiftPackageReference "Moya" */,
+				E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -317,16 +475,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20DD33425FF40FC00735B0A /* ItemService.swift in Sources */,
+				E20DD34525FF44BA00735B0A /* BaseTarget.swift in Sources */,
 				E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */,
+				E20DD35125FF44C600735B0A /* UserTarget.swift in Sources */,
+				E20DD35325FF44C600735B0A /* AuthTarget.swift in Sources */,
 				E20DD31425FF403D00735B0A /* Item.swift in Sources */,
+				E20DD32825FF40EE00735B0A /* UserRepository.swift in Sources */,
 				E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */,
+				E20DD33525FF40FC00735B0A /* AuthService.swift in Sources */,
+				E20DD35225FF44C600735B0A /* ItemTarget.swift in Sources */,
+				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
+				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
+				E20DD33725FF40FC00735B0A /* TagService.swift in Sources */,
+				E20DD34825FF44BA00735B0A /* Auth.swift in Sources */,
+				E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */,
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
+				E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
 				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
+				E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */,
+				E20DD32625FF40EE00735B0A /* TagRepository.swift in Sources */,
+				E20DD33625FF40FC00735B0A /* StockService.swift in Sources */,
+				E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */,
+				E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */,
 				E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */,
+				E20DD38825FF484000735B0A /* Logger.swift in Sources */,
+				E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */,
+				E20DD33225FF40FC00735B0A /* UserService.swift in Sources */,
+				E20DD34925FF44BA00735B0A /* LoggerPlugin.swift in Sources */,
 				E20DD2C525FF325600735B0A /* ContentView.swift in Sources */,
+				E20DD35425FF44C600735B0A /* TagTarget.swift in Sources */,
+				E20DD32725FF40EE00735B0A /* AuthRepository.swift in Sources */,
+				E20DD34725FF44BA00735B0A /* APIProviderFactory.swift in Sources */,
 				E20DD31525FF403D00735B0A /* User.swift in Sources */,
+				E20DD37425FF479E00735B0A /* Keychains.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
 				E20DD31625FF403D00735B0A /* AuthModel.swift in Sources */,
 			);
@@ -486,10 +670,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Qiita_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = B825Q6Y75U;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Qiita_SwiftUI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Qiita_SwiftUI/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -508,10 +691,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Qiita_SwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = B825Q6Y75U;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Qiita_SwiftUI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Qiita_SwiftUI/Configuration/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -648,6 +830,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E20DD36225FF460500735B0A /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.1;
+			};
+		};
+		E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
+		E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E20DD36325FF460500735B0A /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E20DD36225FF460500735B0A /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		E20DD37C25FF47E600735B0A /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		E20DD38225FF483200735B0A /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E20DD2B725FF325600735B0A /* Project object */;
 }
