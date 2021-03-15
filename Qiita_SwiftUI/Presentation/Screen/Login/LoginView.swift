@@ -13,12 +13,22 @@ struct LoginView: View {
 
     @EnvironmentObject var authState: AuthState
 
-    let authRepository: AuthRepository
+    @ObservedObject private var viewModel: LoginViewModel
+
+    // MARK: - Initializer
+
+    init(authRepository: AuthRepository) {
+        viewModel = LoginViewModel(authRepository: authRepository)
+    }
 
     // MARK: - Body
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button("Login") {
+            viewModel.login() {
+                authState.isSignedin = true
+            }
+        }
     }
 }
 

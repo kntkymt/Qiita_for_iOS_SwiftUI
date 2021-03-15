@@ -56,6 +56,7 @@
 		E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3AC25FF902300735B0A /* LoginView.swift */; };
 		E20DD3B225FF903B00735B0A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3B125FF903B00735B0A /* MainView.swift */; };
 		E20DD3BB25FF910E00735B0A /* AuthStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BA25FF910E00735B0A /* AuthStubService.swift */; };
+		E20DD3C025FF95FE00735B0A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		E20DD3AC25FF902300735B0A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E20DD3B125FF903B00735B0A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E20DD3BA25FF910E00735B0A /* AuthStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStubService.swift; sourceTree = "<group>"; };
+		E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,6 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3AC25FF902300735B0A /* LoginView.swift */,
+				E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */,
 				E20DD32625FF40EE00735B0A /* TagRepository.swift in Sources */,
 				E20DD33625FF40FC00735B0A /* StockService.swift in Sources */,
+				E20DD3C025FF95FE00735B0A /* LoginViewModel.swift in Sources */,
 				E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */,
 				E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */,
 				E20DD39325FF802900735B0A /* URL+.swift in Sources */,
