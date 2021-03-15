@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+final class AuthState: ObservableObject {
+
+    @Published var isSignedin: Bool = false
+
+    init(authRepository: AuthRepository) {
+        isSignedin = authRepository.isSignedin
+    }
+}

@@ -11,7 +11,8 @@ import SwiftUI
 struct Qiita_SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView(authRepository: AuthStubService())
+                .environmentObject(AuthState(authRepository: AuthStubService()))
         }
     }
 }

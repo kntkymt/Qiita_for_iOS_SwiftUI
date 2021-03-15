@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
+
+    // MARK: - Property
+
+    @EnvironmentObject var authState: AuthState
+
+    let authRepository: AuthRepository
+
+    // MARK: - Body
+
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
@@ -15,6 +24,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView(authRepository: AuthStubService())
     }
 }
