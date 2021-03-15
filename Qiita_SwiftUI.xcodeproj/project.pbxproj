@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */; };
-		E20DD2C525FF325600735B0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2C425FF325600735B0A /* ContentView.swift */; };
 		E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20DD2C625FF325900735B0A /* Assets.xcassets */; };
 		E20DD2D525FF325900735B0A /* Qiita_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2D425FF325900735B0A /* Qiita_SwiftUITests.swift */; };
 		E20DD2E025FF325900735B0A /* Qiita_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2DF25FF325900735B0A /* Qiita_SwiftUIUITests.swift */; };
@@ -52,6 +51,15 @@
 		E20DD38825FF484000735B0A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38725FF484000735B0A /* Logger.swift */; };
 		E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38D25FF48A000735B0A /* URLRequest+.swift */; };
 		E20DD39325FF802900735B0A /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD39225FF802900735B0A /* URL+.swift */; };
+		E20DD3A325FF8F5700735B0A /* AuthState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3A225FF8F5700735B0A /* AuthState.swift */; };
+		E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3A725FF8FE400735B0A /* LaunchView.swift */; };
+		E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3AC25FF902300735B0A /* LoginView.swift */; };
+		E20DD3B225FF903B00735B0A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3B125FF903B00735B0A /* MainView.swift */; };
+		E20DD3BB25FF910E00735B0A /* AuthStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BA25FF910E00735B0A /* AuthStubService.swift */; };
+		E20DD3C025FF95FE00735B0A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */; };
+		E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3C525FF9E3A00735B0A /* SafariView.swift */; };
+		E20DD3CF25FFA99100735B0A /* .env in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CD25FFA99100735B0A /* .env */; };
+		E20DD3D025FFA99100735B0A /* .env.sample in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CE25FFA99100735B0A /* .env.sample */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +82,6 @@
 /* Begin PBXFileReference section */
 		E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qiita_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUIApp.swift; sourceTree = "<group>"; };
-		E20DD2C425FF325600735B0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E20DD2C625FF325900735B0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E20DD2CB25FF325900735B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E20DD2D025FF325900735B0A /* Qiita_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Qiita_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +127,15 @@
 		E20DD38725FF484000735B0A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E20DD38D25FF48A000735B0A /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
 		E20DD39225FF802900735B0A /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		E20DD3A225FF8F5700735B0A /* AuthState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthState.swift; sourceTree = "<group>"; };
+		E20DD3A725FF8FE400735B0A /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		E20DD3AC25FF902300735B0A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E20DD3B125FF903B00735B0A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E20DD3BA25FF910E00735B0A /* AuthStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStubService.swift; sourceTree = "<group>"; };
+		E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		E20DD3C525FF9E3A00735B0A /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		E20DD3CD25FFA99100735B0A /* .env */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		E20DD3CE25FFA99100735B0A /* .env.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env.sample; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				E20DD2CB25FF325900735B0A /* Info.plist */,
+				E20DD3CD25FFA99100735B0A /* .env */,
+				E20DD3CE25FFA99100735B0A /* .env.sample */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -237,7 +255,9 @@
 		E20DD2F925FF384A00735B0A /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				E20DD2C425FF325600735B0A /* ContentView.swift */,
+				E20DD3A125FF8F4900735B0A /* Environment */,
+				E20DD3C425FF9E2400735B0A /* Common */,
+				E20DD39D25FF8D5F00735B0A /* Screen */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -270,6 +290,7 @@
 		E20DD31C25FF40BA00735B0A /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				E20DD3B925FF90F900735B0A /* Stub */,
 				E20DD32F25FF40FC00735B0A /* AuthService.swift */,
 				E20DD32E25FF40FC00735B0A /* ItemService.swift */,
 				E20DD32D25FF40FC00735B0A /* LikeService.swift */,
@@ -338,6 +359,65 @@
 				E20DD39225FF802900735B0A /* URL+.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E20DD39D25FF8D5F00735B0A /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD39E25FF8D7A00735B0A /* Launch */,
+				E20DD39F25FF8D8000735B0A /* Login */,
+				E20DD3A025FF8D8D00735B0A /* Main */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		E20DD39E25FF8D7A00735B0A /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3A725FF8FE400735B0A /* LaunchView.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		E20DD39F25FF8D8000735B0A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3AC25FF902300735B0A /* LoginView.swift */,
+				E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E20DD3A025FF8D8D00735B0A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3B125FF903B00735B0A /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E20DD3A125FF8F4900735B0A /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3A225FF8F5700735B0A /* AuthState.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		E20DD3B925FF90F900735B0A /* Stub */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3BA25FF910E00735B0A /* AuthStubService.swift */,
+			);
+			path = Stub;
+			sourceTree = "<group>";
+		};
+		E20DD3C425FF9E2400735B0A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3C525FF9E3A00735B0A /* SafariView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,6 +534,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */,
+				E20DD3D025FFA99100735B0A /* .env.sample in Resources */,
+				E20DD3CF25FFA99100735B0A /* .env in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,16 +573,19 @@
 				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
 				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
+				E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */,
 				E20DD33725FF40FC00735B0A /* TagService.swift in Sources */,
 				E20DD34825FF44BA00735B0A /* Auth.swift in Sources */,
 				E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */,
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
 				E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */,
+				E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
 				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
 				E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */,
 				E20DD32625FF40EE00735B0A /* TagRepository.swift in Sources */,
 				E20DD33625FF40FC00735B0A /* StockService.swift in Sources */,
+				E20DD3C025FF95FE00735B0A /* LoginViewModel.swift in Sources */,
 				E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */,
 				E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */,
 				E20DD39325FF802900735B0A /* URL+.swift in Sources */,
@@ -509,12 +594,15 @@
 				E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */,
 				E20DD33225FF40FC00735B0A /* UserService.swift in Sources */,
 				E20DD34925FF44BA00735B0A /* LoggerPlugin.swift in Sources */,
-				E20DD2C525FF325600735B0A /* ContentView.swift in Sources */,
+				E20DD3BB25FF910E00735B0A /* AuthStubService.swift in Sources */,
 				E20DD35425FF44C600735B0A /* TagTarget.swift in Sources */,
 				E20DD32725FF40EE00735B0A /* AuthRepository.swift in Sources */,
 				E20DD34725FF44BA00735B0A /* APIProviderFactory.swift in Sources */,
+				E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */,
 				E20DD31525FF403D00735B0A /* User.swift in Sources */,
+				E20DD3B225FF903B00735B0A /* MainView.swift in Sources */,
 				E20DD37425FF479E00735B0A /* Keychains.swift in Sources */,
+				E20DD3A325FF8F5700735B0A /* AuthState.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
 				E20DD31625FF403D00735B0A /* AuthModel.swift in Sources */,
 			);

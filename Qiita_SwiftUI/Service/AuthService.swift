@@ -6,11 +6,16 @@
 //
 
 import Combine
+import Foundation
 
 final class AuthService: AuthRepository {
 
     var isSignedin: Bool {
         return Auth.shared.isSignedin
+    }
+
+    func handleDeepLink(url: URL) {
+        Auth.shared.handleDeepLink(url: url)
     }
 
     func getCurrentUser() -> AnyPublisher<User, Error> {

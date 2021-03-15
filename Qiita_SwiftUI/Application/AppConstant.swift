@@ -5,6 +5,8 @@
 //  Created by kntk on 2021/03/15.
 //
 
+import Foundation
+
 enum AppConstant {
 
     enum API {
@@ -18,5 +20,11 @@ enum AppConstant {
         static var clientId = ""
         static var clientSecret = ""
         static let keychainID = "kntk_qiita_swiftui"
+
+        static var signinURL: URL {
+            return URL(string: AppConstant.Auth.baseURL)!
+                .addQuery(name: "scope", value: AppConstant.Auth.scope)!
+                .addQuery(name: "client_id", value: AppConstant.Auth.clientId)!
+        }
     }
 }

@@ -6,11 +6,15 @@
 //
 
 import Combine
+import Foundation
 
 protocol AuthRepository {
 
     /// ログイン中かどうか
     var isSignedin: Bool { get }
+
+    /// DeepLinkを処理する
+    func handleDeepLink(url: URL)
 
     /// ログイン中のユーザーを取得する
     func getCurrentUser() -> AnyPublisher<User, Error>
