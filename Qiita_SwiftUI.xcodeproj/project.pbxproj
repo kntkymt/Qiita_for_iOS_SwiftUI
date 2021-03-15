@@ -10,7 +10,6 @@
 		E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */; };
 		E20DD2C525FF325600735B0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2C425FF325600735B0A /* ContentView.swift */; };
 		E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20DD2C625FF325900735B0A /* Assets.xcassets */; };
-		E20DD2CA25FF325900735B0A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20DD2C925FF325900735B0A /* Preview Assets.xcassets */; };
 		E20DD2D525FF325900735B0A /* Qiita_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2D425FF325900735B0A /* Qiita_SwiftUITests.swift */; };
 		E20DD2E025FF325900735B0A /* Qiita_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2DF25FF325900735B0A /* Qiita_SwiftUIUITests.swift */; };
 /* End PBXBuildFile section */
@@ -37,7 +36,6 @@
 		E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUIApp.swift; sourceTree = "<group>"; };
 		E20DD2C425FF325600735B0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E20DD2C625FF325900735B0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E20DD2C925FF325900735B0A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E20DD2CB25FF325900735B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E20DD2D025FF325900735B0A /* Qiita_SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Qiita_SwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20DD2D425FF325900735B0A /* Qiita_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUITests.swift; sourceTree = "<group>"; };
@@ -96,20 +94,12 @@
 			isa = PBXGroup;
 			children = (
 				E20DD2C225FF325600735B0A /* Qiita_SwiftUIApp.swift */,
-				E20DD2C425FF325600735B0A /* ContentView.swift */,
-				E20DD2C625FF325900735B0A /* Assets.xcassets */,
-				E20DD2CB25FF325900735B0A /* Info.plist */,
-				E20DD2C825FF325900735B0A /* Preview Content */,
+				E20DD2F325FF354B00735B0A /* Configuration */,
+				E20DD2F525FF36AF00735B0A /* Application */,
+				E20DD2F925FF384A00735B0A /* Presentation */,
+				E20DD2F425FF355600735B0A /* Resource */,
 			);
 			path = Qiita_SwiftUI;
-			sourceTree = "<group>";
-		};
-		E20DD2C825FF325900735B0A /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				E20DD2C925FF325900735B0A /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		E20DD2D325FF325900735B0A /* Qiita_SwiftUITests */ = {
@@ -128,6 +118,37 @@
 				E20DD2E125FF325900735B0A /* Info.plist */,
 			);
 			path = Qiita_SwiftUIUITests;
+			sourceTree = "<group>";
+		};
+		E20DD2F325FF354B00735B0A /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD2CB25FF325900735B0A /* Info.plist */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		E20DD2F425FF355600735B0A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD2C625FF325900735B0A /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		E20DD2F525FF36AF00735B0A /* Application */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		E20DD2F925FF384A00735B0A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD2C425FF325600735B0A /* ContentView.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +254,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E20DD2CA25FF325900735B0A /* Preview Assets.xcassets in Resources */,
 				E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
