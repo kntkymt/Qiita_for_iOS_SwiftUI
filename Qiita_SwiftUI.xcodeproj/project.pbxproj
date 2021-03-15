@@ -17,6 +17,11 @@
 		E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30325FF3EAA00735B0A /* AppContext.swift */; };
 		E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30425FF3EAA00735B0A /* AppError.swift */; };
 		E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */; };
+		E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30E25FF403D00735B0A /* VoidModel.swift */; };
+		E20DD31425FF403D00735B0A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30F25FF403D00735B0A /* Item.swift */; };
+		E20DD31525FF403D00735B0A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31025FF403D00735B0A /* User.swift */; };
+		E20DD31625FF403D00735B0A /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31125FF403D00735B0A /* AuthModel.swift */; };
+		E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD31225FF403D00735B0A /* ItemTag.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		E20DD30325FF3EAA00735B0A /* AppContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		E20DD30425FF3EAA00735B0A /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		E20DD30E25FF403D00735B0A /* VoidModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoidModel.swift; sourceTree = "<group>"; };
+		E20DD30F25FF403D00735B0A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		E20DD31025FF403D00735B0A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E20DD31125FF403D00735B0A /* AuthModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		E20DD31225FF403D00735B0A /* ItemTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemTag.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +117,7 @@
 				E20DD2F325FF354B00735B0A /* Configuration */,
 				E20DD2F525FF36AF00735B0A /* Application */,
 				E20DD2F925FF384A00735B0A /* Presentation */,
+				E20DD30D25FF400200735B0A /* Model */,
 				E20DD2F425FF355600735B0A /* Resource */,
 			);
 			path = Qiita_SwiftUI;
@@ -164,6 +175,18 @@
 				E20DD2C425FF325600735B0A /* ContentView.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E20DD30D25FF400200735B0A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD31125FF403D00735B0A /* AuthModel.swift */,
+				E20DD30F25FF403D00735B0A /* Item.swift */,
+				E20DD31225FF403D00735B0A /* ItemTag.swift */,
+				E20DD31025FF403D00735B0A /* User.swift */,
+				E20DD30E25FF403D00735B0A /* VoidModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,12 +318,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */,
+				E20DD31425FF403D00735B0A /* Item.swift in Sources */,
 				E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */,
+				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
 				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
+				E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */,
 				E20DD2C525FF325600735B0A /* ContentView.swift in Sources */,
+				E20DD31525FF403D00735B0A /* User.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
+				E20DD31625FF403D00735B0A /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
