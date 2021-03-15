@@ -57,6 +57,9 @@
 		E20DD3B225FF903B00735B0A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3B125FF903B00735B0A /* MainView.swift */; };
 		E20DD3BB25FF910E00735B0A /* AuthStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BA25FF910E00735B0A /* AuthStubService.swift */; };
 		E20DD3C025FF95FE00735B0A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */; };
+		E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3C525FF9E3A00735B0A /* SafariView.swift */; };
+		E20DD3CF25FFA99100735B0A /* .env in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CD25FFA99100735B0A /* .env */; };
+		E20DD3D025FFA99100735B0A /* .env.sample in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CE25FFA99100735B0A /* .env.sample */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +133,9 @@
 		E20DD3B125FF903B00735B0A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E20DD3BA25FF910E00735B0A /* AuthStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStubService.swift; sourceTree = "<group>"; };
 		E20DD3BF25FF95FE00735B0A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		E20DD3C525FF9E3A00735B0A /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		E20DD3CD25FFA99100735B0A /* .env */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		E20DD3CE25FFA99100735B0A /* .env.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env.sample; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				E20DD2CB25FF325900735B0A /* Info.plist */,
+				E20DD3CD25FFA99100735B0A /* .env */,
+				E20DD3CE25FFA99100735B0A /* .env.sample */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -248,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3A125FF8F4900735B0A /* Environment */,
+				E20DD3C425FF9E2400735B0A /* Common */,
 				E20DD39D25FF8D5F00735B0A /* Screen */,
 			);
 			path = Presentation;
@@ -403,6 +412,14 @@
 			path = Stub;
 			sourceTree = "<group>";
 		};
+		E20DD3C425FF9E2400735B0A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E20DD3C525FF9E3A00735B0A /* SafariView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -517,6 +534,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */,
+				E20DD3D025FFA99100735B0A /* .env.sample in Resources */,
+				E20DD3CF25FFA99100735B0A /* .env in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +579,7 @@
 				E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */,
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
 				E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */,
+				E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
 				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
 				E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */,
