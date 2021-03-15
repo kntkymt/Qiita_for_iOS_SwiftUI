@@ -12,6 +12,11 @@
 		E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20DD2C625FF325900735B0A /* Assets.xcassets */; };
 		E20DD2D525FF325900735B0A /* Qiita_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2D425FF325900735B0A /* Qiita_SwiftUITests.swift */; };
 		E20DD2E025FF325900735B0A /* Qiita_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2DF25FF325900735B0A /* Qiita_SwiftUIUITests.swift */; };
+		E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2FA25FF3DE000735B0A /* AppConstant.swift */; };
+		E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30225FF3EAA00735B0A /* AppContainer.swift */; };
+		E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30325FF3EAA00735B0A /* AppContext.swift */; };
+		E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30425FF3EAA00735B0A /* AppError.swift */; };
+		E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +48,11 @@
 		E20DD2DB25FF325900735B0A /* Qiita_SwiftUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Qiita_SwiftUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20DD2DF25FF325900735B0A /* Qiita_SwiftUIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUIUITests.swift; sourceTree = "<group>"; };
 		E20DD2E125FF325900735B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E20DD2FA25FF3DE000735B0A /* AppConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
+		E20DD30225FF3EAA00735B0A /* AppContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		E20DD30325FF3EAA00735B0A /* AppContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
+		E20DD30425FF3EAA00735B0A /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +149,11 @@
 		E20DD2F525FF36AF00735B0A /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				E20DD30225FF3EAA00735B0A /* AppContainer.swift */,
+				E20DD30325FF3EAA00735B0A /* AppContext.swift */,
+				E20DD30525FF3EAA00735B0A /* AppEnvironment.swift */,
+				E20DD30425FF3EAA00735B0A /* AppError.swift */,
+				E20DD2FA25FF3DE000735B0A /* AppConstant.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -279,6 +294,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */,
+				E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */,
+				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
+				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
+				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
 				E20DD2C525FF325600735B0A /* ContentView.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
 			);
