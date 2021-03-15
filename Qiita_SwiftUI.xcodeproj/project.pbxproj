@@ -51,6 +51,7 @@
 		E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = E20DD38225FF483200735B0A /* SwiftyBeaver */; };
 		E20DD38825FF484000735B0A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38725FF484000735B0A /* Logger.swift */; };
 		E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD38D25FF48A000735B0A /* URLRequest+.swift */; };
+		E20DD39325FF802900735B0A /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD39225FF802900735B0A /* URL+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		E20DD37325FF479E00735B0A /* Keychains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychains.swift; sourceTree = "<group>"; };
 		E20DD38725FF484000735B0A /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		E20DD38D25FF48A000735B0A /* URLRequest+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+.swift"; sourceTree = "<group>"; };
+		E20DD39225FF802900735B0A /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD38D25FF48A000735B0A /* URLRequest+.swift */,
+				E20DD39225FF802900735B0A /* URL+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				E20DD33625FF40FC00735B0A /* StockService.swift in Sources */,
 				E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */,
 				E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */,
+				E20DD39325FF802900735B0A /* URL+.swift in Sources */,
 				E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */,
 				E20DD38825FF484000735B0A /* Logger.swift in Sources */,
 				E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */,

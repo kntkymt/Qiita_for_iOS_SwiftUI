@@ -17,7 +17,7 @@ final class Auth {
 
     // MARK: - Property
 
-    private var observer: (promise: Promise<AuthModel>, resolver: Resolver<AuthModel>)!
+    private var resolver: ((Result<AuthModel, Error>) -> Void)!
 
     private lazy var viewController: SFSafariViewController = {
         let url = URL(string: AppConstant.Auth.baseURL)!
@@ -37,41 +37,41 @@ final class Auth {
         return accessToken != nil
     }
 
-    var currentUser: Promise<User> {
-        return API.shared.call(AuthTarget.getAccount)
+    var currentUser: AnyPublisher<User, Error> {
+        return API.shared.call(AuthTarget.getAccount).eraseToAnyPublisher()
     }
 
     // MARK: - Public
 
     func handleDeepLink(url: URL) {
-        viewController.bottomPresentingViewController().dismiss(animated: true)
-        let parameters = url.queryParameters
-        guard let code = parameters["code"] else {
-            observer.resolver.reject(NetworkingError.internal(message: "there is no parameter named code in this deeplink"))
-            return
-        }
-
-        API.shared.call(AuthTarget.getAccessToken(code: code))
-            .done { (auth: AuthModel) in
-                self.accessToken = auth.token
-                self.observer.resolver.fulfill(auth)
-            }.catch { error in
-                self.observer.resolver.reject(error)
-            }
+//        viewController.bottomPresentingViewController().dismiss(animated: true)
+//        let parameters = url.queryParameters
+//        guard let code = parameters["code"] else {
+//            observer.resolver.reject(NetworkingError.internal(message: "there is no parameter named code in this deeplink"))
+//            return
+//        }
+//
+//        API.shared.call(AuthTarget.getAccessToken(code: code))
+//            .done { (auth: AuthModel) in
+//                self.accessToken = auth.token
+//                self.observer.resolver.fulfill(auth)
+//            }.catch { error in
+//                self.observer.resolver.reject(error)
+//            }
     }
 
-    func signin() -> Promise<AuthModel> {
-        observer = Promise<AuthModel>.pending()
+    func signin() -> AnyPublisher<AuthModel, Error> {
+        return Future { resolver in
+            self.resolver = resolver
+        }.eraseToAnyPublisher()
 
-        SceneRouter.shared.rootViewController.currentViewController?.topPresentedViewController().present(viewController, animated: true)
-
-        return observer.promise
+//        SceneRouter.shared.rootViewController.currentViewController?.topPresentedViewController().present(viewController, animated: true)
     }
 
-    func signout() -> Promise<Void> {
-        let result: Promise<VoidModel> = API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found"))
+    func signout() -> AnyPublisher<Void, Error> {
+        let result: Future<VoidModel, Error> = API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found"))
 
-        return result.map { _ in self.accessToken = nil }
+        return result.map { _ in self.accessToken = nil }.eraseToAnyPublisher()
     }
 
     // MARK: - Initializer

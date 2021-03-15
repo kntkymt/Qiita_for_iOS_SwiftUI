@@ -29,25 +29,25 @@ final class API {
 
     // MARK: - Public
 
-   func call<T: Decodable, Target: TargetType>(_ request: Target) -> AnyPublisher<T, Error> {
+   func call<T: Decodable, Target: TargetType>(_ request: Target) -> Future<T, Error> {
         let target = MultiTarget(request)
-        return Promise { resolver in
+        return Future { resolver in
             self.provider.request(target) { response in
-                switch response.result {
+                switch response {
                 case .success(let result):
                     do {
                         // FIXME: 204の扱い
                         if result.statusCode == 204 {
                             guard let decoded = VoidModel() as? T else { throw NetworkingError.network }
-                            resolver.fulfill(decoded)
+                            resolver(.success(decoded))
                         } else {
-                            resolver.fulfill(try self.decoder.decode(T.self, from: result.data))
+                            resolver(.success(try self.decoder.decode(T.self, from: result.data)))
                         }
                     } catch {
-                        resolver.reject(error)
+                        resolver(.failure(error))
                     }
                 case .failure(let error):
-                    resolver.reject(NetworkingError(error: error))
+                    resolver(.failure(NetworkingError(error: error)))
                 }
             }
         }

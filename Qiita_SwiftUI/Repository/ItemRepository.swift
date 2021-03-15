@@ -7,6 +7,11 @@
 
 import Combine
 
+enum SearchType {
+    case word(String)
+    case tag(ItemTag)
+}
+
 protocol ItemRepository {
 
     /// 新着記事一覧を取得する

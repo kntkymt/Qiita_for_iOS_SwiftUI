@@ -10,6 +10,6 @@ import Combine
 final class UserService: UserRepository {
 
     func getUser(id: User.ID) -> AnyPublisher<User, Error> {
-        return API.shared.call(UserTarget.get(id: id))
+        return API.shared.call(UserTarget.get(id: id)).eraseToAnyPublisher()
     }
 }
