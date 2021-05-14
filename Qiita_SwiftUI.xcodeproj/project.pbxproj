@@ -68,6 +68,9 @@
 		E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DED264F15C4009473D0 /* ItemDetailView.swift */; };
 		E2729DF0264F18F0009473D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEF264F18F0009473D0 /* WebView.swift */; };
 		E2729DF2264F24F8009473D0 /* ItemStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF1264F24F8009473D0 /* ItemStubService.swift */; };
+		E2729DF5264F39DC009473D0 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF4264F39DC009473D0 /* StockView.swift */; };
+		E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF6264F3A0F009473D0 /* StockViewModel.swift */; };
+		E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF8264F3ADC009473D0 /* StockStubService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +154,9 @@
 		E2729DED264F15C4009473D0 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		E2729DEF264F18F0009473D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		E2729DF1264F24F8009473D0 /* ItemStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStubService.swift; sourceTree = "<group>"; };
+		E2729DF4264F39DC009473D0 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
+		E2729DF6264F3A0F009473D0 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
+		E2729DF8264F3ADC009473D0 /* StockStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockStubService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +392,7 @@
 				E2729DE4264ECD8C009473D0 /* ItemList */,
 				E2729DEC264F1582009473D0 /* ItemDetail */,
 				E2729DDF264EC5EC009473D0 /* Home */,
+				E2729DF3264F3998009473D0 /* Stock */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -428,6 +435,7 @@
 			children = (
 				E20DD3BA25FF910E00735B0A /* AuthStubService.swift */,
 				E2729DF1264F24F8009473D0 /* ItemStubService.swift */,
+				E2729DF8264F3ADC009473D0 /* StockStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -465,6 +473,15 @@
 				E2729DED264F15C4009473D0 /* ItemDetailView.swift */,
 			);
 			path = ItemDetail;
+			sourceTree = "<group>";
+		};
+		E2729DF3264F3998009473D0 /* Stock */ = {
+			isa = PBXGroup;
+			children = (
+				E2729DF4264F39DC009473D0 /* StockView.swift */,
+				E2729DF6264F3A0F009473D0 /* StockViewModel.swift */,
+			);
+			path = Stock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -631,7 +648,9 @@
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
 				E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */,
 				E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */,
+				E2729DF5264F39DC009473D0 /* StockView.swift in Sources */,
 				E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */,
+				E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */,
 				E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
 				E2729DE1264EC601009473D0 /* HomeView.swift in Sources */,
@@ -653,6 +672,7 @@
 				E20DD32725FF40EE00735B0A /* AuthRepository.swift in Sources */,
 				E20DD34725FF44BA00735B0A /* APIProviderFactory.swift in Sources */,
 				E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */,
+				E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */,
 				E20DD31525FF403D00735B0A /* User.swift in Sources */,
 				E20DD3B225FF903B00735B0A /* MainView.swift in Sources */,
 				E2729DF0264F18F0009473D0 /* WebView.swift in Sources */,
