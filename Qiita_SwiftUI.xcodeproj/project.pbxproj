@@ -63,6 +63,8 @@
 		E2729DE1264EC601009473D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE0264EC601009473D0 /* HomeView.swift */; };
 		E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE2264ECA96009473D0 /* HomeViewModel.swift */; };
 		E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE5264ECDA7009473D0 /* ItemListView.swift */; };
+		E2729DE9264F0C82009473D0 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = E2729DE8264F0C82009473D0 /* FetchImage */; };
+		E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEA264F0D43009473D0 /* ImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,7 @@
 		E2729DE0264EC601009473D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2729DE2264ECA96009473D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E2729DE5264ECDA7009473D0 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		E2729DEA264F0D43009473D0 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +155,7 @@
 				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
 				E20DD36425FF460500735B0A /* Moya in Frameworks */,
 				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
+				E2729DE9264F0C82009473D0 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3C525FF9E3A00735B0A /* SafariView.swift */,
+				E2729DEA264F0D43009473D0 /* ImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				E20DD36325FF460500735B0A /* Moya */,
 				E20DD37C25FF47E600735B0A /* KeychainAccess */,
 				E20DD38225FF483200735B0A /* SwiftyBeaver */,
+				E2729DE8264F0C82009473D0 /* FetchImage */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -541,6 +547,7 @@
 				E20DD36225FF460500735B0A /* XCRemoteSwiftPackageReference "Moya" */,
 				E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */,
 			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
@@ -597,6 +604,7 @@
 				E20DD35225FF44C600735B0A /* ItemTarget.swift in Sources */,
 				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
 				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
+				E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
 				E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */,
 				E20DD33725FF40FC00735B0A /* TagService.swift in Sources */,
@@ -976,6 +984,14 @@
 				minimumVersion = 1.9.3;
 			};
 		};
+		E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/FetchImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -993,6 +1009,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		E2729DE8264F0C82009473D0 /* FetchImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			productName = FetchImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
