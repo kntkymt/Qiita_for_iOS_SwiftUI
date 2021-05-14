@@ -29,20 +29,22 @@ struct ItemListItem: View {
     var item: Item
 
     var body: some View {
-        HStack {
-            ImageView(url: item.user.profileImageUrl)
-                .frame(width: 40, height: 40)
-                .cornerRadius(4.0)
+        NavigationLink(destination: ItemDetailView(item: item)) {
+            HStack {
+                ImageView(url: item.user.profileImageUrl)
+                    .frame(width: 40, height: 40)
+                    .cornerRadius(4.0)
 
-            VStack(alignment: .leading, spacing: 4) {
-                Text(item.title)
-                    .font(.system(size: 14, weight: .medium))
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(item.title)
+                        .font(.system(size: 14, weight: .medium))
 
-                Text("by \(item.user.name)")
-                    .foregroundColor(.secondary)
-                    .font(.system(size: 12))
-            }
-        }.padding(.vertical, 8)
+                    Text("by \(item.user.name)")
+                        .foregroundColor(.secondary)
+                        .font(.system(size: 12))
+                }
+            }.padding(.vertical, 8)
+        }
     }
 }
 
