@@ -67,6 +67,7 @@
 		E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEA264F0D43009473D0 /* ImageView.swift */; };
 		E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DED264F15C4009473D0 /* ItemDetailView.swift */; };
 		E2729DF0264F18F0009473D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEF264F18F0009473D0 /* WebView.swift */; };
+		E2729DF2264F24F8009473D0 /* ItemStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF1264F24F8009473D0 /* ItemStubService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		E2729DEA264F0D43009473D0 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		E2729DED264F15C4009473D0 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		E2729DEF264F18F0009473D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		E2729DF1264F24F8009473D0 /* ItemStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStubService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3BA25FF910E00735B0A /* AuthStubService.swift */,
+				E2729DF1264F24F8009473D0 /* ItemStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */,
 				E20DD33525FF40FC00735B0A /* AuthService.swift in Sources */,
 				E20DD35225FF44C600735B0A /* ItemTarget.swift in Sources */,
+				E2729DF2264F24F8009473D0 /* ItemStubService.swift in Sources */,
 				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
 				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
 				E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */,

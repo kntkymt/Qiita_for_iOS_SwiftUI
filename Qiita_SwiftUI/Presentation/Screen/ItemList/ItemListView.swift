@@ -60,7 +60,7 @@ struct ItemListItem: View {
 
 struct ItemListView_Previews: PreviewProvider {
 
-    @State static var items: [Item] = .init(repeating: Item(title: "Hello Wordl", id: "1", url: URL(string: "https://qiita.com/api/v2/docs")!, likesCount: 0, createdAt: Date(), user: User(id: "1", name: "hoge", description: "", profileImageUrl: URL(string: "https://qiita.com/api/v2/docs")!, itemsCount: 0, followeesCount: 0, followersCount: 0)), count: 10)
+    @State static var items: [Item] = ItemStubService.items
 
     static var previews: some View {
         ItemListView(items: $items)

@@ -10,13 +10,7 @@ import Foundation
 
 final class AuthStubService: AuthRepository {
 
-    private let user = User(id: "1111",
-                            name: "hoge",
-                            description: "hogeです。\nよろしくお願いします。",
-                            profileImageUrl: URL(string: "https://avatars.githubusercontent.com/u/44288050?s=400&u=57fbf71e9e2e411af3da17f82051cf83cdb0df56&v=4")!,
-                            itemsCount: 2,
-                            followeesCount: 3,
-                            followersCount: 4)
+    private let user = User(id: "kntkymt", name: "kntkymt", description: "iOSエンジニアです", profileImageUrl: URL(string: "https://avatars2.githubusercontent.com/u/44288050?v=4")!, itemsCount: 4, followeesCount: 3, followersCount: 3)
 
     private let authModel = AuthModel(clientId: "stub id", scopes: [], token: "stub token")
 
