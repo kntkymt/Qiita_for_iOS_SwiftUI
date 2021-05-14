@@ -35,13 +35,23 @@ struct ItemListItem: View {
                     .frame(width: 40, height: 40)
                     .cornerRadius(4.0)
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: 6) {
                     Text(item.title)
                         .font(.system(size: 14, weight: .medium))
 
-                    Text("by \(item.user.name)")
-                        .foregroundColor(.secondary)
-                        .font(.system(size: 12))
+                    HStack {
+                        Text("@\(item.user.id)")
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 12))
+
+                        Image(systemName: "hand.thumbsup")
+                            .frame(width: 4, height: 12)
+                            .font(.system(size: 12))
+
+                        Text(item.likesCount.description)
+                            .foregroundColor(.secondary)
+                            .font(.system(size: 12))
+                    }
                 }
             }.padding(.vertical, 8)
         }
