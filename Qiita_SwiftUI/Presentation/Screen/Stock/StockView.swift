@@ -24,7 +24,7 @@ struct StockView: View {
     var body: some View {
         NavigationView {
             ItemListView(items: $viewModel.items)
-                .navigationBarTitle("Home", displayMode: .inline)
+                .navigationBarTitle("Stock", displayMode: .inline)
         }
     }
 }
