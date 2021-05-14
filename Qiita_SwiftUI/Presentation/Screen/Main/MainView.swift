@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            Text("Home")
+            HomeView(itemRepository: AppContainer.shared.itemRepository)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
