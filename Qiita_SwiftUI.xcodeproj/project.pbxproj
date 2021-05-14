@@ -60,6 +60,14 @@
 		E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD3C525FF9E3A00735B0A /* SafariView.swift */; };
 		E20DD3CF25FFA99100735B0A /* .env in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CD25FFA99100735B0A /* .env */; };
 		E20DD3D025FFA99100735B0A /* .env.sample in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CE25FFA99100735B0A /* .env.sample */; };
+		E2729DE1264EC601009473D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE0264EC601009473D0 /* HomeView.swift */; };
+		E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE2264ECA96009473D0 /* HomeViewModel.swift */; };
+		E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE5264ECDA7009473D0 /* ItemListView.swift */; };
+		E2729DE9264F0C82009473D0 /* FetchImage in Frameworks */ = {isa = PBXBuildFile; productRef = E2729DE8264F0C82009473D0 /* FetchImage */; };
+		E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEA264F0D43009473D0 /* ImageView.swift */; };
+		E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DED264F15C4009473D0 /* ItemDetailView.swift */; };
+		E2729DF0264F18F0009473D0 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DEF264F18F0009473D0 /* WebView.swift */; };
+		E2729DF2264F24F8009473D0 /* ItemStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF1264F24F8009473D0 /* ItemStubService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +144,13 @@
 		E20DD3C525FF9E3A00735B0A /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		E20DD3CD25FFA99100735B0A /* .env */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		E20DD3CE25FFA99100735B0A /* .env.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env.sample; sourceTree = "<group>"; };
+		E2729DE0264EC601009473D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E2729DE2264ECA96009473D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E2729DE5264ECDA7009473D0 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
+		E2729DEA264F0D43009473D0 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E2729DED264F15C4009473D0 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		E2729DEF264F18F0009473D0 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		E2729DF1264F24F8009473D0 /* ItemStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStubService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +161,7 @@
 				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
 				E20DD36425FF460500735B0A /* Moya in Frameworks */,
 				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
+				E2729DE9264F0C82009473D0 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +383,9 @@
 				E20DD39E25FF8D7A00735B0A /* Launch */,
 				E20DD39F25FF8D8000735B0A /* Login */,
 				E20DD3A025FF8D8D00735B0A /* Main */,
+				E2729DE4264ECD8C009473D0 /* ItemList */,
+				E2729DEC264F1582009473D0 /* ItemDetail */,
+				E2729DDF264EC5EC009473D0 /* Home */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -408,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3BA25FF910E00735B0A /* AuthStubService.swift */,
+				E2729DF1264F24F8009473D0 /* ItemStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -416,8 +436,35 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3C525FF9E3A00735B0A /* SafariView.swift */,
+				E2729DEA264F0D43009473D0 /* ImageView.swift */,
+				E2729DEF264F18F0009473D0 /* WebView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		E2729DDF264EC5EC009473D0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E2729DE0264EC601009473D0 /* HomeView.swift */,
+				E2729DE2264ECA96009473D0 /* HomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E2729DE4264ECD8C009473D0 /* ItemList */ = {
+			isa = PBXGroup;
+			children = (
+				E2729DE5264ECDA7009473D0 /* ItemListView.swift */,
+			);
+			path = ItemList;
+			sourceTree = "<group>";
+		};
+		E2729DEC264F1582009473D0 /* ItemDetail */ = {
+			isa = PBXGroup;
+			children = (
+				E2729DED264F15C4009473D0 /* ItemDetailView.swift */,
+			);
+			path = ItemDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +487,7 @@
 				E20DD36325FF460500735B0A /* Moya */,
 				E20DD37C25FF47E600735B0A /* KeychainAccess */,
 				E20DD38225FF483200735B0A /* SwiftyBeaver */,
+				E2729DE8264F0C82009473D0 /* FetchImage */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -516,6 +564,7 @@
 				E20DD36225FF460500735B0A /* XCRemoteSwiftPackageReference "Moya" */,
 				E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */,
 			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
@@ -570,8 +619,10 @@
 				E20DD2FB25FF3DE000735B0A /* AppConstant.swift in Sources */,
 				E20DD33525FF40FC00735B0A /* AuthService.swift in Sources */,
 				E20DD35225FF44C600735B0A /* ItemTarget.swift in Sources */,
+				E2729DF2264F24F8009473D0 /* ItemStubService.swift in Sources */,
 				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
 				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
+				E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
 				E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */,
 				E20DD33725FF40FC00735B0A /* TagService.swift in Sources */,
@@ -579,8 +630,11 @@
 				E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */,
 				E20DD30725FF3EAA00735B0A /* AppContext.swift in Sources */,
 				E20DD32425FF40EE00735B0A /* LikeRepository.swift in Sources */,
+				E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */,
+				E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */,
 				E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,
+				E2729DE1264EC601009473D0 /* HomeView.swift in Sources */,
 				E20DD30625FF3EAA00735B0A /* AppContainer.swift in Sources */,
 				E20DD32525FF40EE00735B0A /* StockRepository.swift in Sources */,
 				E20DD32625FF40EE00735B0A /* TagRepository.swift in Sources */,
@@ -601,6 +655,8 @@
 				E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */,
 				E20DD31525FF403D00735B0A /* User.swift in Sources */,
 				E20DD3B225FF903B00735B0A /* MainView.swift in Sources */,
+				E2729DF0264F18F0009473D0 /* WebView.swift in Sources */,
+				E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */,
 				E20DD37425FF479E00735B0A /* Keychains.swift in Sources */,
 				E20DD3A325FF8F5700735B0A /* AuthState.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
@@ -948,6 +1004,14 @@
 				minimumVersion = 1.9.3;
 			};
 		};
+		E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/FetchImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -965,6 +1029,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		E2729DE8264F0C82009473D0 /* FetchImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */;
+			productName = FetchImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

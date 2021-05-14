@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+
+    // MARK: - Property
+
+    var itemRepository: ItemRepository
+
+    // MARK: - Body
+
     var body: some View {
         TabView {
-            Text("Home")
+            HomeView(itemRepository: itemRepository)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
@@ -36,6 +43,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(itemRepository: ItemStubService())
     }
 }
