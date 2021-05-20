@@ -41,7 +41,7 @@ struct ProfileView: View {
                     .foregroundColor(Color("brand"))
             })
         }.sheet(isPresented: $isPresented) {
-            SettingView()
+            SettingView(authRepository: viewModel.authRepository, isPresenting: $isPresented)
         }
     }
 }

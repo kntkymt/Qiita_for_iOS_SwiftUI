@@ -15,7 +15,7 @@ final class ProfileViewModel: ObservableObject {
     @Published var user: User?
     @Published var items: [Item] = []
 
-    private let authRepository: AuthRepository
+    let authRepository: AuthRepository
     private let itemRepository: ItemRepository
     private var cancellables = [AnyCancellable]()
 
