@@ -78,6 +78,7 @@
 		E2BB27732656A8A600148F45 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27722656A8A600148F45 /* SearchView.swift */; };
 		E2BB27752656A90100148F45 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27742656A90100148F45 /* SearchViewModel.swift */; };
 		E2BB27772656ACC000148F45 /* TagStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27762656ACC000148F45 /* TagStubService.swift */; };
+		E2BB277C2656B92100148F45 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = E2BB277B2656B92100148F45 /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,7 @@
 				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
 				E20DD36425FF460500735B0A /* Moya in Frameworks */,
 				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
+				E2BB277C2656B92100148F45 /* SwiftUIX in Frameworks */,
 				E2729DE9264F0C82009473D0 /* FetchImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +552,7 @@
 				E20DD37C25FF47E600735B0A /* KeychainAccess */,
 				E20DD38225FF483200735B0A /* SwiftyBeaver */,
 				E2729DE8264F0C82009473D0 /* FetchImage */,
+				E2BB277B2656B92100148F45 /* SwiftUIX */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -627,6 +630,7 @@
 				E20DD37B25FF47E600735B0A /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */,
+				E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
@@ -1084,6 +1088,14 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1106,6 +1118,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */;
 			productName = FetchImage;
+		};
+		E2BB277B2656B92100148F45 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
