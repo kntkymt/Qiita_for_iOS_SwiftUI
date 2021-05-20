@@ -39,7 +39,7 @@ struct MainView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }
-        }
+        }.accentColor(Color("brand"))
     }
 }
 
