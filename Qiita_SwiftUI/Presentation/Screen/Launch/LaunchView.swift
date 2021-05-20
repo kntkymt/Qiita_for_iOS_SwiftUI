@@ -21,7 +21,7 @@ struct LaunchView: View {
 
     var body: some View {
         if authState.isSignedin {
-            MainView(itemRepository: itemRepository, stockRepository: stockRepository)
+            MainView(authRepository: authRepository, itemRepository: itemRepository, stockRepository: stockRepository)
         } else {
             LoginView(authRepository: authRepository)
         }

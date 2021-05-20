@@ -11,6 +11,7 @@ struct MainView: View {
 
     // MARK: - Property
 
+    var authRepository: AuthRepository
     var itemRepository: ItemRepository
     var stockRepository: StockRepository
 
@@ -33,7 +34,7 @@ struct MainView: View {
                     Image(systemName: "folder")
                     Text("Stock")
                 }
-            Text("Profile")
+            ProfileView(authRepository: authRepository, itemRepository: itemRepository)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
@@ -44,6 +45,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(itemRepository: ItemStubService(), stockRepository: StockStubService())
+        MainView(authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService())
     }
 }
