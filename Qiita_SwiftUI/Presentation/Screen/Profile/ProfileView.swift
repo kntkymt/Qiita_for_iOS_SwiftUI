@@ -31,7 +31,7 @@ struct ProfileView: View {
                         ItemListView(items: $viewModel.items)
                     }
                 } else {
-                    Text("Loading")
+                    ProgressView()
                 }
             }.navigationBarTitle("Profile", displayMode: .inline)
         }
