@@ -34,8 +34,8 @@ struct SettingView: View {
                         .foregroundColor(.primary)
                 }
                 Section {
-                    NavigationLink("開発者情報", destination: WebView(url: URL(string: "https://github.com/kntkymt")!))
-                    NavigationLink("リポジトリ", destination: WebView(url: URL(string: "https://github.com/kntkymt/Qiita_for_iOS_SwiftUI")!))
+                    NavigationLink("開発者情報", destination: WebView(url: URL(string: AppConstant.Link.developer)!))
+                    NavigationLink("リポジトリ", destination: WebView(url: URL(string: AppConstant.Link.repository)!))
                 }
                 Section {
                     HStack {
