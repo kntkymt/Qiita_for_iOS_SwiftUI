@@ -12,7 +12,7 @@ struct Qiita_SwiftUIApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
-            LaunchView(authRepository: AppContainer.shared.authRepository, itemRepository: AppContainer.shared.itemRepository, stockRepository: AppContainer.shared.stockRepository)
+            LaunchView(authRepository: AppContainer.shared.authRepository, itemRepository: AppContainer.shared.itemRepository, stockRepository: AppContainer.shared.stockRepository, tagRepository: AppContainer.shared.tagRepository)
                 .environmentObject(AuthState(authRepository: AppContainer.shared.authRepository))
         }
     }

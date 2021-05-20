@@ -75,6 +75,9 @@
 		E2BB276B2656657500148F45 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276A2656657500148F45 /* ProfileViewModel.swift */; };
 		E2BB276E2656904100148F45 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276D2656904100148F45 /* SettingView.swift */; };
 		E2BB27702656950700148F45 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276F2656950700148F45 /* SettingViewModel.swift */; };
+		E2BB27732656A8A600148F45 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27722656A8A600148F45 /* SearchView.swift */; };
+		E2BB27752656A90100148F45 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27742656A90100148F45 /* SearchViewModel.swift */; };
+		E2BB27772656ACC000148F45 /* TagStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27762656ACC000148F45 /* TagStubService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +168,9 @@
 		E2BB276A2656657500148F45 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E2BB276D2656904100148F45 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		E2BB276F2656950700148F45 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		E2BB27722656A8A600148F45 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E2BB27742656A90100148F45 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		E2BB27762656ACC000148F45 /* TagStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagStubService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +406,7 @@
 				E2729DE4264ECD8C009473D0 /* ItemList */,
 				E2729DEC264F1582009473D0 /* ItemDetail */,
 				E2729DDF264EC5EC009473D0 /* Home */,
+				E2BB27712656A88C00148F45 /* Search */,
 				E2729DF3264F3998009473D0 /* Stock */,
 				E2BB2767265664AB00148F45 /* Profile */,
 				E2BB276C26568F8F00148F45 /* Setting */,
@@ -446,6 +453,7 @@
 				E20DD3BA25FF910E00735B0A /* AuthStubService.swift */,
 				E2729DF1264F24F8009473D0 /* ItemStubService.swift */,
 				E2729DF8264F3ADC009473D0 /* StockStubService.swift */,
+				E2BB27762656ACC000148F45 /* TagStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -510,6 +518,15 @@
 				E2BB276F2656950700148F45 /* SettingViewModel.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		E2BB27712656A88C00148F45 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				E2BB27722656A8A600148F45 /* SearchView.swift */,
+				E2BB27742656A90100148F45 /* SearchViewModel.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -671,6 +688,7 @@
 				E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
 				E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */,
+				E2BB27752656A90100148F45 /* SearchViewModel.swift in Sources */,
 				E20DD33725FF40FC00735B0A /* TagService.swift in Sources */,
 				E20DD34825FF44BA00735B0A /* Auth.swift in Sources */,
 				E20DD33325FF40FC00735B0A /* LikeService.swift in Sources */,
@@ -694,10 +712,12 @@
 				E20DD39325FF802900735B0A /* URL+.swift in Sources */,
 				E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */,
 				E20DD38825FF484000735B0A /* Logger.swift in Sources */,
+				E2BB27732656A8A600148F45 /* SearchView.swift in Sources */,
 				E20DD38E25FF48A000735B0A /* URLRequest+.swift in Sources */,
 				E2BB276B2656657500148F45 /* ProfileViewModel.swift in Sources */,
 				E20DD33225FF40FC00735B0A /* UserService.swift in Sources */,
 				E2BB27692656654400148F45 /* ProfileView.swift in Sources */,
+				E2BB27772656ACC000148F45 /* TagStubService.swift in Sources */,
 				E20DD34925FF44BA00735B0A /* LoggerPlugin.swift in Sources */,
 				E20DD3BB25FF910E00735B0A /* AuthStubService.swift in Sources */,
 				E20DD35425FF44C600735B0A /* TagTarget.swift in Sources */,

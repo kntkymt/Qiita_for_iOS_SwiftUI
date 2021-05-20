@@ -14,6 +14,7 @@ struct MainView: View {
     var authRepository: AuthRepository
     var itemRepository: ItemRepository
     var stockRepository: StockRepository
+    var tagRepository: TagRepository
 
     // MARK: - Body
 
@@ -24,7 +25,7 @@ struct MainView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            Text("Search")
+            SearchView(tagRepository: tagRepository)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
@@ -45,6 +46,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService())
+        MainView(authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
     }
 }
