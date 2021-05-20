@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct SearchView: View {
 
@@ -13,7 +14,10 @@ struct SearchView: View {
 
     @ObservedObject private var viewModel: SearchViewModel
 
-    @State private var seachText: String = ""
+    @State var isEditing: Bool = false
+    @State private var searchText: String = ""
+
+    @State private var isPush: Bool = false
 
     // MARK: - Initializer
 
@@ -29,7 +33,12 @@ struct SearchView: View {
                 ForEach(viewModel.tags) { tag in
                     Text(tag.id)
                 }
-            }.navigationBarItems(leading: TextField("キーワード検索", text: $seachText), trailing: Button("キャンセル", action: { }))
+            }.navigationBarTitle("Search", displayMode: .inline)
+            .navigationSearchBar {
+                SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
+                    .showsCancelButton(isEditing)
+
+            }
         }
     }
 }
