@@ -12,6 +12,7 @@ struct SearchView: View {
 
     // MARK: - Property
 
+    private let itemRepository: ItemRepository
     @ObservedObject private var viewModel: SearchViewModel
 
     @State var isEditing: Bool = false
@@ -21,23 +22,28 @@ struct SearchView: View {
 
     // MARK: - Initializer
 
-    init(tagRepository: TagRepository) {
+    init(tagRepository: TagRepository, itemRepository: ItemRepository) {
         self.viewModel = SearchViewModel(tagRepository: tagRepository)
+        self.itemRepository = itemRepository
     }
 
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.tags) { tag in
-                    Text(tag.id)
+            VStack {
+                List {
+                    ForEach(viewModel.tags) { tag in
+                        Text(tag.id)
+                    }
                 }
-            }.navigationBarTitle("Search", displayMode: .inline)
-            .navigationSearchBar {
-                SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
-                    .showsCancelButton(isEditing)
+                NavigationLink(destination: SearchResultView(searchWord: searchText, itemRepository: itemRepository), isActive: $isPush) { EmptyView() }
+                    .navigationBarTitle("Search", displayMode: .inline)
+                    .navigationSearchBar {
+                        SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
+                            .showsCancelButton(isEditing)
 
+                }
             }
         }
     }
@@ -45,6 +51,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(tagRepository: TagStubService())
+        SearchView(tagRepository: TagStubService(), itemRepository: ItemStubService())
     }
 }
