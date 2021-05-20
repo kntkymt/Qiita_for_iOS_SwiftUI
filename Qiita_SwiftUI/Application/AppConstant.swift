@@ -9,6 +9,11 @@ import Foundation
 
 enum AppConstant {
 
+    enum Link {
+        static let developer = "https://github.com/kntkymt"
+        static let repository = "https://github.com/kntkymt/Qiita_for_iOS_SwiftUI"
+    }
+
     enum API {
         static let domain = "qiita.com"
         static let baseURL = "https://\(domain)/api/v2"
