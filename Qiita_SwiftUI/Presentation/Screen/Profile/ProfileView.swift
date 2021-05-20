@@ -12,6 +12,7 @@ struct ProfileView: View {
     // MARK: - Property
 
     @ObservedObject private var viewModel: ProfileViewModel
+    @State private var isPresented = false
 
     // MARK: - Initializer
 
@@ -34,6 +35,13 @@ struct ProfileView: View {
                     ProgressView()
                 }
             }.navigationBarTitle("Profile", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: { isPresented.toggle() }) {
+                Image(systemName: "gear")
+                    .renderingMode(.template)
+                    .foregroundColor(Color("brand"))
+            })
+        }.sheet(isPresented: $isPresented) {
+            SettingView()
         }
     }
 }
