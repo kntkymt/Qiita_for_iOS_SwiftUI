@@ -13,15 +13,15 @@ final class SearchResultViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
-    let searchWord: String
+    let searchType: SearchType
 
     private let itemRepository: ItemRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
-    init(searchWord: String, itemRepository: ItemRepository) {
-        self.searchWord = searchWord
+    init(searchType: SearchType, itemRepository: ItemRepository) {
+        self.searchType = searchType
         self.itemRepository = itemRepository
 
         fetchItems()
@@ -30,7 +30,7 @@ final class SearchResultViewModel: ObservableObject {
     // MARK: - Public
 
     func fetchItems() {
-        itemRepository.getItems(with: .word(searchWord), page: 1)
+        itemRepository.getItems(with: searchType, page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {

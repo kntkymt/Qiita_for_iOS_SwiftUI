@@ -15,20 +15,27 @@ struct SearchResultView: View {
 
     // MARK: - Initializer
 
-    init(searchWord: String, itemRepository: ItemRepository) {
-        viewModel = SearchResultViewModel(searchWord: searchWord, itemRepository: itemRepository)
+    init(searchType: SearchType, itemRepository: ItemRepository) {
+        viewModel = SearchResultViewModel(searchType: searchType, itemRepository: itemRepository)
     }
 
     // MARK: - Body
 
     var body: some View {
         ItemListView(items: $viewModel.items)
-            .navigationTitle("キーワード: \(viewModel.searchWord)")
+            .navigationTitle(navigationTitle)
+    }
+
+    var navigationTitle: String {
+        switch viewModel.searchType {
+        case .tag(let tag): return "タグ: \(tag.id)"
+        case .word(let word): return "キーワード: \(word)"
+        }
     }
 }
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(searchWord: "iOS", itemRepository: ItemStubService())
+        SearchResultView(searchType: .word("iOS"), itemRepository: ItemStubService())
     }
 }
