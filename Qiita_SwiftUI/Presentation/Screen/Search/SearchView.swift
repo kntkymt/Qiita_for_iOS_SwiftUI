@@ -32,10 +32,22 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    ForEach(viewModel.tags) { tag in
-                        Text(tag.id)
-                    }
+                GeometryReader { geometry in
+                    CollectionView(viewModel.tags) { tag in
+                        ZStack {
+                            ImageView(url: tag.iconUrl!)
+
+                            Color(.darkText.withAlphaComponent(0.2))
+
+                            Text(tag.id)
+                                .foregroundColor(.white)
+                                .font(.system(size: 17, weight: .semibold))
+
+                        }
+                        // geometryが一瞬0.0等を返す場合があるので、その時に-にならないようにする
+                        .frame(width: max(0.0, (geometry.size.width - 2) / 3), height: max(0.0, (geometry.size.width - 2) / 3))
+                        // なんか1.0だとレイアウトが崩れる(小数演算の問題か)
+                    }.collectionViewLayout(FlowCollectionViewLayout(minimumLineSpacing: 1, minimumInteritemSpacing: 0.99))
                 }
                 NavigationLink(destination: SearchResultView(searchWord: searchText, itemRepository: itemRepository), isActive: $isPush) { EmptyView() }
                     .navigationBarTitle("Search", displayMode: .inline)

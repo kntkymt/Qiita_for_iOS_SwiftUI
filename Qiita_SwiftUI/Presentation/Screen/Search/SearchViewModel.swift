@@ -28,7 +28,7 @@ final class SearchViewModel: ObservableObject {
     // MARK: - Public
 
     func fetchTags() {
-        tagRepository.getTags(page: 1, perPage: 20, sort: "count")
+        tagRepository.getTags(page: 1, perPage: 30, sort: "count")
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
