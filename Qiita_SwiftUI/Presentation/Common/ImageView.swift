@@ -15,10 +15,10 @@ struct ImageView: View {
 
     var body: some View {
         ZStack {
-            Rectangle().fill(Color.gray)
+            Rectangle().fill(Color.systemBackground)
             image.view?
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
                 .clipped()
         }
         .onAppear { image.load(url) }
