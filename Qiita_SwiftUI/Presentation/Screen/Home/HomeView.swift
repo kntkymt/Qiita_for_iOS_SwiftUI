@@ -13,17 +13,22 @@ struct HomeView: View {
 
     @ObservedObject private var viewModel: HomeViewModel
 
+    let likeRepository: LikeRepository
+    let stockRepository: StockRepository
+
     // MARK: - Initializer
 
-    init(itemRepository: ItemRepository) {
+    init(itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
         self.viewModel = HomeViewModel(itemRepository: itemRepository)
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
     }
 
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                 .navigationBarTitle("Home", displayMode: .inline)
         }
     }
@@ -31,6 +36,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(itemRepository: ItemStubService())
+        HomeView(itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
     }
 }

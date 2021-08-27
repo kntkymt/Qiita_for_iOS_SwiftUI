@@ -14,10 +14,15 @@ struct ProfileView: View {
     @ObservedObject private var viewModel: ProfileViewModel
     @State private var isPresented = false
 
+    let likeRepository: LikeRepository
+    let stockRepository: StockRepository
+
     // MARK: - Initializer
 
-    init(authRepository: AuthRepository, itemRepository: ItemRepository) {
+    init(authRepository: AuthRepository, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
         self.viewModel = ProfileViewModel(authRepository: authRepository, itemRepository: itemRepository)
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
     }
 
     // MARK: - Body
@@ -29,7 +34,7 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                     }
                 } else {
                     ProgressView()
@@ -108,6 +113,6 @@ struct UserContributionView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(authRepository: AuthStubService(), itemRepository: ItemStubService())
+        ProfileView(authRepository: AuthStubService(), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
     }
 }

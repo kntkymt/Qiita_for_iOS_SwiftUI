@@ -13,6 +13,8 @@ struct SearchView: View {
     // MARK: - Property
 
     private let itemRepository: ItemRepository
+    private let likeRepository: LikeRepository
+    private let stockRepository: StockRepository
     @ObservedObject private var viewModel: SearchViewModel
 
     @State var isEditing: Bool = false
@@ -22,9 +24,11 @@ struct SearchView: View {
 
     // MARK: - Initializer
 
-    init(tagRepository: TagRepository, itemRepository: ItemRepository) {
+    init(tagRepository: TagRepository, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
         self.viewModel = SearchViewModel(tagRepository: tagRepository)
         self.itemRepository = itemRepository
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
     }
 
     // MARK: - Body
@@ -32,9 +36,9 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                TagListView(tags: viewModel.tags, itemRepository: itemRepository)
+                TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
 
-                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository), isActive: $isPush) { EmptyView() }
+                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
                     .navigationBarTitle("Search", displayMode: .inline)
                     .navigationSearchBar {
                         SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
@@ -50,11 +54,13 @@ struct TagListView: View {
 
     let tags: [ItemTag]
     let itemRepository: ItemRepository
+    let likeRepository: LikeRepository
+    let stockRepository: StockRepository
 
     var body: some View {
         GeometryReader { geometry in
             CollectionView(tags) { tag in
-                NavigationLink(destination: SearchResultView(searchType: .tag(tag), itemRepository: itemRepository)) {
+                NavigationLink(destination: SearchResultView(searchType: .tag(tag), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)) {
                     ZStack {
                         ImageView(url: tag.iconUrl!)
 
@@ -76,6 +82,6 @@ struct TagListView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(tagRepository: TagStubService(), itemRepository: ItemStubService())
+        SearchView(tagRepository: TagStubService(), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
     }
 }

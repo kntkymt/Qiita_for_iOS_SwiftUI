@@ -73,6 +73,8 @@
 		E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF8264F3ADC009473D0 /* StockStubService.swift */; };
 		E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = E295D60A26D8AE4300246986 /* SwiftUIRefresh */; };
 		E295D60D26D948AA00246986 /* WebViewRuleList.json in Resources */ = {isa = PBXBuildFile; fileRef = E295D60C26D948AA00246986 /* WebViewRuleList.json */; };
+		E295D60F26D9574800246986 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295D60E26D9574800246986 /* ItemDetailViewModel.swift */; };
+		E295D61126D97A0800246986 /* LikeStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295D61026D97A0800246986 /* LikeStubService.swift */; };
 		E2BB27692656654400148F45 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27682656654400148F45 /* ProfileView.swift */; };
 		E2BB276B2656657500148F45 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276A2656657500148F45 /* ProfileViewModel.swift */; };
 		E2BB276E2656904100148F45 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276D2656904100148F45 /* SettingView.swift */; };
@@ -170,6 +172,8 @@
 		E2729DF6264F3A0F009473D0 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
 		E2729DF8264F3ADC009473D0 /* StockStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockStubService.swift; sourceTree = "<group>"; };
 		E295D60C26D948AA00246986 /* WebViewRuleList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WebViewRuleList.json; sourceTree = "<group>"; };
+		E295D60E26D9574800246986 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
+		E295D61026D97A0800246986 /* LikeStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeStubService.swift; sourceTree = "<group>"; };
 		E2BB27682656654400148F45 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E2BB276A2656657500148F45 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E2BB276D2656904100148F45 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -466,6 +470,7 @@
 				E2729DF1264F24F8009473D0 /* ItemStubService.swift */,
 				E2729DF8264F3ADC009473D0 /* StockStubService.swift */,
 				E2BB27762656ACC000148F45 /* TagStubService.swift */,
+				E295D61026D97A0800246986 /* LikeStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 			isa = PBXGroup;
 			children = (
 				E2729DED264F15C4009473D0 /* ItemDetailView.swift */,
+				E295D60E26D9574800246986 /* ItemDetailViewModel.swift */,
 			);
 			path = ItemDetail;
 			sourceTree = "<group>";
@@ -713,6 +719,7 @@
 				E20DD32325FF40EE00735B0A /* ItemRepository.swift in Sources */,
 				E20DD34625FF44BA00735B0A /* API.swift in Sources */,
 				E2729DEB264F0D43009473D0 /* ImageView.swift in Sources */,
+				E295D60F26D9574800246986 /* ItemDetailViewModel.swift in Sources */,
 				E20DD31725FF403D00735B0A /* ItemTag.swift in Sources */,
 				E20DD3A825FF8FE400735B0A /* LaunchView.swift in Sources */,
 				E2BB27752656A90100148F45 /* SearchViewModel.swift in Sources */,
@@ -738,6 +745,7 @@
 				E20DD35925FF44D300735B0A /* Interceptor.swift in Sources */,
 				E20DD35E25FF44DC00735B0A /* AuthTokenInterceptor.swift in Sources */,
 				E20DD39325FF802900735B0A /* URL+.swift in Sources */,
+				E295D61126D97A0800246986 /* LikeStubService.swift in Sources */,
 				E20DD31325FF403D00735B0A /* VoidModel.swift in Sources */,
 				E20DD38825FF484000735B0A /* Logger.swift in Sources */,
 				E2BB27732656A8A600148F45 /* SearchView.swift in Sources */,
