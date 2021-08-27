@@ -13,6 +13,7 @@ final class SearchResultViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
+    @Published var isRefreshing = false
     let searchType: SearchType
 
     private let itemRepository: ItemRepository
@@ -33,6 +34,7 @@ final class SearchResultViewModel: ObservableObject {
         itemRepository.getItems(with: searchType, page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.isRefreshing = false
                 switch completion {
                 case .finished:
                     break

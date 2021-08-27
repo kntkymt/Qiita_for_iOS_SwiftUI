@@ -13,6 +13,7 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
+    @Published var isRefreshing = false
 
     private let itemRepository: ItemRepository
     private var cancellables = [AnyCancellable]()
@@ -31,6 +32,7 @@ final class HomeViewModel: ObservableObject {
         itemRepository.getItems(page: 1)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.isRefreshing = false
                 switch completion {
                 case .finished:
                     break

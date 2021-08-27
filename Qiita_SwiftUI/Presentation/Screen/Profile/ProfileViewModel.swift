@@ -14,6 +14,7 @@ final class ProfileViewModel: ObservableObject {
 
     @Published var user: User?
     @Published var items: [Item] = []
+    @Published var isRefreshing = false
 
     let authRepository: AuthRepository
     private let itemRepository: ItemRepository
@@ -50,6 +51,7 @@ final class ProfileViewModel: ObservableObject {
         itemRepository.getAuthenticatedUserItems(page: 1, perPage: 20)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.isRefreshing = false
                 switch completion {
                 case .finished:
                     break

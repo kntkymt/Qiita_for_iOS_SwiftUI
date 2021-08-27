@@ -13,6 +13,7 @@ final class StockViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
+    @Published var isRefreshing = false
 
     private let stockRepository: StockRepository
     private var cancellables = [AnyCancellable]()
@@ -31,6 +32,7 @@ final class StockViewModel: ObservableObject {
         stockRepository.getStocks(page: 1, perPage: 20)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
+                self.isRefreshing = false
                 switch completion {
                 case .finished:
                     break
