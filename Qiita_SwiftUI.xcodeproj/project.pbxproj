@@ -71,6 +71,7 @@
 		E2729DF5264F39DC009473D0 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF4264F39DC009473D0 /* StockView.swift */; };
 		E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF6264F3A0F009473D0 /* StockViewModel.swift */; };
 		E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF8264F3ADC009473D0 /* StockStubService.swift */; };
+		E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = E295D60A26D8AE4300246986 /* SwiftUIRefresh */; };
 		E2BB27692656654400148F45 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27682656654400148F45 /* ProfileView.swift */; };
 		E2BB276B2656657500148F45 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276A2656657500148F45 /* ProfileViewModel.swift */; };
 		E2BB276E2656904100148F45 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276D2656904100148F45 /* SettingView.swift */; };
@@ -183,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */,
 				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
 				E20DD36425FF460500735B0A /* Moya in Frameworks */,
 				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
@@ -567,6 +569,7 @@
 				E20DD38225FF483200735B0A /* SwiftyBeaver */,
 				E2729DE8264F0C82009473D0 /* FetchImage */,
 				E2BB277B2656B92100148F45 /* SwiftUIX */,
+				E295D60A26D8AE4300246986 /* SwiftUIRefresh */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -645,6 +648,7 @@
 				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */,
 				E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
@@ -1104,6 +1108,14 @@
 				minimumVersion = 0.4.0;
 			};
 		};
+		E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 		E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
@@ -1134,6 +1146,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */;
 			productName = FetchImage;
+		};
+		E295D60A26D8AE4300246986 /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 		E2BB277B2656B92100148F45 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

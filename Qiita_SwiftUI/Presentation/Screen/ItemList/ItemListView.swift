@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 struct ItemListView: View {
 
     // MARK: - Property
 
     @Binding var items: [Item]
+    @Binding var isRefreshing: Bool
+
+    let onRefresh: () -> Void
 
     // MARK: - Body
 
@@ -21,6 +25,7 @@ struct ItemListView: View {
                 ItemListItem(item: item)
             }
         }.listStyle(PlainListStyle())
+        .pullToRefresh(isShowing: $isRefreshing, onRefresh: onRefresh)
     }
 }
 
@@ -61,8 +66,9 @@ struct ItemListItem: View {
 struct ItemListView_Previews: PreviewProvider {
 
     @State static var items: [Item] = ItemStubService.items
+    @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items)
+        ItemListView(items: $items, isRefreshing: $isLoading, onRefresh: { })
     }
 }

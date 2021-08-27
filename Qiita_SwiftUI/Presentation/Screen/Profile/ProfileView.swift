@@ -29,12 +29,13 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: $viewModel.items)
+                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems)
                     }
                 } else {
                     ProgressView()
                 }
-            }.navigationBarTitle("Profile", displayMode: .inline)
+            }
+            .navigationBarTitle("Profile", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: { isPresented.toggle() }) {
                 Image(systemName: "gear")
                     .renderingMode(.template)
