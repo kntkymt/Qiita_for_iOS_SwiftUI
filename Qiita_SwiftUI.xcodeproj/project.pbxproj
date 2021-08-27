@@ -72,6 +72,7 @@
 		E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF6264F3A0F009473D0 /* StockViewModel.swift */; };
 		E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF8264F3ADC009473D0 /* StockStubService.swift */; };
 		E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = E295D60A26D8AE4300246986 /* SwiftUIRefresh */; };
+		E295D60D26D948AA00246986 /* WebViewRuleList.json in Resources */ = {isa = PBXBuildFile; fileRef = E295D60C26D948AA00246986 /* WebViewRuleList.json */; };
 		E2BB27692656654400148F45 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB27682656654400148F45 /* ProfileView.swift */; };
 		E2BB276B2656657500148F45 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276A2656657500148F45 /* ProfileViewModel.swift */; };
 		E2BB276E2656904100148F45 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BB276D2656904100148F45 /* SettingView.swift */; };
@@ -168,6 +169,7 @@
 		E2729DF4264F39DC009473D0 /* StockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockView.swift; sourceTree = "<group>"; };
 		E2729DF6264F3A0F009473D0 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
 		E2729DF8264F3ADC009473D0 /* StockStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockStubService.swift; sourceTree = "<group>"; };
+		E295D60C26D948AA00246986 /* WebViewRuleList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WebViewRuleList.json; sourceTree = "<group>"; };
 		E2BB27682656654400148F45 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E2BB276A2656657500148F45 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E2BB276D2656904100148F45 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD2C625FF325900735B0A /* Assets.xcassets */,
+				E295D60C26D948AA00246986 /* WebViewRuleList.json */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E20DD2C725FF325900735B0A /* Assets.xcassets in Resources */,
+				E295D60D26D948AA00246986 /* WebViewRuleList.json in Resources */,
 				E20DD3D025FFA99100735B0A /* .env.sample in Resources */,
 				E20DD3CF25FFA99100735B0A /* .env in Resources */,
 			);
