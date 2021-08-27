@@ -22,7 +22,7 @@ struct SearchResultView: View {
     // MARK: - Body
 
     var body: some View {
-        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems)
+        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
             .navigationTitle(navigationTitle)
     }
 

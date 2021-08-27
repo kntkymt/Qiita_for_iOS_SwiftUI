@@ -29,7 +29,7 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems)
+                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                     }
                 } else {
                     ProgressView()
