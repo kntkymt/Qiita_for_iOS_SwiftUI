@@ -16,6 +16,7 @@ struct ItemListView: View {
     @Binding var isRefreshing: Bool
 
     let onRefresh: () -> Void
+    let onPaging: () -> Void
 
     // MARK: - Body
 
@@ -23,6 +24,15 @@ struct ItemListView: View {
         List {
             ForEach(items) { item in
                 ItemListItem(item: item)
+            }
+
+            HStack {
+                Spacer()
+                ProgressView()
+                    .onAppear {
+                        onPaging()
+                    }
+                Spacer()
             }
         }.listStyle(PlainListStyle())
         .pullToRefresh(isShowing: $isRefreshing, onRefresh: onRefresh)
@@ -69,6 +79,6 @@ struct ItemListView_Previews: PreviewProvider {
     @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items, isRefreshing: $isLoading, onRefresh: { })
+        ItemListView(items: $items, isRefreshing: $isLoading, onRefresh: { }, onPaging: { })
     }
 }
