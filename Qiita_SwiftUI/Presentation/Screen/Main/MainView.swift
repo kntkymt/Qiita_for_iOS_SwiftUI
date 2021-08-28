@@ -11,6 +11,7 @@ struct MainView: View {
 
     // MARK: - Property
 
+    var likeRepository: LikeRepository
     var authRepository: AuthRepository
     var itemRepository: ItemRepository
     var stockRepository: StockRepository
@@ -20,22 +21,22 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-            HomeView(itemRepository: itemRepository)
+            HomeView(itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            SearchView(tagRepository: tagRepository, itemRepository: itemRepository)
+            SearchView(tagRepository: tagRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: StockStubService())
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
-            StockView(stockRepository: stockRepository)
+            StockView(stockRepository: stockRepository, itemRepository: itemRepository, likeRepository: likeRepository)
                 .tabItem {
                     Image(systemName: "folder")
                     Text("Stock")
                 }
-            ProfileView(authRepository: authRepository, itemRepository: itemRepository)
+            ProfileView(authRepository: authRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
@@ -46,6 +47,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
+        MainView(likeRepository: LikeStubService(), authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
     }
 }

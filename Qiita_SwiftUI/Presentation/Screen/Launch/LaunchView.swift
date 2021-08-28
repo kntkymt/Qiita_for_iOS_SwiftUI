@@ -13,6 +13,7 @@ struct LaunchView: View {
 
     @EnvironmentObject var authState: AuthState
 
+    let likeRepository: LikeRepository
     let authRepository: AuthRepository
     let itemRepository: ItemRepository
     let stockRepository: StockRepository
@@ -22,7 +23,7 @@ struct LaunchView: View {
 
     var body: some View {
         if authState.isSignedin {
-            MainView(authRepository: authRepository, itemRepository: itemRepository, stockRepository: stockRepository, tagRepository: tagRepository)
+            MainView(likeRepository: likeRepository, authRepository: authRepository, itemRepository: itemRepository, stockRepository: stockRepository, tagRepository: tagRepository)
         } else {
             LoginView(authRepository: authRepository)
         }
@@ -31,7 +32,7 @@ struct LaunchView: View {
 
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView(authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
+        LaunchView(likeRepository: LikeStubService(), authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
             .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }

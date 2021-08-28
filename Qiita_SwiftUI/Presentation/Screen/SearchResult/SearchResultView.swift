@@ -12,17 +12,21 @@ struct SearchResultView: View {
     // MARK: - Property
 
     @ObservedObject private var viewModel: SearchResultViewModel
+    private let likeRepository: LikeRepository
+    private let stockRepository: StockRepository
 
     // MARK: - Initializer
 
-    init(searchType: SearchType, itemRepository: ItemRepository) {
+    init(searchType: SearchType, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
         viewModel = SearchResultViewModel(searchType: searchType, itemRepository: itemRepository)
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
     }
 
     // MARK: - Body
 
     var body: some View {
-        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
             .navigationTitle(navigationTitle)
     }
 
@@ -36,6 +40,6 @@ struct SearchResultView: View {
 
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultView(searchType: .word("iOS"), itemRepository: ItemStubService())
+        SearchResultView(searchType: .word("iOS"), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
     }
 }

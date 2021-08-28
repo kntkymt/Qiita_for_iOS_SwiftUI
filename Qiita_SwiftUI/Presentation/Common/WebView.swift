@@ -10,10 +10,38 @@ import WebKit
 
 struct WebView: UIViewRepresentable {
 
+    // MARK: - Property
+
+    private let sharedConfig: WKWebViewConfiguration = {
+        let userContentController = WKUserContentController()
+        let fileName = "WebViewRuleList.json"
+
+        if let jsonFilePath = Bundle.main.path(forResource: fileName, ofType: nil),
+            let jsonFileContent = try? String(contentsOfFile: jsonFilePath, encoding: String.Encoding.utf8) {
+            WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "qiita", encodedContentRuleList: jsonFileContent) { contentRuleList, error in
+                if let error = error {
+                    Logger.error(error)
+                    return
+                }
+                if let list = contentRuleList {
+                    userContentController.add(list)
+                }
+            }
+        }
+
+        let config = WKWebViewConfiguration()
+        config.userContentController = userContentController
+        config.websiteDataStore = .default()
+
+        return config
+    }()
+
     var url: URL
 
+    // MARK: - Public
+
     func makeUIView(context: Context) -> WKWebView {
-        return WKWebView()
+        return WKWebView(frame: .zero, configuration: sharedConfig)
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {

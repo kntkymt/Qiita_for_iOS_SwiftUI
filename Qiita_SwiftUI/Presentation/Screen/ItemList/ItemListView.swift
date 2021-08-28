@@ -15,6 +15,9 @@ struct ItemListView: View {
     @Binding var items: [Item]
     @Binding var isRefreshing: Bool
 
+    let likeRepository: LikeRepository
+    let stockRepository: StockRepository
+
     let onRefresh: () -> Void
     let onPaging: () -> Void
 
@@ -23,7 +26,7 @@ struct ItemListView: View {
     var body: some View {
         List {
             ForEach(items) { item in
-                ItemListItem(item: item)
+                ItemListItem(item: item, likeRepository: likeRepository, stockRepository: stockRepository)
             }
 
             HStack {
@@ -43,8 +46,11 @@ struct ItemListItem: View {
 
     var item: Item
 
+    let likeRepository: LikeRepository
+    let stockRepository: StockRepository
+
     var body: some View {
-        NavigationLink(destination: ItemDetailView(item: item)) {
+        NavigationLink(destination: ItemDetailView(item: item, likeRepository: likeRepository, stockRepository: stockRepository)) {
             HStack {
                 ImageView(url: item.user.profileImageUrl)
                     .frame(width: 40, height: 40)
@@ -79,6 +85,6 @@ struct ItemListView_Previews: PreviewProvider {
     @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items, isRefreshing: $isLoading, onRefresh: { }, onPaging: { })
+        ItemListView(items: $items, isRefreshing: $isLoading, likeRepository: LikeStubService(), stockRepository: StockStubService(), onRefresh: { }, onPaging: { })
     }
 }
