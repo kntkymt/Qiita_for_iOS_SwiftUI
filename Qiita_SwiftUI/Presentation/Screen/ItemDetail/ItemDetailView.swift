@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct ItemDetailView: View {
 
     // MARK: - Property
 
     @ObservedObject private var viewModel: ItemDetailViewModel
+    @State private var shareSheetPresented = false
 
     // MARK: - Initializer
 
@@ -51,14 +53,16 @@ struct ItemDetailView: View {
                     .cornerRadius(22)
 
                     Button(systemImage: .squareAndArrowUp, action: {
-
+                        shareSheetPresented.toggle()
                     })
                     .frame(width: 44, height: 44)
                     .imageScale(.large)
                     .border(Color.systemGray, width: 1, cornerRadius: 22)
                     .cornerRadius(22)
                     .foregroundColor(.systemGray)
-                }
+                }.sheet(isPresented: $shareSheetPresented, content: {
+                    AppActivityView(activityItems: [viewModel.item.url])
+                })
             }.frame(height: 60, alignment: .center)
         }.onAppear {
             viewModel.checkIsLiked()
