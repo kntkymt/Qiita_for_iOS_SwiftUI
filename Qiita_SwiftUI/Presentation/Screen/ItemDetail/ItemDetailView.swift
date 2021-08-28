@@ -60,6 +60,9 @@ struct ItemDetailView: View {
                     .foregroundColor(.systemGray)
                 }
             }.frame(height: 60, alignment: .center)
+        }.onAppear {
+            viewModel.checkIsLiked()
+            viewModel.checkIsStocked()
         }
     }
 }

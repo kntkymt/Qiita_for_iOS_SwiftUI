@@ -27,9 +27,6 @@ final class ItemDetailViewModel: ObservableObject, Identifiable {
         self.item = item
         self.likeRepository = likeRepository
         self.stockRepository = stockRepository
-
-        checkIsLiked()
-        checkIsStocked()
     }
 
     // MARK: - Public
@@ -75,7 +72,7 @@ final class ItemDetailViewModel: ObservableObject, Identifiable {
                 case .finished:
                     break
                 case .failure(let error):
-                    self.isStocked = true
+                    self.isStocked = false
                     Logger.error(error)
                 }
             }, receiveValue: { _ in
@@ -98,9 +95,7 @@ final class ItemDetailViewModel: ObservableObject, Identifiable {
             }).store(in: &cancellables)
     }
 
-    // MARK: - Private
-
-    private func checkIsLiked() {
+    func checkIsLiked() {
         likeRepository.checkIsLiked(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -116,7 +111,7 @@ final class ItemDetailViewModel: ObservableObject, Identifiable {
             }).store(in: &cancellables)
     }
 
-    private func checkIsStocked() {
+    func checkIsStocked() {
         stockRepository.checkIsStocked(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
