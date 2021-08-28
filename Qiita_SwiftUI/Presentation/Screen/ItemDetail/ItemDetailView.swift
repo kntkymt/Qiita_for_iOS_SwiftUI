@@ -32,34 +32,48 @@ struct ItemDetailView: View {
                 Color.secondarySystemBackground
 
                 HStack(spacing: 36) {
-                    Button(systemImage: viewModel.isLiked ? .handThumbsupFill : .handThumbsup, action: {
-                        viewModel.isLiked ? viewModel.disLike() : viewModel.like()
-                    })
-                    .frame(width: 44, height: 44)
-                    .imageScale(.large)
-                    .border(Color(UIColor(named: "brand")!), width: 1, cornerRadius: 22)
-                    .foregroundColor(viewModel.isLiked ? Color.white : Color(UIColor(named: "brand")!))
-                    .background(viewModel.isLiked ? Color(UIColor(named: "brand")!) : Color.clear)
-                    .cornerRadius(22)
+                    if viewModel.isLiked {
+                        Button(systemImage: .handThumbsupFill, action: { viewModel.disLike() })
+                            .frame(width: 44, height: 44)
+                            .imageScale(.large)
+                            .border(Color("brand"), width: 1, cornerRadius: 22)
+                            .foregroundColor(Color.white)
+                            .background(Color("brand"))
+                            .cornerRadius(22)
+                    } else {
+                        Button(systemImage: .handThumbsup, action: { viewModel.like() })
+                            .frame(width: 44, height: 44)
+                            .imageScale(.large)
+                            .border(Color("brand"), width: 1, cornerRadius: 22)
+                            .foregroundColor(Color("brand"))
+                            .background(Color.clear)
+                            .cornerRadius(22)
+                    }
 
-                    Button(systemImage: viewModel.isStocked ? .folderFill : .folder, action: {
-                        viewModel.isStocked ? viewModel.unStock() : viewModel.stock()
-                    })
-                    .frame(width: 44, height: 44)
-                    .imageScale(.large)
-                    .border(Color(UIColor(named: "brand")!), width: 1, cornerRadius: 22)
-                    .foregroundColor(viewModel.isStocked ? Color.white : Color(UIColor(named: "brand")!))
-                    .background(viewModel.isStocked ? Color(UIColor(named: "brand")!) : Color.clear)
-                    .cornerRadius(22)
+                    if viewModel.isStocked {
+                        Button(systemImage: .folderFill, action: { viewModel.unStock() })
+                            .frame(width: 44, height: 44)
+                            .imageScale(.large)
+                            .border(Color("brand"), width: 1, cornerRadius: 22)
+                            .foregroundColor(Color.white)
+                            .background(Color("brand"))
+                            .cornerRadius(22)
+                    } else {
+                        Button(systemImage: .folder, action: { viewModel.stock() })
+                            .frame(width: 44, height: 44)
+                            .imageScale(.large)
+                            .border(Color("brand"), width: 1, cornerRadius: 22)
+                            .foregroundColor(Color("brand"))
+                            .background(Color.clear)
+                            .cornerRadius(22)
+                    }
 
-                    Button(systemImage: .squareAndArrowUp, action: {
-                        shareSheetPresented.toggle()
-                    })
-                    .frame(width: 44, height: 44)
-                    .imageScale(.large)
-                    .border(Color.systemGray, width: 1, cornerRadius: 22)
-                    .cornerRadius(22)
-                    .foregroundColor(.systemGray)
+                    Button(systemImage: .squareAndArrowUp, action: { shareSheetPresented.toggle() })
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color.systemGray, width: 1, cornerRadius: 22)
+                        .cornerRadius(22)
+                        .foregroundColor(.systemGray)
                 }.sheet(isPresented: $shareSheetPresented, content: {
                     AppActivityView(activityItems: [viewModel.item.url])
                 })
