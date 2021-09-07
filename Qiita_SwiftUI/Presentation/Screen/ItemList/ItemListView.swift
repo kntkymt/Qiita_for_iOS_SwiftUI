@@ -48,12 +48,14 @@ struct ItemListItem: View {
 
     @ObservedObject private var viewModel: ItemListItemViewModel
 
-    @State private var isInitialOnAppear = true
-
     // MARK: - Initializer
 
     init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
         self.viewModel = ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
+
+        // FIXME: ここだけ例外的にonAppearではなくinitでやってる
+        // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
+        viewModel.checkIsStocked()
     }
 
     var body: some View {
@@ -106,13 +108,6 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 }
             }.padding(.vertical, 8)
-        }.onAppear {
-            if isInitialOnAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.viewModel.checkIsStocked()
-                }
-                isInitialOnAppear = false
-            }
         }
     }
 }
