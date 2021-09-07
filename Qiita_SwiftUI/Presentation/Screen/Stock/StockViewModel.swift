@@ -15,7 +15,7 @@ final class StockViewModel: ObservableObject {
     @Published var items: [Item] = []
     @Published var isRefreshing = false
 
-    var onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    private(set) var onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
     private var page = 1
     private var isPageLoading = false
