@@ -27,8 +27,6 @@ final class SearchResultViewModel: ObservableObject {
     init(searchType: SearchType, itemRepository: ItemRepository) {
         self.searchType = searchType
         self.itemRepository = itemRepository
-
-        fetchItems()
     }
 
     // MARK: - Public

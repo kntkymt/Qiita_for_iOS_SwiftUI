@@ -52,6 +52,10 @@ struct ItemListItem: View {
 
     init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
         self.viewModel = ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
+
+        // FIXME: ここだけ例外的にonAppearではなくinitでやってる
+        // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
+        viewModel.checkIsStocked()
     }
 
     var body: some View {

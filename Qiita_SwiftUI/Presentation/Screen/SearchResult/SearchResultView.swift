@@ -15,6 +15,8 @@ struct SearchResultView: View {
     private let likeRepository: LikeRepository
     private let stockRepository: StockRepository
 
+    @State private var isInitialOnAppear = true
+
     // MARK: - Initializer
 
     init(searchType: SearchType, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
@@ -28,6 +30,12 @@ struct SearchResultView: View {
     var body: some View {
         ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
             .navigationTitle(navigationTitle)
+            .onAppear {
+                if isInitialOnAppear {
+                    viewModel.fetchItems()
+                    isInitialOnAppear = false
+                }
+            }
     }
 
     var navigationTitle: String {

@@ -25,8 +25,6 @@ final class HomeViewModel: ObservableObject {
 
     init(itemRepository: ItemRepository) {
         self.itemRepository = itemRepository
-
-        fetchItems()
     }
 
     // MARK: - Public

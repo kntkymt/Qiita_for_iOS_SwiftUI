@@ -14,6 +14,7 @@ struct ItemDetailView: View {
 
     @ObservedObject private var viewModel: ItemDetailViewModel
     @State private var shareSheetPresented = false
+    @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
@@ -79,8 +80,12 @@ struct ItemDetailView: View {
                 })
             }.frame(height: 60, alignment: .center)
         }.onAppear {
-            viewModel.checkIsLiked()
-            viewModel.checkIsStocked()
+            if isInitialOnAppear {
+                viewModel.checkIsLiked()
+                viewModel.checkIsStocked()
+                
+                isInitialOnAppear = false
+            }
         }
     }
 }
