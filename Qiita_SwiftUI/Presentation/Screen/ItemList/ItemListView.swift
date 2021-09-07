@@ -26,7 +26,7 @@ struct ItemListView: View {
     var body: some View {
         List {
             ForEach(items) { item in
-                ItemListItem(item: item, likeRepository: likeRepository, stockRepository: stockRepository)
+                ItemListItem(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
             }
 
             HStack {
@@ -44,24 +44,27 @@ struct ItemListView: View {
 
 struct ItemListItem: View {
 
-    var item: Item
+    @ObservedObject private var viewModel: ItemListViewModel
 
-    let likeRepository: LikeRepository
-    let stockRepository: StockRepository
+    // MARK: - Initializer
+
+    init(item: Item, stockRepository: StockRepository, likeRepository: LikeRepository) {
+        self.viewModel = ItemListViewModel(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
+    }
 
     var body: some View {
-        NavigationLink(destination: ItemDetailView(item: item, likeRepository: likeRepository, stockRepository: stockRepository)) {
+        NavigationLink(destination: ItemDetailView(item: viewModel.item, likeRepository: viewModel.likeRepository, stockRepository: viewModel.stockRepository)) {
             HStack {
-                ImageView(url: item.user.profileImageUrl)
+                ImageView(url: viewModel.item.user.profileImageUrl)
                     .frame(width: 40, height: 40)
                     .cornerRadius(4.0)
 
                 VStack(alignment: .leading, spacing: 6) {
-                    Text(item.title)
+                    Text(viewModel.item.title)
                         .font(.system(size: 14, weight: .medium))
 
                     HStack {
-                        Text("@\(item.user.id)")
+                        Text("@\(viewModel.item.user.id)")
                             .foregroundColor(.secondary)
                             .font(.system(size: 12))
 
@@ -69,10 +72,34 @@ struct ItemListItem: View {
                             .frame(width: 4, height: 12)
                             .font(.system(size: 12))
 
-                        Text(item.likesCount.description)
+                        Text(viewModel.item.likesCount.description)
                             .foregroundColor(.secondary)
                             .font(.system(size: 12))
                     }
+                }
+
+                Spacer()
+
+                // NavigationLinkの上にButtonは置けないので
+                // Image.onTapGesture
+                if viewModel.isStocked {
+                    Image(systemName: .folderFill)
+                        .onTapGesture { viewModel.unStock() }
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color.white)
+                        .background(Color("brand"))
+                        .cornerRadius(22)
+                } else {
+                    Image(systemName: .folder)
+                        .onTapGesture { viewModel.stock() }
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color("brand"))
+                        .background(Color.clear)
+                        .cornerRadius(22)
                 }
             }.padding(.vertical, 8)
         }
