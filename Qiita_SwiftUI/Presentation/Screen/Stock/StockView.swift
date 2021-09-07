@@ -27,7 +27,7 @@ struct StockView: View {
 
     var body: some View {
         NavigationView {
-            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, likeRepository: likeRepository, stockRepository: viewModel.stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, likeRepository: likeRepository, stockRepository: viewModel.stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                 .navigationBarTitle("Stock", displayMode: .inline)
         }
     }

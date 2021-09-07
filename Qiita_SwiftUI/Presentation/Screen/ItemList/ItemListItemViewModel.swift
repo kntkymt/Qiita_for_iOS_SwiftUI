@@ -17,14 +17,17 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     @Published var isStocked: Bool = false
 
+    let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+
     let stockRepository: StockRepository
     let likeRepository: LikeRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
-    init(item: Item, stockRepository: StockRepository, likeRepository: LikeRepository) {
+    init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
         self.item = item
+        self.onItemStockChangedHandler = onItemStockChangedHandler
         self.stockRepository = stockRepository
         self.likeRepository = likeRepository
 
@@ -35,6 +38,7 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     func stock() {
         isStocked = true
+        onItemStockChangedHandler?(item, true)
         stockRepository.stock(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
@@ -51,6 +55,7 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     func unStock() {
         isStocked = false
+        onItemStockChangedHandler?(item, false)
         stockRepository.unstock(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in

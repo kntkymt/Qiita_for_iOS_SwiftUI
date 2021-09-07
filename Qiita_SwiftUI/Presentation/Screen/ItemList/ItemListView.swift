@@ -15,6 +15,8 @@ struct ItemListView: View {
     @Binding var items: [Item]
     @Binding var isRefreshing: Bool
 
+    let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+
     let likeRepository: LikeRepository
     let stockRepository: StockRepository
 
@@ -26,7 +28,7 @@ struct ItemListView: View {
     var body: some View {
         List {
             ForEach(items) { item in
-                ItemListItem(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
+                ItemListItem(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
             }
 
             HStack {
@@ -48,8 +50,8 @@ struct ItemListItem: View {
 
     // MARK: - Initializer
 
-    init(item: Item, stockRepository: StockRepository, likeRepository: LikeRepository) {
-        self.viewModel = ItemListItemViewModel(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
+    init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
+        self.viewModel = ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
     }
 
     var body: some View {
@@ -112,6 +114,6 @@ struct ItemListView_Previews: PreviewProvider {
     @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items, isRefreshing: $isLoading, likeRepository: LikeStubService(), stockRepository: StockStubService(), onRefresh: { }, onPaging: { })
+        ItemListView(items: $items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, likeRepository: LikeStubService(), stockRepository: StockStubService(), onRefresh: { }, onPaging: { })
     }
 }
