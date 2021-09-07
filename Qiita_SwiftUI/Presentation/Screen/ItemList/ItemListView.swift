@@ -87,21 +87,21 @@ struct ItemListItem: View {
                 if viewModel.isStocked {
                     Image(systemName: .folderFill)
                         .onTapGesture { viewModel.unStock() }
-                        .frame(width: 44, height: 44)
-                        .imageScale(.large)
+                        .frame(width: 32, height: 32)
+                        .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)
                         .foregroundColor(Color.white)
                         .background(Color("brand"))
-                        .cornerRadius(22)
+                        .cornerRadius(16)
                 } else {
                     Image(systemName: .folder)
                         .onTapGesture { viewModel.stock() }
-                        .frame(width: 44, height: 44)
-                        .imageScale(.large)
+                        .frame(width: 32, height: 32)
+                        .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)
                         .foregroundColor(Color("brand"))
                         .background(Color.clear)
-                        .cornerRadius(22)
+                        .cornerRadius(16)
                 }
             }.padding(.vertical, 8)
         }
