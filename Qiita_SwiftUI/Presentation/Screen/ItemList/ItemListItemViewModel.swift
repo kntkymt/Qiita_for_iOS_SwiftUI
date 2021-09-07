@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-final class ItemListViewModel: ObservableObject, Identifiable {
+final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     // MARK: - Property
 
@@ -67,7 +67,7 @@ final class ItemListViewModel: ObservableObject, Identifiable {
 
     // MARK: - Private
 
-    func checkIsStocked() {
+    private func checkIsStocked() {
         stockRepository.checkIsStocked(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in

@@ -44,12 +44,12 @@ struct ItemListView: View {
 
 struct ItemListItem: View {
 
-    @ObservedObject private var viewModel: ItemListViewModel
+    @ObservedObject private var viewModel: ItemListItemViewModel
 
     // MARK: - Initializer
 
     init(item: Item, stockRepository: StockRepository, likeRepository: LikeRepository) {
-        self.viewModel = ItemListViewModel(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
+        self.viewModel = ItemListItemViewModel(item: item, stockRepository: stockRepository, likeRepository: likeRepository)
     }
 
     var body: some View {
