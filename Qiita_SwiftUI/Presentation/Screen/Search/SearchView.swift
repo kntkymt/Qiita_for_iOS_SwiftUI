@@ -20,6 +20,7 @@ struct SearchView: View {
     @State var isEditing: Bool = false
     @State private var searchText: String = ""
 
+    @State private var isInitialOnAppear = true
     @State private var isPush: Bool = false
 
     // MARK: - Initializer
@@ -45,6 +46,11 @@ struct SearchView: View {
                             .showsCancelButton(isEditing)
 
                 }
+            }
+        }.onAppear {
+            if isInitialOnAppear {
+                viewModel.fetchTags()
+                isInitialOnAppear = false
             }
         }
     }

@@ -13,6 +13,7 @@ struct ProfileView: View {
 
     @ObservedObject private var viewModel: ProfileViewModel
     @State private var isPresented = false
+    @State private var isInitialOnAppear = true
 
     let likeRepository: LikeRepository
     let stockRepository: StockRepository
@@ -46,7 +47,15 @@ struct ProfileView: View {
                     .renderingMode(.template)
                     .foregroundColor(Color("brand"))
             })
-        }.sheet(isPresented: $isPresented) {
+        }.onAppear {
+            if isInitialOnAppear {
+                viewModel.fetchUser()
+                viewModel.fetchItems()
+
+                isInitialOnAppear = false
+            }
+        }
+        .sheet(isPresented: $isPresented) {
             SettingView(authRepository: viewModel.authRepository, isPresenting: $isPresented)
         }
     }

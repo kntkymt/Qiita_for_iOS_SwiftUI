@@ -21,8 +21,6 @@ final class SearchViewModel: ObservableObject {
 
     init(tagRepository: TagRepository) {
         self.tagRepository = tagRepository
-
-        fetchTags()
     }
 
     // MARK: - Public

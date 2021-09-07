@@ -28,9 +28,6 @@ final class ProfileViewModel: ObservableObject {
     init(authRepository: AuthRepository, itemRepository: ItemRepository) {
         self.authRepository = authRepository
         self.itemRepository = itemRepository
-
-        fetchUser()
-        fetchItems()
     }
 
     // MARK: - Public

@@ -13,6 +13,8 @@ struct HomeView: View {
 
     @ObservedObject private var viewModel: HomeViewModel
 
+    @State private var isInitialOnAppear = true
+
     let likeRepository: LikeRepository
     let stockRepository: StockRepository
 
@@ -30,6 +32,11 @@ struct HomeView: View {
         NavigationView {
             ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                 .navigationBarTitle("Home", displayMode: .inline)
+        }.onAppear {
+            if isInitialOnAppear {
+                viewModel.fetchItems()
+                isInitialOnAppear = false
+            }
         }
     }
 }

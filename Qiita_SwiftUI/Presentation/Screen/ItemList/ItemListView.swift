@@ -48,6 +48,8 @@ struct ItemListItem: View {
 
     @ObservedObject private var viewModel: ItemListItemViewModel
 
+    @State private var isInitialOnAppear = true
+
     // MARK: - Initializer
 
     init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
@@ -104,6 +106,13 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 }
             }.padding(.vertical, 8)
+        }.onAppear {
+            if isInitialOnAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.viewModel.checkIsStocked()
+                }
+                isInitialOnAppear = false
+            }
         }
     }
 }

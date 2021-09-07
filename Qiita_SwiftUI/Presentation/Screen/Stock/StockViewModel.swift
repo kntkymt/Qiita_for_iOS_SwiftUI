@@ -32,8 +32,6 @@ final class StockViewModel: ObservableObject {
             guard let self = self, let targetIndex = self.items.firstIndex(where: { $0.id == item.id }) else { return }
             self.items.remove(at: targetIndex)
         }
-
-        fetchItems()
     }
 
     // MARK: - Public

@@ -30,8 +30,6 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.stockRepository = stockRepository
         self.likeRepository = likeRepository
-
-        checkIsStocked()
     }
 
     // MARK: - Public
@@ -70,9 +68,7 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
             }).store(in: &cancellables)
     }
 
-    // MARK: - Private
-
-    private func checkIsStocked() {
+    func checkIsStocked() {
         stockRepository.checkIsStocked(id: item.id)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
