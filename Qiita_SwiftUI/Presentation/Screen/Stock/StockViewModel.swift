@@ -15,6 +15,8 @@ final class StockViewModel: ObservableObject {
     @Published var items: [Item] = []
     @Published var isRefreshing = false
 
+    private(set) var onItemStockChangedHandler: ((Item, Bool) -> Void)?
+
     private var page = 1
     private var isPageLoading = false
 
@@ -25,6 +27,11 @@ final class StockViewModel: ObservableObject {
 
     init(stockRepository: StockRepository) {
         self.stockRepository = stockRepository
+
+        self.onItemStockChangedHandler = { [weak self] (item, status) in
+            guard let self = self, let targetIndex = self.items.firstIndex(where: { $0.id == item.id }) else { return }
+            self.items.remove(at: targetIndex)
+        }
 
         fetchItems()
     }
