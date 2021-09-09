@@ -36,7 +36,19 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .leading) {
+
+                Text("キーワード検索")
+                    .padding(.leading, 4)
+
+                KeywordListView(keywords: ["Firebase", "ARKit", "GitHub", "iPadOS", "ライブラリ", "iOS15", "SwiftUI", "MacOS"]) { keyword in
+                    searchText = keyword
+                    isPush = true
+                }.height(100)
+
+                Text("タグ検索")
+                    .padding(.leading, 4)
+
                 TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
 
                 NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
@@ -53,6 +65,33 @@ struct SearchView: View {
                 isInitialOnAppear = false
             }
         }
+    }
+}
+
+struct KeywordListView: View {
+
+    // MARK: - Property
+
+    let keywords: [String]
+    let onKeywordTapHandler: ((String) -> Void)?
+
+    // MARK: - Body
+
+    var body: some View {
+        CollectionView(keywords, id: \.hashValue) { keyword in
+            // boderの前と後で.paddingの効果が変わる
+            // 前はinner padding, 後はouter padding(margin)
+            Button(keyword) { onKeywordTapHandler?(keyword) }
+                .padding(.horizontal, 2)
+                .padding(.vertical, 2)
+                .border(Color("brand"), width: 1, cornerRadius: 22)
+                .padding(.horizontal, 2)
+                .padding(.vertical, 3)
+                .foregroundColor(Color("brand"))
+                .background(Color.clear)
+                .cornerRadius(22)
+        }.collectionViewLayout(FlowCollectionViewLayout())
+        .padding(.horizontal, 2)
     }
 }
 
