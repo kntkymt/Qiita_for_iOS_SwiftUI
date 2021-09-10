@@ -37,6 +37,9 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
+                // ヘッダーも含めてスクロールさせたいが
+                // ListやCollectionViewのヘッダーが存在しないので
+                // ScrollViewで囲い、中のCollectionViewの高さを固定長(スクロールなし)にして実装する
                 ScrollView {
 
                     HStack {
