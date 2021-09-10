@@ -36,23 +36,78 @@ struct SearchView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
-
+            GeometryReader { geometry in
                 NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
-                    .navigationBarTitle("Search", displayMode: .inline)
-                    .navigationSearchBar {
-                        SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
-                            .showsCancelButton(isEditing)
 
+                // ヘッダーも含めてスクロールさせたいが
+                // ListやCollectionViewのヘッダーが存在しないので
+                // ScrollViewで囲い、中のCollectionViewの高さを固定長(スクロールなし)にして実装する
+                ScrollView {
+
+                    HStack {
+                        Text("キーワード検索")
+                            .padding(.leading, 4)
+                        Spacer()
+                    }
+
+                    KeywordListView(keywords: ["Firebase", "ARKit", "GitHub", "iPadOS", "ライブラリ", "iOS15", "SwiftUI", "MacOS"]) { keyword in
+                        searchText = keyword
+                        isPush = true
+                    }.height(100)
+
+                    HStack {
+                        Text("タグ検索")
+                            .padding(.leading, 4)
+                        Spacer()
+                    }
+
+                    TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
+                        // scrollDisableが反応しないのでcontent以上の高さにしてスクロールできなくする
+                        .height((geometry.size.width / 3) * 10 + 5)
                 }
             }
-        }.onAppear {
-            if isInitialOnAppear {
-                viewModel.fetchTags()
-                isInitialOnAppear = false
+            .navigationBarTitle("Search", displayMode: .inline)
+            .navigationSearchBar {
+                SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
+                    .showsCancelButton(isEditing)
+
+            }
+            .onAppear {
+                if isInitialOnAppear {
+                    viewModel.fetchTags()
+                    isInitialOnAppear = false
+                }
+
+                searchText = ""
             }
         }
+    }
+}
+
+struct KeywordListView: View {
+
+    // MARK: - Property
+
+    let keywords: [String]
+    let onKeywordTapHandler: ((String) -> Void)?
+
+    // MARK: - Body
+
+    var body: some View {
+        CollectionView(keywords, id: \.hashValue) { keyword in
+            // boderの前と後で.paddingの効果が変わる
+            // 前はinner padding, 後はouter padding(margin)
+            Button(keyword) { onKeywordTapHandler?(keyword) }
+                .padding(.horizontal, 2)
+                .padding(.vertical, 2)
+                .border(Color("brand"), width: 1, cornerRadius: 22)
+                .padding(.horizontal, 2)
+                .padding(.vertical, 3)
+                .foregroundColor(Color("brand"))
+                .background(Color.clear)
+                .cornerRadius(22)
+        }.collectionViewLayout(FlowCollectionViewLayout())
+        .padding(.horizontal, 2)
     }
 }
 
@@ -81,7 +136,8 @@ struct TagListView: View {
                     .frame(width: max(0.0, (geometry.size.width - 2) / 3), height: max(0.0, (geometry.size.width - 2) / 3))
                     // なんか1.0だとレイアウトが崩れる(小数演算の問題か)
                 }
-            }.collectionViewLayout(FlowCollectionViewLayout(minimumLineSpacing: 1, minimumInteritemSpacing: 0.99))
+            }
+            .collectionViewLayout(FlowCollectionViewLayout(minimumLineSpacing: 1, minimumInteritemSpacing: 0.99))
         }
     }
 }
