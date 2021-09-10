@@ -37,6 +37,8 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
+                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
+
                 // ヘッダーも含めてスクロールさせたいが
                 // ListやCollectionViewのヘッダーが存在しないので
                 // ScrollViewで囲い、中のCollectionViewの高さを固定長(スクロールなし)にして実装する
@@ -62,20 +64,21 @@ struct SearchView: View {
                     TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
                         // scrollDisableが反応しないのでcontent以上の高さにしてスクロールできなくする
                         .height((geometry.size.width / 3) * 10 + 5)
-
-                    NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
-                        .navigationBarTitle("Search", displayMode: .inline)
-                        .navigationSearchBar {
-                            SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
-                                .showsCancelButton(isEditing)
-
-                        }
                 }
-            }.onAppear {
+            }
+            .navigationBarTitle("Search", displayMode: .inline)
+            .navigationSearchBar {
+                SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
+                    .showsCancelButton(isEditing)
+
+            }
+            .onAppear {
                 if isInitialOnAppear {
                     viewModel.fetchTags()
                     isInitialOnAppear = false
                 }
+
+                searchText = ""
             }
         }
     }
