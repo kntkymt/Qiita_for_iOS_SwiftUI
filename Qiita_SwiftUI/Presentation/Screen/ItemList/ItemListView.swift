@@ -52,6 +52,10 @@ struct ItemListView<HeaderView: View>: View {
 
     var body: some View {
         List {
+            /// FIXME: 左寄せになっている問題
+            /// GeometryReaderやSpacer()を使えば中心寄せにできるが
+            /// それをするとEmptyViewの場合でも高さを持ってしまい、ヘッダーに空白が出来てしまう
+            /// 現在はSearchResultの方で幅を指定して対応
             headerView
 
             ForEach(items) { item in

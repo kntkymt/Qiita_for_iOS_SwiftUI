@@ -28,14 +28,23 @@ struct SearchResultView: View {
     // MARK: - Body
 
     var body: some View {
-        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
-            .navigationTitle(navigationTitle)
-            .onAppear {
-                if isInitialOnAppear {
-                    viewModel.fetchItems()
-                    isInitialOnAppear = false
+        /// FIXME: ItemListViewのHeaderが左寄せになっている問題
+        /// 現在はSearchResultの方で幅を指定して対応
+        GeometryReader { reader in
+            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems, header: {
+                if case .tag(let tag) = viewModel.searchType {
+                    TagInformationView(tag: tag)
+                        .frame(width: reader.size.width - 32)
                 }
-            }
+            })
+                .navigationTitle(navigationTitle)
+                .onAppear {
+                    if isInitialOnAppear {
+                        viewModel.fetchItems()
+                        isInitialOnAppear = false
+                    }
+                }
+        }
     }
 
     var navigationTitle: String {
@@ -46,8 +55,40 @@ struct SearchResultView: View {
     }
 }
 
+struct TagInformationView: View {
+
+    // MARK: - Property
+
+    var tag: ItemTag
+
+    // MARK: - Body
+
+    var body: some View {
+        VStack(alignment: .center) {
+            ImageView(url: tag.iconUrl!)
+                .frame(width: 150, height: 150)
+
+            Text(tag.id)
+
+            HStack(spacing: 32) {
+                VStack {
+                    Text(tag.itemsCount.description)
+                    Text("記事")
+                }.frame(width: 100)
+
+                VStack {
+                    Text(tag.followersCount.description)
+                    Text("フォロワー")
+                }.frame(width: 100)
+            }
+        }
+    }
+}
+
 struct SearchResultView_Previews: PreviewProvider {
     static var previews: some View {
         SearchResultView(searchType: .word("iOS"), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
+
+        SearchResultView(searchType: .tag(ItemTag(iconUrl: URL(string: "https://avatars2.githubusercontent.com/u/44288050?v=4")!, followersCount: 10, id: "iOS", itemsCount: 10)), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
     }
 }
