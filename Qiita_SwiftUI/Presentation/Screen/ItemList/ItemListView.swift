@@ -8,25 +8,56 @@
 import SwiftUI
 import SwiftUIRefresh
 
-struct ItemListView: View {
+struct ItemListView<HeaderView: View>: View {
 
     // MARK: - Property
 
-    @Binding var items: [Item]
-    @Binding var isRefreshing: Bool
+    @Binding private var items: [Item]
+    @Binding private var isRefreshing: Bool
 
-    let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
-    let likeRepository: LikeRepository
-    let stockRepository: StockRepository
+    private let likeRepository: LikeRepository
+    private let stockRepository: StockRepository
 
-    let onRefresh: () -> Void
-    let onPaging: () -> Void
+    private let onRefresh: () -> Void
+    private let onPaging: () -> Void
+
+    private var headerView: HeaderView
+
+    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, likeRepository: LikeRepository, stockRepository: StockRepository, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
+        self._items = items
+        self._isRefreshing = isRefreshing
+        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
+        self.onRefresh = onRefresh
+        self.onPaging = onPaging
+        self.headerView = header()
+    }
+
+    // headerを使わない場合
+    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, likeRepository: LikeRepository, stockRepository: StockRepository, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
+        self._items = items
+        self._isRefreshing = isRefreshing
+        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.likeRepository = likeRepository
+        self.stockRepository = stockRepository
+        self.onRefresh = onRefresh
+        self.onPaging = onPaging
+        self.headerView = EmptyView()
+    }
 
     // MARK: - Body
 
     var body: some View {
         List {
+            /// FIXME: 左寄せになっている問題
+            /// GeometryReaderやSpacer()を使えば中心寄せにできるが
+            /// それをするとEmptyViewの場合でも高さを持ってしまい、ヘッダーに空白が出来てしまう
+            /// 現在はSearchResultの方で幅を指定して対応
+            headerView
+
             ForEach(items) { item in
                 ItemListItem(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
             }

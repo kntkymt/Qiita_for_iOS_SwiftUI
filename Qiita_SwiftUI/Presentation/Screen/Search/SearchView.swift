@@ -15,6 +15,7 @@ struct SearchView: View {
     private let itemRepository: ItemRepository
     private let likeRepository: LikeRepository
     private let stockRepository: StockRepository
+    private let tagRepository: TagRepository
     @ObservedObject private var viewModel: SearchViewModel
 
     @State var isEditing: Bool = false
@@ -30,6 +31,7 @@ struct SearchView: View {
         self.itemRepository = itemRepository
         self.likeRepository = likeRepository
         self.stockRepository = stockRepository
+        self.tagRepository = tagRepository
     }
 
     // MARK: - Body
@@ -37,7 +39,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository), isActive: $isPush) { EmptyView() }
+                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository), isActive: $isPush) { EmptyView() }
 
                 // ヘッダーも含めてスクロールさせたいが
                 // ListやCollectionViewのヘッダーが存在しないので
@@ -61,7 +63,7 @@ struct SearchView: View {
                         Spacer()
                     }
 
-                    TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
+                    TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository)
                         // scrollDisableが反応しないのでcontent以上の高さにしてスクロールできなくする
                         .height((geometry.size.width / 3) * 10 + 5)
                 }
@@ -117,11 +119,12 @@ struct TagListView: View {
     let itemRepository: ItemRepository
     let likeRepository: LikeRepository
     let stockRepository: StockRepository
+    let tagRepository: TagRepository
 
     var body: some View {
         GeometryReader { geometry in
             CollectionView(tags) { tag in
-                NavigationLink(destination: SearchResultView(searchType: .tag(tag), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)) {
+                NavigationLink(destination: SearchResultView(searchType: .tag(tag), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository)) {
                     ZStack {
                         ImageView(url: tag.iconUrl!)
 

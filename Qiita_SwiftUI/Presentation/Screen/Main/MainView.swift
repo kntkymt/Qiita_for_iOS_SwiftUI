@@ -26,7 +26,7 @@ struct MainView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            SearchView(tagRepository: tagRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: StockService())
+            SearchView(tagRepository: tagRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")

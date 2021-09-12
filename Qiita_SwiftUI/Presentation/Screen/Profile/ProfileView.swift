@@ -88,9 +88,9 @@ struct UserInformationView: View {
 
             VStack(spacing: 2) {
                 HStack(spacing: 0) {
-                    UserContributionView(title: "投稿", count: user.itemsCount)
-                    UserContributionView(title: "フォロー", count: user.followeesCount)
-                    UserContributionView(title: "フォロワー", count: user.followersCount)
+                    ContributionView(title: "投稿", count: user.itemsCount)
+                    ContributionView(title: "フォロー", count: user.followeesCount)
+                    ContributionView(title: "フォロワー", count: user.followersCount)
                 }
 
                 Divider()
@@ -99,7 +99,7 @@ struct UserInformationView: View {
     }
 }
 
-struct UserContributionView: View {
+struct ContributionView: View {
 
     // MARK: - Property
 
