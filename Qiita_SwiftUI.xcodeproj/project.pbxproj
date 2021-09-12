@@ -62,6 +62,7 @@
 		E20DD3D025FFA99100735B0A /* .env.sample in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CE25FFA99100735B0A /* .env.sample */; };
 		E25E9A7026E7471B0090A0E3 /* ItemListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A6F26E7471B0090A0E3 /* ItemListItemViewModel.swift */; };
 		E25E9A8A26EE62680090A0E3 /* TagInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */; };
+		E25E9A8D26EE74350090A0E3 /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A8C26EE74350090A0E3 /* TagInformationView.swift */; };
 		E2729DE1264EC601009473D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE0264EC601009473D0 /* HomeView.swift */; };
 		E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE2264ECA96009473D0 /* HomeViewModel.swift */; };
 		E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE5264ECDA7009473D0 /* ItemListView.swift */; };
@@ -165,6 +166,7 @@
 		E20DD3CE25FFA99100735B0A /* .env.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env.sample; sourceTree = "<group>"; };
 		E25E9A6F26E7471B0090A0E3 /* ItemListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListItemViewModel.swift; sourceTree = "<group>"; };
 		E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationViewModel.swift; sourceTree = "<group>"; };
+		E25E9A8C26EE74350090A0E3 /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
 		E2729DE0264EC601009473D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2729DE2264ECA96009473D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E2729DE5264ECDA7009473D0 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -489,6 +491,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		E25E9A8B26EE74170090A0E3 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				E25E9A8C26EE74350090A0E3 /* TagInformationView.swift */,
+				E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		E2729DDF264EC5EC009473D0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,7 +568,7 @@
 			children = (
 				E2BB277E2656C2CB00148F45 /* SearchResultView.swift */,
 				E2BB27802656C3E400148F45 /* SearchResultViewModel.swift */,
-				E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */,
+				E25E9A8B26EE74170090A0E3 /* Component */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -773,6 +784,7 @@
 				E20DD3B225FF903B00735B0A /* MainView.swift in Sources */,
 				E2729DF0264F18F0009473D0 /* WebView.swift in Sources */,
 				E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */,
+				E25E9A8D26EE74350090A0E3 /* TagInformationView.swift in Sources */,
 				E20DD37425FF479E00735B0A /* Keychains.swift in Sources */,
 				E20DD3A325FF8F5700735B0A /* AuthState.swift in Sources */,
 				E20DD2C325FF325600735B0A /* Qiita_SwiftUIApp.swift in Sources */,
