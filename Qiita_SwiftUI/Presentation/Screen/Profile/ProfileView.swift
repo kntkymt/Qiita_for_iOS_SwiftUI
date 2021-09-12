@@ -11,19 +11,16 @@ struct ProfileView: View {
 
     // MARK: - Property
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
+
     @ObservedObject private var viewModel: ProfileViewModel
     @State private var isPresented = false
     @State private var isInitialOnAppear = true
 
-    let likeRepository: LikeRepository
-    let stockRepository: StockRepository
-
     // MARK: - Initializer
 
-    init(authRepository: AuthRepository, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
-        self.viewModel = ProfileViewModel(authRepository: authRepository, itemRepository: itemRepository)
-        self.likeRepository = likeRepository
-        self.stockRepository = stockRepository
+    init(viewModel: ProfileViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -35,7 +32,7 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, likeRepository: likeRepository, stockRepository: stockRepository, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+                        ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                     }
                 } else {
                     ProgressView()
@@ -56,7 +53,7 @@ struct ProfileView: View {
             }
         }
         .sheet(isPresented: $isPresented) {
-            SettingView(authRepository: viewModel.authRepository, isPresenting: $isPresented)
+            SettingView(isPresenting: $isPresented, viewModel: SettingViewModel(authRepository: repositoryContainer.authRepository))
         }
     }
 }
@@ -122,6 +119,6 @@ struct ContributionView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(authRepository: AuthStubService(), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
+        ProfileView(viewModel: ProfileViewModel(authRepository: AuthStubService(), itemRepository: ItemStubService()))
     }
 }

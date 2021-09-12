@@ -18,8 +18,8 @@ struct LoginView: View {
 
     // MARK: - Initializer
 
-    init(authRepository: AuthRepository) {
-        viewModel = LoginViewModel(authRepository: authRepository)
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -42,6 +42,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(authRepository: AuthStubService())
+        LoginView(viewModel: LoginViewModel(authRepository: AuthStubService()))
     }
 }

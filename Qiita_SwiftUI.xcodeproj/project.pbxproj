@@ -63,6 +63,8 @@
 		E25E9A7026E7471B0090A0E3 /* ItemListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A6F26E7471B0090A0E3 /* ItemListItemViewModel.swift */; };
 		E25E9A8A26EE62680090A0E3 /* TagInformationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */; };
 		E25E9A8D26EE74350090A0E3 /* TagInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A8C26EE74350090A0E3 /* TagInformationView.swift */; };
+		E25E9A9326EE9F0B0090A0E3 /* RepositoryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A9226EE9F0B0090A0E3 /* RepositoryContainer.swift */; };
+		E25E9A9526EE9F320090A0E3 /* UserStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A9426EE9F320090A0E3 /* UserStubService.swift */; };
 		E2729DE1264EC601009473D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE0264EC601009473D0 /* HomeView.swift */; };
 		E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE2264ECA96009473D0 /* HomeViewModel.swift */; };
 		E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE5264ECDA7009473D0 /* ItemListView.swift */; };
@@ -167,6 +169,8 @@
 		E25E9A6F26E7471B0090A0E3 /* ItemListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListItemViewModel.swift; sourceTree = "<group>"; };
 		E25E9A8926EE62680090A0E3 /* TagInformationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationViewModel.swift; sourceTree = "<group>"; };
 		E25E9A8C26EE74350090A0E3 /* TagInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagInformationView.swift; sourceTree = "<group>"; };
+		E25E9A9226EE9F0B0090A0E3 /* RepositoryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryContainer.swift; sourceTree = "<group>"; };
+		E25E9A9426EE9F320090A0E3 /* UserStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubService.swift; sourceTree = "<group>"; };
 		E2729DE0264EC601009473D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2729DE2264ECA96009473D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E2729DE5264ECDA7009473D0 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -465,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				E20DD3A225FF8F5700735B0A /* AuthState.swift */,
+				E25E9A9226EE9F0B0090A0E3 /* RepositoryContainer.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 				E2729DF8264F3ADC009473D0 /* StockStubService.swift */,
 				E2BB27762656ACC000148F45 /* TagStubService.swift */,
 				E295D61026D97A0800246986 /* LikeStubService.swift */,
+				E25E9A9426EE9F320090A0E3 /* UserStubService.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -723,6 +729,7 @@
 				E20DD33425FF40FC00735B0A /* ItemService.swift in Sources */,
 				E2BB277F2656C2CB00148F45 /* SearchResultView.swift in Sources */,
 				E20DD34525FF44BA00735B0A /* BaseTarget.swift in Sources */,
+				E25E9A9326EE9F0B0090A0E3 /* RepositoryContainer.swift in Sources */,
 				E20DD30925FF3EAA00735B0A /* AppEnvironment.swift in Sources */,
 				E20DD35125FF44C600735B0A /* UserTarget.swift in Sources */,
 				E20DD35325FF44C600735B0A /* AuthTarget.swift in Sources */,
@@ -750,6 +757,7 @@
 				E2729DEE264F15C4009473D0 /* ItemDetailView.swift in Sources */,
 				E2729DF5264F39DC009473D0 /* StockView.swift in Sources */,
 				E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */,
+				E25E9A9526EE9F320090A0E3 /* UserStubService.swift in Sources */,
 				E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */,
 				E20DD3C625FF9E3A00735B0A /* SafariView.swift in Sources */,
 				E20DD30825FF3EAA00735B0A /* AppError.swift in Sources */,

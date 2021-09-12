@@ -19,9 +19,9 @@ struct SettingView: View {
 
     // MARK: - Initializer
 
-    init(authRepository: AuthRepository, isPresenting: Binding<Bool>) {
+    init(isPresenting: Binding<Bool>, viewModel: SettingViewModel) {
         self._isPresenting = isPresenting
-        viewModel = SettingViewModel(authRepository: authRepository)
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -74,7 +74,7 @@ struct SettingView_Previews: PreviewProvider {
     @State static var isPresenting: Bool = true
 
     static var previews: some View {
-        SettingView(authRepository: AuthStubService(), isPresenting: $isPresenting)
+        SettingView(isPresenting: $isPresenting, viewModel: SettingViewModel(authRepository: AuthStubService()))
             .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }

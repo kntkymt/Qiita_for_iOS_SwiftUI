@@ -18,8 +18,8 @@ struct ItemDetailView: View {
 
     // MARK: - Initializer
 
-    init(item: Item, likeRepository: LikeRepository, stockRepository: StockRepository) {
-        viewModel = ItemDetailViewModel(item: item, likeRepository: likeRepository, stockRepository: stockRepository)
+    init(viewModel: ItemDetailViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -92,6 +92,6 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(item: ItemStubService.items[0], likeRepository: LikeStubService(), stockRepository: StockStubService())
+        ItemDetailView(viewModel: ItemDetailViewModel(item: ItemStubService.items[0], likeRepository: LikeStubService(), stockRepository: StockStubService()))
     }
 }

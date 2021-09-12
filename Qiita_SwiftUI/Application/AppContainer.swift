@@ -16,13 +16,7 @@ final class AppContainer {
 
     // MARK: - Property
 
-    let itemRepository: ItemRepository
-    let tagRepository: TagRepository
-    let stockRepository: StockRepository
-    let userRepository: UserRepository
-    let likeRepository: LikeRepository
-    let authRepository: AuthRepository
-
+    let repositoryContainer: RepositoryContainer
     let apiProvider: MoyaProvider<MultiTarget>
 
     // MARK: - Private
@@ -30,13 +24,8 @@ final class AppContainer {
     private init() {
         switch AppEnvironment.shared.buildConfig {
         case .debug, .release:
-            itemRepository = ItemService()
-            tagRepository = TagService()
-            stockRepository = StockService()
-            userRepository = UserService()
-            likeRepository = LikeService()
-            authRepository = AuthService()
-            
+
+            repositoryContainer = RepositoryContainerFactory.createServices()
             apiProvider = APIProviderFactory.createDefault()
         }
     }
