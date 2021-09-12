@@ -64,22 +64,16 @@ struct TagInformationView: View {
     // MARK: - Body
 
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 8) {
             ImageView(url: tag.iconUrl!)
                 .frame(width: 150, height: 150)
 
             Text(tag.id)
+                .font(.system(size: 20, weight: .medium))
 
             HStack(spacing: 32) {
-                VStack {
-                    Text(tag.itemsCount.description)
-                    Text("記事")
-                }.frame(width: 100)
-
-                VStack {
-                    Text(tag.followersCount.description)
-                    Text("フォロワー")
-                }.frame(width: 100)
+                ContributionView(title: "記事", count: tag.itemsCount)
+                ContributionView(title: "フォロワー", count: tag.followersCount)
             }
         }
     }
