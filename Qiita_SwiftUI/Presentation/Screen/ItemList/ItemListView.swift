@@ -72,6 +72,7 @@ struct ItemListView<HeaderView: View>: View {
 
 struct ItemListItem: View {
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
     @ObservedObject private var viewModel: ItemListItemViewModel
 
     // MARK: - Initializer
@@ -85,7 +86,7 @@ struct ItemListItem: View {
     }
 
     var body: some View {
-        NavigationLink(destination: ItemDetailView(viewModel: ItemDetailViewModel(item: viewModel.item, likeRepository: viewModel.likeRepository, stockRepository: viewModel.stockRepository))) {
+        NavigationLink(destination: ItemDetailView(viewModel: ItemDetailViewModel(item: viewModel.item, likeRepository: repositoryContainer.likeRepository, stockRepository: repositoryContainer.stockRepository))) {
             HStack {
                 ImageView(url: viewModel.item.user.profileImageUrl)
                     .frame(width: 40, height: 40)
