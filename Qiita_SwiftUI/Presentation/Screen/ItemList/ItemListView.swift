@@ -146,5 +146,6 @@ struct ItemListView_Previews: PreviewProvider {
 
     static var previews: some View {
         ItemListView(items: $items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

@@ -120,5 +120,7 @@ struct ContributionView: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(viewModel: ProfileViewModel(authRepository: AuthStubService(), itemRepository: ItemStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
+            .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }

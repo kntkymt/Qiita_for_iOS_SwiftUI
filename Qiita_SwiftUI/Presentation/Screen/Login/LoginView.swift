@@ -43,5 +43,7 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(viewModel: LoginViewModel(authRepository: AuthStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
+            .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }

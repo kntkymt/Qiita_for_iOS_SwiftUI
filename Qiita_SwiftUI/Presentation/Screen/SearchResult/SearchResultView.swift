@@ -59,7 +59,9 @@ struct SearchResultView_Previews: PreviewProvider {
 
     static var previews: some View {
         SearchResultView(viewModel: SearchResultViewModel(searchType: .word("iOS"), itemRepository: ItemStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
 
         SearchResultView(viewModel: SearchResultViewModel(searchType: .tag(tag), itemRepository: ItemStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

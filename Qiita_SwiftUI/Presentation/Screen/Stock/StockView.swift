@@ -41,5 +41,6 @@ struct StockView: View {
 struct StockView_Previews: PreviewProvider {
     static var previews: some View {
         StockView(viewModel: StockViewModel(stockRepository: StockStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

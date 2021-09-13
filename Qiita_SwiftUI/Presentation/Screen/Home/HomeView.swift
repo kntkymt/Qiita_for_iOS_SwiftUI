@@ -42,5 +42,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(viewModel: HomeViewModel(itemRepository: ItemStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

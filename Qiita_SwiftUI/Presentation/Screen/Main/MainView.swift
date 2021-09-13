@@ -45,5 +45,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(RepositoryContainerFactory.createStubs())
+            .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }
