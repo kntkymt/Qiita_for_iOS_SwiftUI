@@ -12,10 +12,7 @@ struct SearchView: View {
 
     // MARK: - Property
 
-    private let itemRepository: ItemRepository
-    private let likeRepository: LikeRepository
-    private let stockRepository: StockRepository
-    private let tagRepository: TagRepository
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
     @ObservedObject private var viewModel: SearchViewModel
 
     @State var isEditing: Bool = false
@@ -26,12 +23,8 @@ struct SearchView: View {
 
     // MARK: - Initializer
 
-    init(tagRepository: TagRepository, itemRepository: ItemRepository, likeRepository: LikeRepository, stockRepository: StockRepository) {
-        self.viewModel = SearchViewModel(tagRepository: tagRepository)
-        self.itemRepository = itemRepository
-        self.likeRepository = likeRepository
-        self.stockRepository = stockRepository
-        self.tagRepository = tagRepository
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
     }
 
     // MARK: - Body
@@ -39,7 +32,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                NavigationLink(destination: SearchResultView(searchType: .word(searchText), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository), isActive: $isPush) { EmptyView() }
+                NavigationLink(destination: SearchResultView(viewModel: SearchResultViewModel(searchType: .word(searchText), itemRepository: repositoryContainer.itemRepository)), isActive: $isPush) { EmptyView() }
 
                 // ヘッダーも含めてスクロールさせたいが
                 // ListやCollectionViewのヘッダーが存在しないので
@@ -63,7 +56,7 @@ struct SearchView: View {
                         Spacer()
                     }
 
-                    TagListView(tags: viewModel.tags, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository)
+                    TagListView(tags: viewModel.tags)
                         // scrollDisableが反応しないのでcontent以上の高さにしてスクロールできなくする
                         .height((geometry.size.width / 3) * 10 + 5)
                 }
@@ -115,16 +108,14 @@ struct KeywordListView: View {
 
 struct TagListView: View {
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
+
     let tags: [ItemTag]
-    let itemRepository: ItemRepository
-    let likeRepository: LikeRepository
-    let stockRepository: StockRepository
-    let tagRepository: TagRepository
 
     var body: some View {
         GeometryReader { geometry in
             CollectionView(tags) { tag in
-                NavigationLink(destination: SearchResultView(searchType: .tag(tag), itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository, tagRepository: tagRepository)) {
+                NavigationLink(destination: SearchResultView(viewModel: SearchResultViewModel(searchType: .tag(tag), itemRepository: repositoryContainer.itemRepository))) {
                     ZStack {
                         ImageView(url: tag.iconUrl!)
 
@@ -147,6 +138,7 @@ struct TagListView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(tagRepository: TagStubService(), itemRepository: ItemStubService(), likeRepository: LikeStubService(), stockRepository: StockStubService())
+        SearchView(viewModel: SearchViewModel(tagRepository: TagStubService()))
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

@@ -11,13 +11,15 @@ struct TagInformationView: View {
 
     // MARK: - Property
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
+
     @ObservedObject private var viewModel: TagInformationViewModel
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
-    init(tag: ItemTag, tagRepository: TagRepository) {
-        self.viewModel = TagInformationViewModel(tag: tag, tagRepository: tagRepository)
+    init(viewModel: TagInformationViewModel) {
+        self.viewModel = viewModel
 
         /// FIXME: ItemListItemと同様にonAppearでやると再描画されて状態が上書きされる
         viewModel.checkIsFollowed()

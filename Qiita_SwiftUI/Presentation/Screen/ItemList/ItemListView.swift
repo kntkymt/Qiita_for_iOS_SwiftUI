@@ -12,37 +12,32 @@ struct ItemListView<HeaderView: View>: View {
 
     // MARK: - Property
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
+
     @Binding private var items: [Item]
     @Binding private var isRefreshing: Bool
 
     private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
-
-    private let likeRepository: LikeRepository
-    private let stockRepository: StockRepository
 
     private let onRefresh: () -> Void
     private let onPaging: () -> Void
 
     private var headerView: HeaderView
 
-    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, likeRepository: LikeRepository, stockRepository: StockRepository, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
         self._items = items
         self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
-        self.likeRepository = likeRepository
-        self.stockRepository = stockRepository
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = header()
     }
 
     // headerを使わない場合
-    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, likeRepository: LikeRepository, stockRepository: StockRepository, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
+    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
         self._items = items
         self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
-        self.likeRepository = likeRepository
-        self.stockRepository = stockRepository
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = EmptyView()
@@ -59,7 +54,7 @@ struct ItemListView<HeaderView: View>: View {
             headerView
 
             ForEach(items) { item in
-                ItemListItem(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
+                ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
             }
 
             HStack {
@@ -77,12 +72,13 @@ struct ItemListView<HeaderView: View>: View {
 
 struct ItemListItem: View {
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
     @ObservedObject private var viewModel: ItemListItemViewModel
 
     // MARK: - Initializer
 
-    init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
-        self.viewModel = ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: stockRepository, likeRepository: likeRepository)
+    init(viewModel: ItemListItemViewModel) {
+        self.viewModel = viewModel
 
         // FIXME: ここだけ例外的にonAppearではなくinitでやってる
         // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
@@ -90,7 +86,7 @@ struct ItemListItem: View {
     }
 
     var body: some View {
-        NavigationLink(destination: ItemDetailView(item: viewModel.item, likeRepository: viewModel.likeRepository, stockRepository: viewModel.stockRepository)) {
+        NavigationLink(destination: ItemDetailView(viewModel: ItemDetailViewModel(item: viewModel.item, likeRepository: repositoryContainer.likeRepository, stockRepository: repositoryContainer.stockRepository))) {
             HStack {
                 ImageView(url: viewModel.item.user.profileImageUrl)
                     .frame(width: 40, height: 40)
@@ -149,6 +145,7 @@ struct ItemListView_Previews: PreviewProvider {
     @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, likeRepository: LikeStubService(), stockRepository: StockStubService(), onRefresh: { }, onPaging: { })
+        ItemListView(items: $items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
+            .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

@@ -11,28 +11,24 @@ struct LaunchView: View {
 
     // MARK: - Property
 
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
     @EnvironmentObject var authState: AuthState
-
-    let likeRepository: LikeRepository
-    let authRepository: AuthRepository
-    let itemRepository: ItemRepository
-    let stockRepository: StockRepository
-    let tagRepository: TagRepository
 
     // MARK: - Body
 
     var body: some View {
         if authState.isSignedin {
-            MainView(likeRepository: likeRepository, authRepository: authRepository, itemRepository: itemRepository, stockRepository: stockRepository, tagRepository: tagRepository)
+            MainView()
         } else {
-            LoginView(authRepository: authRepository)
+            LoginView(viewModel: LoginViewModel(authRepository: repositoryContainer.authRepository))
         }
     }
 }
 
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView(likeRepository: LikeStubService(), authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
+        LaunchView()
+            .environmentObject(RepositoryContainerFactory.createStubs())
             .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }

@@ -11,32 +11,28 @@ struct MainView: View {
 
     // MARK: - Property
 
-    var likeRepository: LikeRepository
-    var authRepository: AuthRepository
-    var itemRepository: ItemRepository
-    var stockRepository: StockRepository
-    var tagRepository: TagRepository
+    @EnvironmentObject var repositoryContainer: RepositoryContainer
 
     // MARK: - Body
 
     var body: some View {
         TabView {
-            HomeView(itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
+            HomeView(viewModel: HomeViewModel(itemRepository: repositoryContainer.itemRepository))
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            SearchView(tagRepository: tagRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
+            SearchView(viewModel: SearchViewModel(tagRepository: repositoryContainer.tagRepository))
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                     Text("Search")
                 }
-            StockView(stockRepository: stockRepository, itemRepository: itemRepository, likeRepository: likeRepository)
+            StockView(viewModel: StockViewModel(stockRepository: repositoryContainer.stockRepository))
                 .tabItem {
                     Image(systemName: "folder")
                     Text("Stock")
                 }
-            ProfileView(authRepository: authRepository, itemRepository: itemRepository, likeRepository: likeRepository, stockRepository: stockRepository)
+            ProfileView(viewModel: ProfileViewModel(authRepository: repositoryContainer.authRepository, itemRepository: repositoryContainer.itemRepository))
                 .tabItem {
                     Image(systemName: "person")
                     Text("Profile")
@@ -47,6 +43,8 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(likeRepository: LikeStubService(), authRepository: AuthStubService(), itemRepository: ItemStubService(), stockRepository: StockStubService(), tagRepository: TagStubService())
+        MainView()
+            .environmentObject(RepositoryContainerFactory.createStubs())
+            .environmentObject(AuthState(authRepository: AuthStubService()))
     }
 }
