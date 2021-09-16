@@ -58,17 +58,10 @@ struct ItemListView<HeaderView: View>: View {
             ForEach(items) { item in
                 ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
             }
-
-            HStack {
-                Spacer()
-                ProgressView()
-                    .onAppear {
-                        onPaging()
-                    }
-                Spacer()
-            }
-        }.listStyle(PlainListStyle())
+        }
+        .listStyle(PlainListStyle())
         .pullToRefresh(isShowing: $isRefreshing, onRefresh: onRefresh)
+        .footerLoading { onPaging() }
     }
 }
 
