@@ -10,11 +10,11 @@ import Combine
 
 final class TagInformationViewModel: ObservableObject {
 
-    private let tagRepository: TagRepository
-    private var cancellables = [AnyCancellable]()
-
     let tag: ItemTag
     @Published var isFollowed: Bool = false
+
+    private let tagRepository: TagRepository
+    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 

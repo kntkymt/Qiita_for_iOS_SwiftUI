@@ -29,7 +29,7 @@ struct SearchResultView: View {
         /// FIXME: ItemListViewのHeaderが左寄せになっている問題
         /// 現在はSearchResultの方で幅を指定して対応
         GeometryReader { reader in
-            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems, header: {
+            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems, header: {
                 if case .tag(let tag) = viewModel.searchType {
                     TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
                         .frame(width: reader.size.width - 32)

@@ -13,13 +13,13 @@ final class ItemDetailViewModel: ObservableObject, Identifiable {
 
     // MARK: - Property
 
-    private let likeRepository: LikeRepository
-    private let stockRepository: StockRepository
-    private var cancellables = [AnyCancellable]()
-
     @Published var item: Item
     @Published var isLiked: Bool = false
     @Published var isStocked: Bool = false
+
+    private let likeRepository: LikeRepository
+    private let stockRepository: StockRepository
+    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 

@@ -19,8 +19,8 @@ final class ProfileViewModel: ObservableObject {
     private var page = 1
     private var isPageLoading = false
 
-    let authRepository: AuthRepository
-    let itemRepository: ItemRepository
+    private let authRepository: AuthRepository
+    private let itemRepository: ItemRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer

@@ -14,7 +14,7 @@ struct ItemListView<HeaderView: View>: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @Binding private var items: [Item]
+    private let items: [Item]
     @Binding private var isRefreshing: Bool
 
     private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
@@ -24,8 +24,10 @@ struct ItemListView<HeaderView: View>: View {
 
     private var headerView: HeaderView
 
-    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
-        self._items = items
+    // MARK: - Initializer
+
+    init(items: [Item], isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
+        self.items = items
         self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
@@ -34,8 +36,8 @@ struct ItemListView<HeaderView: View>: View {
     }
 
     // headerを使わない場合
-    init(items: Binding<[Item]>, isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
-        self._items = items
+    init(items: [Item], isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
+        self.items = items
         self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
@@ -72,6 +74,8 @@ struct ItemListView<HeaderView: View>: View {
 
 struct ItemListItem: View {
 
+    // MARK: - Property
+
     @EnvironmentObject var repositoryContainer: RepositoryContainer
     @ObservedObject private var viewModel: ItemListItemViewModel
 
@@ -84,6 +88,8 @@ struct ItemListItem: View {
         // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
         viewModel.checkIsStocked()
     }
+
+    // MARK: - Body
 
     var body: some View {
         NavigationLink(destination: ItemDetailView(viewModel: ItemDetailViewModel(item: viewModel.item, likeRepository: repositoryContainer.likeRepository, stockRepository: repositoryContainer.stockRepository))) {
@@ -141,11 +147,11 @@ struct ItemListItem: View {
 
 struct ItemListView_Previews: PreviewProvider {
 
-    @State static var items: [Item] = ItemStubService.items
+    static let items: [Item] = ItemStubService.items
     @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: $items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
+        ItemListView(items: items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
             .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }
