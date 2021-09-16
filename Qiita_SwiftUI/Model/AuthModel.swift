@@ -9,7 +9,7 @@ import Foundation
 
 struct AuthModel: Codable {
 
-    let clientId: String
-    let scopes: [String]
-    let token: String
+    var clientId: String
+    var scopes: [String]
+    var token: String
 }

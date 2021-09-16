@@ -9,8 +9,8 @@ import Foundation
 
 struct ItemTag: Codable, Identifiable {
 
-    let iconUrl: URL?
-    let followersCount: Int
-    let id: String
-    let itemsCount: Int
+    var iconUrl: URL?
+    var followersCount: Int
+    var id: String
+    var itemsCount: Int
 }
