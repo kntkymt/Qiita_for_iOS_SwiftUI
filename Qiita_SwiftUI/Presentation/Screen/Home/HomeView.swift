@@ -28,7 +28,7 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            ItemListView(items: $viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
                 .navigationBarTitle("Home", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {

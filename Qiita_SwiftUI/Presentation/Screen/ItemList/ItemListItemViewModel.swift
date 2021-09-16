@@ -19,8 +19,8 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     let onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
-    let stockRepository: StockRepository
-    let likeRepository: LikeRepository
+    private let stockRepository: StockRepository
+    private let likeRepository: LikeRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer

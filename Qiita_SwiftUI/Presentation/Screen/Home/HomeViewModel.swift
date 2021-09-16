@@ -18,7 +18,7 @@ final class HomeViewModel: ObservableObject {
     private var page = 1
     private var isPageLoading = false
 
-    let itemRepository: ItemRepository
+    private let itemRepository: ItemRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer

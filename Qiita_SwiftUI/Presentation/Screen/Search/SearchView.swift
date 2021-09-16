@@ -15,7 +15,7 @@ struct SearchView: View {
     @EnvironmentObject var repositoryContainer: RepositoryContainer
     @ObservedObject private var viewModel: SearchViewModel
 
-    @State var isEditing: Bool = false
+    @State private var isEditing: Bool = false
     @State private var searchText: String = ""
 
     @State private var isInitialOnAppear = true

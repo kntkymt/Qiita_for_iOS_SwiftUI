@@ -9,10 +9,10 @@ import Foundation
 
 struct Item: Codable, Identifiable {
 
-    let title: String
-    let id: String
-    let url: URL
-    let likesCount: Int
-    let createdAt: Date
-    let user: User
+    var title: String
+    var id: String
+    var url: URL
+    var likesCount: Int
+    var createdAt: Date
+    var user: User
 }

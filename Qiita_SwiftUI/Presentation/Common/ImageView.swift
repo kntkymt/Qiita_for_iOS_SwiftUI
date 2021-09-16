@@ -9,9 +9,14 @@ import SwiftUI
 import FetchImage
 
 struct ImageView: View {
-    let url: URL
+
+    // MARK: - Property
+
+    var url: URL
 
     @StateObject private var image = FetchImage()
+
+    // MARK: - Public
 
     var body: some View {
         ZStack {

@@ -20,7 +20,7 @@ final class StockViewModel: ObservableObject {
     private var page = 1
     private var isPageLoading = false
 
-    let stockRepository: StockRepository
+    private let stockRepository: StockRepository
     private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer

@@ -12,6 +12,7 @@ struct SettingView: View {
     // MARK: - Property
 
     @EnvironmentObject var authState: AuthState
+    
     @Binding private var isPresenting: Bool
     @State private var showingAlert = false
 

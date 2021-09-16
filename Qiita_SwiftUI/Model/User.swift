@@ -9,11 +9,11 @@ import Foundation
 
 struct User: Codable, Identifiable {
 
-    let id: String
-    let name: String
-    let description: String?
-    let profileImageUrl: URL
-    let itemsCount: Int
-    let followeesCount: Int
-    let followersCount: Int
+    var id: String
+    var name: String
+    var description: String?
+    var profileImageUrl: URL
+    var itemsCount: Int
+    var followeesCount: Int
+    var followersCount: Int
 }
