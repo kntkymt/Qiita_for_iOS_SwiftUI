@@ -12,8 +12,20 @@ private struct FooterLoadingView: UIViewRepresentable {
 
     // MARK: - Property
 
-    let onReachBottom: () -> Void
     @State private var observer: NSKeyValueObservation?
+
+    let onReachBottom: () -> Void
+
+    private let indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView()
+        indicatorView.style = .medium
+        indicatorView.backgroundColor = .secondarySystemGroupedBackground
+
+        indicatorView.color = .systemGray
+        indicatorView.frame.size.height = 50
+        indicatorView.isHidden = false
+        return indicatorView
+    }()
 
     // MARK: - Public
 
@@ -25,21 +37,22 @@ private struct FooterLoadingView: UIViewRepresentable {
     }
 
     public func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<FooterLoadingView>) {
-
         DispatchQueue.main.asyncAfter(deadline: .now()) {
+            guard let tableView = self.tableView(entry: uiView) else { return }
 
-            guard let tableView = self.tableView(entry: uiView) else {
-                return
-            }
+            tableView.tableFooterView = indicatorView
 
+            // スクロール値を購読してonReachBottom判定
             observer = tableView.observe(\.contentOffset, changeHandler: { tableView, newValue in
                 let visibleHeight = tableView.frame.height - tableView.contentInset.top - tableView.contentInset.bottom
                 let y = tableView.contentOffset.y + tableView.contentInset.top
                 let threshold = max(0.0, tableView.contentSize.height - visibleHeight)
 
                 if y > threshold {
-                    startFooterLoading(tableView: tableView)
+                    indicatorView.startAnimating()
                     onReachBottom()
+                } else {
+                    indicatorView.stopAnimating()
                 }
             })
         }
@@ -60,18 +73,6 @@ private struct FooterLoadingView: UIViewRepresentable {
 
         // Search in siblings
         return Introspect.previousSibling(containing: UITableView.self, from: viewHost)
-    }
-
-    private func startFooterLoading(tableView: UITableView) {
-        let indicatorView = UIActivityIndicatorView()
-        indicatorView.style = .medium
-        indicatorView.backgroundColor = .secondarySystemGroupedBackground
-
-        indicatorView.color = .systemGray
-        indicatorView.frame.size.height = 50
-        indicatorView.isHidden = false
-        tableView.tableFooterView = indicatorView
-        indicatorView.startAnimating()
     }
 }
 
