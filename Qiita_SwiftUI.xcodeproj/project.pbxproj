@@ -66,6 +66,8 @@
 		E25E9A9326EE9F0B0090A0E3 /* RepositoryContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A9226EE9F0B0090A0E3 /* RepositoryContainer.swift */; };
 		E25E9A9526EE9F320090A0E3 /* UserStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9A9426EE9F320090A0E3 /* UserStubService.swift */; };
 		E25E9AAA26F3D72C0090A0E3 /* FooterLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9AA926F3D72B0090A0E3 /* FooterLoadingView.swift */; };
+		E25E9AC326F63F280090A0E3 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25E9AC226F63F280090A0E3 /* PullToRefresh.swift */; };
+		E25E9AC626F6437C0090A0E3 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E25E9AC526F6437C0090A0E3 /* Introspect */; };
 		E2729DE1264EC601009473D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE0264EC601009473D0 /* HomeView.swift */; };
 		E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE2264ECA96009473D0 /* HomeViewModel.swift */; };
 		E2729DE6264ECDA7009473D0 /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DE5264ECDA7009473D0 /* ItemListView.swift */; };
@@ -77,7 +79,6 @@
 		E2729DF5264F39DC009473D0 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF4264F39DC009473D0 /* StockView.swift */; };
 		E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF6264F3A0F009473D0 /* StockViewModel.swift */; };
 		E2729DF9264F3ADC009473D0 /* StockStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2729DF8264F3ADC009473D0 /* StockStubService.swift */; };
-		E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = E295D60A26D8AE4300246986 /* SwiftUIRefresh */; };
 		E295D60D26D948AA00246986 /* WebViewRuleList.json in Resources */ = {isa = PBXBuildFile; fileRef = E295D60C26D948AA00246986 /* WebViewRuleList.json */; };
 		E295D60F26D9574800246986 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295D60E26D9574800246986 /* ItemDetailViewModel.swift */; };
 		E295D61126D97A0800246986 /* LikeStubService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E295D61026D97A0800246986 /* LikeStubService.swift */; };
@@ -173,6 +174,7 @@
 		E25E9A9226EE9F0B0090A0E3 /* RepositoryContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryContainer.swift; sourceTree = "<group>"; };
 		E25E9A9426EE9F320090A0E3 /* UserStubService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStubService.swift; sourceTree = "<group>"; };
 		E25E9AA926F3D72B0090A0E3 /* FooterLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterLoadingView.swift; sourceTree = "<group>"; };
+		E25E9AC226F63F280090A0E3 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		E2729DE0264EC601009473D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2729DE2264ECA96009473D0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E2729DE5264ECDA7009473D0 /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
@@ -202,8 +204,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E295D60B26D8AE4300246986 /* SwiftUIRefresh in Frameworks */,
 				E20DD37D25FF47E600735B0A /* KeychainAccess in Frameworks */,
+				E25E9AC626F6437C0090A0E3 /* Introspect in Frameworks */,
 				E20DD36425FF460500735B0A /* Moya in Frameworks */,
 				E20DD38325FF483200735B0A /* SwiftyBeaver in Frameworks */,
 				E2BB277C2656B92100148F45 /* SwiftUIX in Frameworks */,
@@ -496,6 +498,7 @@
 				E2729DEA264F0D43009473D0 /* ImageView.swift */,
 				E2729DEF264F18F0009473D0 /* WebView.swift */,
 				E25E9AA926F3D72B0090A0E3 /* FooterLoadingView.swift */,
+				E25E9AC226F63F280090A0E3 /* PullToRefresh.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -604,7 +607,7 @@
 				E20DD38225FF483200735B0A /* SwiftyBeaver */,
 				E2729DE8264F0C82009473D0 /* FetchImage */,
 				E2BB277B2656B92100148F45 /* SwiftUIX */,
-				E295D60A26D8AE4300246986 /* SwiftUIRefresh */,
+				E25E9AC526F6437C0090A0E3 /* Introspect */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -683,7 +686,7 @@
 				E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */,
 				E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
-				E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+				E25E9AC426F6437C0090A0E3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = E20DD2C025FF325600735B0A /* Products */;
 			projectDirPath = "";
@@ -793,6 +796,7 @@
 				E20DD3AD25FF902300735B0A /* LoginView.swift in Sources */,
 				E2729DF7264F3A0F009473D0 /* StockViewModel.swift in Sources */,
 				E20DD31525FF403D00735B0A /* User.swift in Sources */,
+				E25E9AC326F63F280090A0E3 /* PullToRefresh.swift in Sources */,
 				E20DD3B225FF903B00735B0A /* MainView.swift in Sources */,
 				E2729DF0264F18F0009473D0 /* WebView.swift in Sources */,
 				E2729DE3264ECA96009473D0 /* HomeViewModel.swift in Sources */,
@@ -1144,20 +1148,20 @@
 				minimumVersion = 1.9.3;
 			};
 		};
+		E25E9AC426F6437C0090A0E3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/FetchImage.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.4.0;
-			};
-		};
-		E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUIRefresh.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.3;
 			};
 		};
 		E2BB277A2656B92100148F45 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
@@ -1186,15 +1190,15 @@
 			package = E20DD38125FF483200735B0A /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
 		};
+		E25E9AC526F6437C0090A0E3 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E25E9AC426F6437C0090A0E3 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		E2729DE8264F0C82009473D0 /* FetchImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2729DE7264F0C82009473D0 /* XCRemoteSwiftPackageReference "FetchImage" */;
 			productName = FetchImage;
-		};
-		E295D60A26D8AE4300246986 /* SwiftUIRefresh */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E295D60926D8AE4300246986 /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
-			productName = SwiftUIRefresh;
 		};
 		E2BB277B2656B92100148F45 /* SwiftUIX */ = {
 			isa = XCSwiftPackageProductDependency;

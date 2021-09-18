@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUIRefresh
 
 struct ItemListView<HeaderView: View>: View {
 
