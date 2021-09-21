@@ -5,16 +5,14 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
-
 protocol LikeRepository {
 
     /// 記事をいいねする
-    func like(id: Item.ID) -> AnyPublisher<VoidModel, Error>
+    func like(id: Item.ID) async throws -> VoidModel
 
     /// 記事のいいねを解除する
-    func unlike(id: Item.ID) -> AnyPublisher<VoidModel, Error>
+    func unlike(id: Item.ID) async throws -> VoidModel
 
     /// 記事をいいねしているかどうか確認する
-    func checkIsLiked(id: Item.ID) -> AnyPublisher<VoidModel, Error>
+    func checkIsLiked(id: Item.ID) async throws -> VoidModel
 }

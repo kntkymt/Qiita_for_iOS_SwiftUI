@@ -6,13 +6,12 @@
 //
 
 import Foundation
-import Combine
 
 final class UserStubService: UserRepository {
 
     let user = User(id: "kntkymt", name: "kntkymt", description: "iOSエンジニアです", profileImageUrl: URL(string: "https://avatars2.githubusercontent.com/u/44288050?v=4")!, itemsCount: 10, followeesCount: 20, followersCount: 30)
 
-    func getUser(id: User.ID) -> AnyPublisher<User, Error> {
-        return Future { $0(.success(self.user)) }.eraseToAnyPublisher()
+    func getUser(id: User.ID) async throws -> User {
+        return await withCheckedContinuation { $0.resume(returning: self.user) }
     }
 }

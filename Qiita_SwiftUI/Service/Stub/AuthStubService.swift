@@ -5,7 +5,6 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
 import Foundation
 
 final class AuthStubService: AuthRepository {
@@ -20,15 +19,15 @@ final class AuthStubService: AuthRepository {
         
     }
 
-    func getCurrentUser() -> AnyPublisher<User, Error> {
-        return Future { $0(.success(self.user)) }.eraseToAnyPublisher()
+    func getCurrentUser() async throws -> User {
+        return await withCheckedContinuation { $0.resume(returning: self.user) }
     }
 
-    func signin() -> AnyPublisher<AuthModel, Error> {
-        return Future { $0(.success(self.authModel)) }.eraseToAnyPublisher()
+    func signin() async throws -> AuthModel {
+        return await withCheckedContinuation { $0.resume(returning: self.authModel) }
     }
 
-    func signout() -> AnyPublisher<Void, Error> {
-        return Future { $0(.success(())) }.eraseToAnyPublisher()
+    func signout() async throws -> Void {
+        return await withCheckedContinuation { $0.resume(returning: ()) }
     }
 }
