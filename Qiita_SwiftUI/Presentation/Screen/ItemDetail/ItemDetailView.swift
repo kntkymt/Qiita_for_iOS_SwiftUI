@@ -39,24 +39,24 @@ struct ItemDetailView: View {
                                 await viewModel.disLike()
                             }
                         })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color.white)
-                            .background(Color("brand"))
-                            .cornerRadius(22)
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color.white)
+                        .background(Color("brand"))
+                        .cornerRadius(22)
                     } else {
                         Button(systemImage: .handThumbsup, action: {
                             Task {
                                 await viewModel.like()
                             }
                         })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color("brand"))
-                            .background(Color.clear)
-                            .cornerRadius(22)
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color("brand"))
+                        .background(Color.clear)
+                        .cornerRadius(22)
                     }
 
                     if viewModel.isStocked {
@@ -65,24 +65,24 @@ struct ItemDetailView: View {
                                 await viewModel.unStock()
                             }
                         })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color.white)
-                            .background(Color("brand"))
-                            .cornerRadius(22)
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color.white)
+                        .background(Color("brand"))
+                        .cornerRadius(22)
                     } else {
                         Button(systemImage: .folder, action: {
                             Task {
                                 await viewModel.stock()
                             }
                         })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color("brand"))
-                            .background(Color.clear)
-                            .cornerRadius(22)
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color("brand"))
+                        .background(Color.clear)
+                        .cornerRadius(22)
                     }
 
                     Button(systemImage: .squareAndArrowUp, action: { shareSheetPresented.toggle() })

@@ -43,15 +43,15 @@ struct SearchResultView: View {
                         .frame(width: reader.size.width - 32)
                 }
             })
-                .navigationTitle(navigationTitle)
-                .onAppear {
-                    if isInitialOnAppear {
-                        Task {
-                            await viewModel.fetchItems()
-                        }
-                        isInitialOnAppear = false
+            .navigationTitle(navigationTitle)
+            .onAppear {
+                if isInitialOnAppear {
+                    Task {
+                        await viewModel.fetchItems()
                     }
+                    isInitialOnAppear = false
                 }
+            }
         }
     }
 

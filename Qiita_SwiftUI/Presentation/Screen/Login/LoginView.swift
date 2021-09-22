@@ -27,7 +27,6 @@ struct LoginView: View {
     var body: some View {
         Button("Login") {
             isPresented = true
-            // MainActorならこれ要らないのでは...?
             Task {
                 await viewModel.login() {
                     authState.isSignedin = true
