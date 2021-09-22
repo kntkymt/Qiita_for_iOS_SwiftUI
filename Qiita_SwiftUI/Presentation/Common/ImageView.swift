@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FetchImage
 
 struct ImageView: View {
 
@@ -14,20 +13,19 @@ struct ImageView: View {
 
     var url: URL
 
-    @StateObject private var image = FetchImage()
-
     // MARK: - Public
 
     var body: some View {
         ZStack {
-            Rectangle().fill(Color.systemBackground)
-            image.view?
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipped()
+            AsyncImage(url: url, content: { image in
+                Rectangle().fill(Color.systemBackground)
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipped()
+            }, placeholder: {
+                Rectangle().fill(Color.systemGray)
+            })
         }
-        .onAppear { image.load(url) }
-        .onChange(of: url) { image.load($0) }
-        .onDisappear(perform: image.reset)
     }
 }
