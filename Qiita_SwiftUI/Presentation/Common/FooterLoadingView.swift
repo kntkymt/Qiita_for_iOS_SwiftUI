@@ -49,11 +49,12 @@ private struct FooterLoadingView: UIViewRepresentable {
                 let threshold = max(0.0, tableView.contentSize.height - visibleHeight)
 
                 if y > threshold {
-                    indicatorView.startAnimating()
-                    Task {
+                    Task(priority: .userInitiated) {
+                        indicatorView.startAnimating()
                         await action()
+                        await Task.sleep(1_000_000_000)
+                        indicatorView.stopAnimating()
                     }
-                    indicatorView.stopAnimating()
                 }
             })
         }
