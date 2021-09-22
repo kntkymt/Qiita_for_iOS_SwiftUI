@@ -31,9 +31,7 @@ struct HomeView: View {
             ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
-                Task {
-                    await  viewModel.fetchMoreItems()
-                }
+                await  viewModel.fetchMoreItems()
             }).navigationBarTitle("Home", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {

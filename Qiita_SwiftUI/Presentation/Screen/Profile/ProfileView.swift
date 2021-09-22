@@ -35,9 +35,7 @@ struct ProfileView: View {
                         ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
                             await viewModel.fetchItems()
                         }, onPaging: {
-                            Task {
-                                await viewModel.fetchMoreItems()
-                            }
+                            await viewModel.fetchMoreItems()
                         })
                     }
                 } else {

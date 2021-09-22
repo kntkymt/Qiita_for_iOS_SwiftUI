@@ -18,13 +18,13 @@ struct ItemListView<HeaderView: View>: View {
     private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
     private let onRefresh: () async -> Void
-    private let onPaging: () -> Void
+    private let onPaging: () async -> Void
 
     private var headerView: HeaderView
 
     // MARK: - Initializer
 
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
@@ -33,7 +33,7 @@ struct ItemListView<HeaderView: View>: View {
     }
 
     // headerを使わない場合
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
+    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
         self.items = items
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
@@ -57,7 +57,7 @@ struct ItemListView<HeaderView: View>: View {
         }
         .listStyle(PlainListStyle())
         .refreshable { await onRefresh() }
-        .footerLoading { onPaging() }
+        .moreLoadable { await onPaging() }
     }
 }
 

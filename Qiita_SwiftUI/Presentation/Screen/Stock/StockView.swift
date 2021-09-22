@@ -30,9 +30,7 @@ struct StockView: View {
             ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
-                Task {
-                    await viewModel.fetchMoreItems()
-                }
+                await viewModel.fetchMoreItems()
             }).navigationBarTitle("Stock", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {
