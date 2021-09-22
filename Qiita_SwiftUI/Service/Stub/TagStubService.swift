@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 final class TagStubService: TagRepository {
 
@@ -20,19 +19,19 @@ final class TagStubService: TagRepository {
         ItemTag(iconUrl: URL(string: "https://avatars2.githubusercontent.com/u/44288050?v=4")!, followersCount: 10, id: "Ruby", itemsCount: 10)
     ]
 
-    func getTags(page: Int, perPage: Int, sort: String) -> AnyPublisher<[ItemTag], Error> {
-        return Future { $0(.success(self.tags)) }.eraseToAnyPublisher()
+    func getTags(page: Int, perPage: Int, sort: String) async throws -> [ItemTag] {
+        return await withCheckedContinuation { $0.resume(returning: self.tags) }
     }
 
-    func follow(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func follow(id: ItemTag.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 
-    func unfollow(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func unfollow(id: ItemTag.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 
-    func checkIsFollowed(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func checkIsFollowed(id: ItemTag.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 }

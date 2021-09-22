@@ -14,12 +14,12 @@ struct LoginView: View {
     @EnvironmentObject var authState: AuthState
     @State private var isPresented = false
 
-    @ObservedObject private var viewModel: LoginViewModel
+    @StateObject private var viewModel: LoginViewModel
 
     // MARK: - Initializer
 
     init(viewModel: LoginViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -27,9 +27,11 @@ struct LoginView: View {
     var body: some View {
         Button("Login") {
             isPresented = true
-            viewModel.login() {
-                authState.isSignedin = true
-                isPresented = false
+            Task {
+                await viewModel.login() {
+                    authState.isSignedin = true
+                    isPresented = false
+                }
             }
         }.sheet(isPresented: $isPresented, content: {
             SafariView(url: AppConstant.Auth.signinURL)

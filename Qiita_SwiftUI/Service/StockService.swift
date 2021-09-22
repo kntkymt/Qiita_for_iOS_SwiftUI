@@ -5,26 +5,22 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
-
 final class StockService: StockRepository {
 
-    func getStocks(page: Int, perPage: Int) -> AnyPublisher<[Item], Error> {
-        return Auth.shared.currentUser
-            .flatMap { user in
-                API.shared.call(UserTarget.getStocks(page: page, perPage: perPage, id: user.id))
-            }.eraseToAnyPublisher()
+    func getStocks(page: Int, perPage: Int) async throws -> [Item] {
+        let user = try await Auth.shared.getCurrentUser()
+        return try await API.shared.call(UserTarget.getStocks(page: page, perPage: perPage, id: user.id))
     }
 
-    func stock(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return API.shared.call(ItemTarget.stock(id: id)).eraseToAnyPublisher()
+    func stock(id: Item.ID) async throws -> VoidModel {
+        return try await API.shared.call(ItemTarget.stock(id: id))
     }
 
-    func unstock(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return API.shared.call(ItemTarget.unstock(id: id)).eraseToAnyPublisher()
+    func unstock(id: Item.ID) async throws -> VoidModel {
+        return try await API.shared.call(ItemTarget.unstock(id: id))
     }
 
-    func checkIsStocked(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return API.shared.call(ItemTarget.checkIsStocked(id: id)).eraseToAnyPublisher()
+    func checkIsStocked(id: Item.ID) async throws -> VoidModel {
+        return try await API.shared.call(ItemTarget.checkIsStocked(id: id))
     }
 }

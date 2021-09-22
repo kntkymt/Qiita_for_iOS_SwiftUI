@@ -13,7 +13,7 @@ struct HomeView: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @ObservedObject private var viewModel: HomeViewModel
+    @StateObject private var viewModel: HomeViewModel
 
     @State private var isInitialOnAppear = true
 
@@ -21,18 +21,27 @@ struct HomeView: View {
     // MARK: - Initializer
 
     init(viewModel: HomeViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
-                .navigationBarTitle("Home", displayMode: .inline)
+            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: {
+                Task {
+                    await viewModel.fetchItems()
+                }
+            }, onPaging: {
+                Task {
+                    await  viewModel.fetchMoreItems()
+                }
+            }).navigationBarTitle("Home", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {
-                viewModel.fetchItems()
+                Task {
+                    await viewModel.fetchItems()
+                }
                 isInitialOnAppear = false
             }
         }

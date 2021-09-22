@@ -5,34 +5,31 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
 
 final class ItemService: ItemRepository {
 
-    func getItems(page: Int) -> AnyPublisher<[Item], Error> {
-        return API.shared.call(ItemTarget.getItems(page: page)).eraseToAnyPublisher()
+    func getItems(page: Int) async throws -> [Item] {
+        return try await API.shared.call(ItemTarget.getItems(page: page))
     }
 
-    // FIXME: Optionalやめたい
-    func getItems(with type: SearchType?, page: Int) -> AnyPublisher<[Item], Error> {
+    func getItems(with type: SearchType?, page: Int) async throws -> [Item] {
         switch type {
         case .word(let word):
-            return API.shared.call(ItemTarget.getItemsByQuery(page: page, query: word)).eraseToAnyPublisher()
-            
+            return try await API.shared.call(ItemTarget.getItemsByQuery(page: page, query: word))
+
         case .tag(let tag):
-            return API.shared.call(TagTarget.getItems(page: page, id: tag.id)).eraseToAnyPublisher()
+            return try await API.shared.call(TagTarget.getItems(page: page, id: tag.id))
 
         case .none:
-            return getItems(page: page)
+            return try await getItems(page: page)
         }
     }
 
-    // TODO: UserServiceに置く？
-    func getItems(by user: User, page: Int, perPage: Int) -> AnyPublisher<[Item], Error> {
-        return API.shared.call(UserTarget.getItems(page: page, perPage: perPage, id: user.id)).eraseToAnyPublisher()
+    func getItems(by user: User, page: Int, perPage: Int) async throws -> [Item] {
+        return try await API.shared.call(UserTarget.getItems(page: page, perPage: perPage, id: user.id))
     }
 
-    func getAuthenticatedUserItems(page: Int, perPage: Int) -> AnyPublisher<[Item], Error> {
-        return API.shared.call(UserTarget.getAuthenticatedUserItems(page: page, perPage: perPage)).eraseToAnyPublisher()
+    func getAuthenticatedUserItems(page: Int, perPage: Int) async throws -> [Item] {
+        return try await API.shared.call(UserTarget.getAuthenticatedUserItems(page: page, perPage: perPage))
     }
 }

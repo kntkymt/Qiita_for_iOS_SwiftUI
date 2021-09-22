@@ -5,7 +5,6 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
 import Foundation
 
 final class AuthService: AuthRepository {
@@ -18,15 +17,15 @@ final class AuthService: AuthRepository {
         Auth.shared.handleDeepLink(url: url)
     }
 
-    func getCurrentUser() -> AnyPublisher<User, Error> {
-        return Auth.shared.currentUser
+    func getCurrentUser() async throws -> User {
+        return try await Auth.shared.getCurrentUser()
     }
 
-    func signin() -> AnyPublisher<AuthModel, Error> {
-        return Auth.shared.signin()
+    func signin() async throws -> AuthModel {
+        return try await Auth.shared.signin()
     }
 
-    func signout() -> AnyPublisher<Void, Error> {
-        return Auth.shared.signout()
+    func signout() async throws -> Void {
+        return try await Auth.shared.signout()
     }
 }

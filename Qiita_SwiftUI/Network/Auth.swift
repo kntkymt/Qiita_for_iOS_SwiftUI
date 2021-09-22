@@ -5,9 +5,7 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import SafariServices
 import Foundation
-import Combine
 
 final class Auth {
 
@@ -17,19 +15,13 @@ final class Auth {
 
     // MARK: - Property
 
-    private var resolver: ((Result<AuthModel, Error>) -> Void)!
+    private var continuation: CheckedContinuation<AuthModel, Error>!
 
     @KeyChain(key: "accessToken")
     var accessToken: String?
 
-    private var cancellables = [AnyCancellable]()
-
     var isSignedin: Bool {
         return accessToken != nil
-    }
-
-    var currentUser: AnyPublisher<User, Error> {
-        return API.shared.call(AuthTarget.getAccount).eraseToAnyPublisher()
     }
 
     // MARK: - Public
@@ -37,36 +29,34 @@ final class Auth {
     func handleDeepLink(url: URL) {
         let parameters = url.queryParameters
         guard let code = parameters["code"] else {
-            resolver(.failure(NetworkingError.internal(message: "there is no parameter named code in this deeplink")))
+            continuation.resume(throwing: NetworkingError.internal(message: "there is no parameter named code in this deeplink"))
             return
         }
 
-        (API.shared.call(AuthTarget.getAccessToken(code: code)) as Future<AuthModel, Error>)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                    self.resolver(.failure(error))
-                }
-            }, receiveValue: { auth in
-                self.accessToken = auth.token
-                self.resolver(.success(auth))
-            }).store(in: &cancellables)
+        Task {
+            do {
+                let authModel = try await API.shared.call(AuthTarget.getAccessToken(code: code)) as AuthModel
+                self.accessToken = authModel.token
+                continuation.resume(returning: authModel)
+            } catch {
+                continuation.resume(throwing: error)
+            }
+        }
     }
 
-    func signin() -> AnyPublisher<AuthModel, Error> {
-        return Future { resolver in
-            self.resolver = resolver
-        }.eraseToAnyPublisher()
+    func getCurrentUser() async throws -> User {
+        return try await API.shared.call(AuthTarget.getAccount)
     }
 
-    func signout() -> AnyPublisher<Void, Error> {
-        let result: Future<VoidModel, Error> = API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found"))
+    func signin() async throws -> AuthModel {
+        return try await withCheckedThrowingContinuation { continuation in
+            self.continuation = continuation
+        }
+    }
 
-        return result.map { _ in self.accessToken = nil }.eraseToAnyPublisher()
+    func signout() async throws -> Void {
+        _ = try await API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found")) as VoidModel
+        accessToken = nil
     }
 
     // MARK: - Initializer

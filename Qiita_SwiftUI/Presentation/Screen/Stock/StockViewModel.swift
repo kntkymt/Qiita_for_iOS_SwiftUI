@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class StockViewModel: ObservableObject {
 
     // MARK: - Property
@@ -21,7 +21,6 @@ final class StockViewModel: ObservableObject {
     private var isPageLoading = false
 
     private let stockRepository: StockRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -36,40 +35,26 @@ final class StockViewModel: ObservableObject {
 
     // MARK: - Public
 
-    func fetchItems() {
-        stockRepository.getStocks(page: 1, perPage: 20)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.isRefreshing = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { items in
-                self.page = 1
-                self.items = items
-            }).store(in: &cancellables)
+    func fetchItems() async {
+        do {
+            items = try await stockRepository.getStocks(page: 1, perPage: 20)
+            page = 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
     }
 
-    func fetchMoreItems() {
+    func fetchMoreItems() async {
         if isPageLoading { return }
         isPageLoading = true
-        stockRepository.getStocks(page: page + 1, perPage: 20)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { completion in
-                    self.isRefreshing = false
-                    self.isPageLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        Logger.error(error)
-                    }
-                }, receiveValue: { items in
-                    self.page += 1
-                    self.items += items
-                }).store(in: &cancellables)
+        do {
+            items += try await stockRepository.getStocks(page: page + 1, perPage: 20)
+            page += 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
+        isPageLoading = false
     }
 }

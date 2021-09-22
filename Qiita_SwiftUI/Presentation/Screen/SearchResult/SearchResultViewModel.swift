@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class SearchResultViewModel: ObservableObject {
 
     // MARK: - Property
@@ -20,7 +20,6 @@ final class SearchResultViewModel: ObservableObject {
     private var isPageLoading = false
 
     private let itemRepository: ItemRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -31,40 +30,26 @@ final class SearchResultViewModel: ObservableObject {
 
     // MARK: - Public
 
-    func fetchItems() {
-        itemRepository.getItems(with: searchType, page: 1)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.isRefreshing = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { items in
-                self.page = 1
-                self.items = items
-            }).store(in: &cancellables)
+    func fetchItems() async {
+        do {
+            items = try await itemRepository.getItems(with: searchType, page: 1)
+            page = 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
     }
 
-    func fetchMoreItems() {
+    func fetchMoreItems() async {
         if isPageLoading { return }
         isPageLoading = true
-        itemRepository.getItems(page: page + 1)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.isRefreshing = false
-                self.isPageLoading = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { items in
-                self.page += 1
-                self.items += items
-            }).store(in: &cancellables)
+        do {
+            items += try await itemRepository.getItems(page: page + 1)
+            page += 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
+        isPageLoading = false
     }
 }

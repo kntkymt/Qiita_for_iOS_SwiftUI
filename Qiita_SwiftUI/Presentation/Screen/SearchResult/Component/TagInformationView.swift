@@ -13,16 +13,13 @@ struct TagInformationView: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @ObservedObject private var viewModel: TagInformationViewModel
+    @StateObject private var viewModel: TagInformationViewModel
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: TagInformationViewModel) {
-        self.viewModel = viewModel
-
-        /// FIXME: ItemListItemと同様にonAppearでやると再描画されて状態が上書きされる
-        viewModel.checkIsFollowed()
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -49,7 +46,11 @@ struct TagInformationView: View {
                     .foregroundColor(Color.white)
                     .background(Color("brand"))
                     .frame(width: 150, height: 30)
-                    .onTapGesture { viewModel.unfollow() }
+                    .onTapGesture {
+                        Task {
+                            await viewModel.unfollow()
+                        }
+                    }
             } else {
                 Text("フォローする")
                     .font(.system(size: 18, weight: .bold))
@@ -59,7 +60,19 @@ struct TagInformationView: View {
                     .foregroundColor(Color("brand"))
                     .background(Color.clear)
                     .frame(width: 150, height: 30)
-                    .onTapGesture { viewModel.follow() }
+                    .onTapGesture {
+                        Task {
+                            await viewModel.follow()
+                        }
+                    }
+            }
+        }.onAppear {
+            if isInitialOnAppear {
+                Task {
+                    await viewModel.checkIsFollowed()
+                }
+                
+                isInitialOnAppear = false
             }
         }
     }

@@ -5,19 +5,17 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
-
 protocol TagRepository {
 
     /// タグ一覧を取得する
-    func getTags(page: Int, perPage: Int, sort: String) -> AnyPublisher<[ItemTag], Error>
+    func getTags(page: Int, perPage: Int, sort: String) async throws -> [ItemTag]
 
     /// タグをフォローする
-    func follow(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error>
+    func follow(id: ItemTag.ID) async throws -> VoidModel
 
     /// タグのフォローを外す
-    func unfollow(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error>
+    func unfollow(id: ItemTag.ID) async throws -> VoidModel
 
     /// タグをフォローしているか確かめる
-    func checkIsFollowed(id: ItemTag.ID) -> AnyPublisher<VoidModel, Error>
+    func checkIsFollowed(id: ItemTag.ID) async throws -> VoidModel
 }

@@ -12,14 +12,14 @@ struct ItemDetailView: View {
 
     // MARK: - Property
 
-    @ObservedObject private var viewModel: ItemDetailViewModel
+    @StateObject private var viewModel: ItemDetailViewModel
     @State private var shareSheetPresented = false
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: ItemDetailViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -34,39 +34,55 @@ struct ItemDetailView: View {
 
                 HStack(spacing: 36) {
                     if viewModel.isLiked {
-                        Button(systemImage: .handThumbsupFill, action: { viewModel.disLike() })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color.white)
-                            .background(Color("brand"))
-                            .cornerRadius(22)
+                        Button(systemImage: .handThumbsupFill, action: {
+                            Task {
+                                await viewModel.disLike()
+                            }
+                        })
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color.white)
+                        .background(Color("brand"))
+                        .cornerRadius(22)
                     } else {
-                        Button(systemImage: .handThumbsup, action: { viewModel.like() })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color("brand"))
-                            .background(Color.clear)
-                            .cornerRadius(22)
+                        Button(systemImage: .handThumbsup, action: {
+                            Task {
+                                await viewModel.like()
+                            }
+                        })
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color("brand"))
+                        .background(Color.clear)
+                        .cornerRadius(22)
                     }
 
                     if viewModel.isStocked {
-                        Button(systemImage: .folderFill, action: { viewModel.unStock() })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color.white)
-                            .background(Color("brand"))
-                            .cornerRadius(22)
+                        Button(systemImage: .folderFill, action: {
+                            Task {
+                                await viewModel.unStock()
+                            }
+                        })
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color.white)
+                        .background(Color("brand"))
+                        .cornerRadius(22)
                     } else {
-                        Button(systemImage: .folder, action: { viewModel.stock() })
-                            .frame(width: 44, height: 44)
-                            .imageScale(.large)
-                            .border(Color("brand"), width: 1, cornerRadius: 22)
-                            .foregroundColor(Color("brand"))
-                            .background(Color.clear)
-                            .cornerRadius(22)
+                        Button(systemImage: .folder, action: {
+                            Task {
+                                await viewModel.stock()
+                            }
+                        })
+                        .frame(width: 44, height: 44)
+                        .imageScale(.large)
+                        .border(Color("brand"), width: 1, cornerRadius: 22)
+                        .foregroundColor(Color("brand"))
+                        .background(Color.clear)
+                        .cornerRadius(22)
                     }
 
                     Button(systemImage: .squareAndArrowUp, action: { shareSheetPresented.toggle() })
@@ -81,8 +97,9 @@ struct ItemDetailView: View {
             }.frame(height: 60, alignment: .center)
         }.onAppear {
             if isInitialOnAppear {
-                viewModel.checkIsLiked()
-                viewModel.checkIsStocked()
+                Task {
+                    await (viewModel.checkIsLiked(), viewModel.checkIsStocked())
+                }
                 
                 isInitialOnAppear = false
             }

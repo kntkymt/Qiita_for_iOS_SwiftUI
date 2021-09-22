@@ -13,7 +13,7 @@ struct SearchView: View {
     // MARK: - Property
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
-    @ObservedObject private var viewModel: SearchViewModel
+    @StateObject private var viewModel: SearchViewModel
 
     @State private var isEditing: Bool = false
     @State private var searchText: String = ""
@@ -24,7 +24,7 @@ struct SearchView: View {
     // MARK: - Initializer
 
     init(viewModel: SearchViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -69,7 +69,9 @@ struct SearchView: View {
             }
             .onAppear {
                 if isInitialOnAppear {
-                    viewModel.fetchTags()
+                    Task {
+                        await viewModel.fetchTags()
+                    }
                     isInitialOnAppear = false
                 }
 

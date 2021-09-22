@@ -5,7 +5,6 @@
 //  Created by kntk on 2021/03/15.
 //
 
-import Combine
 import Foundation
 
 protocol AuthRepository {
@@ -17,11 +16,11 @@ protocol AuthRepository {
     func handleDeepLink(url: URL)
 
     /// ログイン中のユーザーを取得する
-    func getCurrentUser() -> AnyPublisher<User, Error>
+    func getCurrentUser() async throws -> User
 
     /// ログインする
-    func signin() -> AnyPublisher<AuthModel, Error>
+    func signin() async throws -> AuthModel
 
     /// ログアウトする
-    func signout() -> AnyPublisher<Void, Error>
+    func signout() async throws -> Void
 }

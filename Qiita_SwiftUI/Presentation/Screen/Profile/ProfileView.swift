@@ -13,14 +13,14 @@ struct ProfileView: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @ObservedObject private var viewModel: ProfileViewModel
+    @StateObject private var viewModel: ProfileViewModel
     @State private var isPresented = false
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: ProfileViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -32,7 +32,15 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
+                        ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: {
+                            Task {
+                                await viewModel.fetchItems()
+                            }
+                        }, onPaging: {
+                            Task {
+                                await viewModel.fetchMoreItems()
+                            }
+                        })
                     }
                 } else {
                     ProgressView()
@@ -46,8 +54,9 @@ struct ProfileView: View {
             })
         }.onAppear {
             if isInitialOnAppear {
-                viewModel.fetchUser()
-                viewModel.fetchItems()
+                Task {
+                    await (viewModel.fetchUser(), viewModel.fetchItems())
+                }
 
                 isInitialOnAppear = false
             }

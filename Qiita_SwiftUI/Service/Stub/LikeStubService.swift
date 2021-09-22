@@ -6,19 +6,18 @@
 //
 
 import Foundation
-import Combine
 
 final class LikeStubService: LikeRepository {
 
-    func like(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func like(id: Item.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 
-    func unlike(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func unlike(id: Item.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 
-    func checkIsLiked(id: Item.ID) -> AnyPublisher<VoidModel, Error> {
-        return Future { $0(.success(VoidModel())) }.eraseToAnyPublisher()
+    func checkIsLiked(id: Item.ID) async throws -> VoidModel {
+        return await withCheckedContinuation { $0.resume(returning: VoidModel()) }
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 final class ItemStubService: ItemRepository {
 
@@ -16,30 +15,20 @@ final class ItemStubService: ItemRepository {
 
     // MARK: - Public
 
-    func getItems(page: Int) -> AnyPublisher<[Item], Error> {
-        return Future { $0(.success(Self.items)) }.eraseToAnyPublisher()
+    func getItems(page: Int) async throws -> [Item] {
+        return await withCheckedContinuation { $0.resume(returning: Self.items) }
     }
 
-    // FIXME: Optionalやめたい
-    func getItems(with type: SearchType?, page: Int) -> AnyPublisher<[Item], Error> {
-        switch type {
-        case .word:
-            return Future { $0(.success(Self.items)) }.eraseToAnyPublisher()
-
-        case .tag:
-            return Future { $0(.success(Self.items)) }.eraseToAnyPublisher()
-
-        case .none:
-            return getItems(page: page)
-        }
+    func getItems(with type: SearchType?, page: Int) async throws -> [Item] {
+        return await withCheckedContinuation { $0.resume(returning: Self.items) }
     }
 
     // TODO: UserServiceに置く？
-    func getItems(by user: User, page: Int, perPage: Int) -> AnyPublisher<[Item], Error> {
-        return Future { $0(.success(Self.items)) }.eraseToAnyPublisher()
+    func getItems(by user: User, page: Int, perPage: Int) async throws -> [Item] {
+        return await withCheckedContinuation { $0.resume(returning: Self.items) }
     }
 
-    func getAuthenticatedUserItems(page: Int, perPage: Int) -> AnyPublisher<[Item], Error> {
-        return Future { $0(.success(Self.items)) }.eraseToAnyPublisher()
+    func getAuthenticatedUserItems(page: Int, perPage: Int) async throws -> [Item] {
+        return await withCheckedContinuation { $0.resume(returning: Self.items) }
     }
 }

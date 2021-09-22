@@ -6,15 +6,14 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class TagInformationViewModel: ObservableObject {
 
     let tag: ItemTag
     @Published var isFollowed: Bool = false
 
     private let tagRepository: TagRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -25,51 +24,33 @@ final class TagInformationViewModel: ObservableObject {
 
     // MARK: - Public
 
-    func follow() {
+    func follow() async {
         isFollowed = true
-        tagRepository.follow(id: tag.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isFollowed = false
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-            }).store(in: &cancellables)
+        do {
+            _ = try await tagRepository.follow(id: tag.id)
+        } catch {
+            isFollowed = false
+            Logger.error(error)
+        }
     }
 
-    func unfollow() {
+    func unfollow() async {
         isFollowed = false
-        tagRepository.unfollow(id: tag.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isFollowed = true
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-            }).store(in: &cancellables)
+        do {
+            _ = try await tagRepository.unfollow(id: tag.id)
+        } catch {
+            isFollowed = true
+            Logger.error(error)
+        }
     }
 
-    func checkIsFollowed() {
-        tagRepository.checkIsFollowed(id: tag.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isFollowed = false
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-                self.isFollowed = true
-            }).store(in: &cancellables)
+    func checkIsFollowed() async {
+        do {
+            _ = try await tagRepository.checkIsFollowed(id: tag.id)
+            isFollowed = true
+        } catch {
+            isFollowed = false
+            Logger.error(error)
+        }
     }
 }

@@ -16,13 +16,13 @@ struct SettingView: View {
     @Binding private var isPresenting: Bool
     @State private var showingAlert = false
 
-    @ObservedObject private var viewModel: SettingViewModel
+    @StateObject private var viewModel: SettingViewModel
 
     // MARK: - Initializer
 
     init(isPresenting: Binding<Bool>, viewModel: SettingViewModel) {
         self._isPresenting = isPresenting
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -50,7 +50,9 @@ struct SettingView: View {
                                   message: Text("本当によろしいですか?"),
                                   primaryButton: .cancel(Text("キャンセル")),
                                   secondaryButton: .destructive(Text("ログアウト")) {
-                                    viewModel.logout() {
+
+                                Task {
+                                    await viewModel.logout() {
                                         isPresenting = false
 
                                         // authStateが変わるとログイン画面に戻るが
@@ -60,7 +62,8 @@ struct SettingView: View {
                                             authState.isSignedin = false
                                         }
                                     }
-                                  })
+                                }
+                            })
                         }
                         Spacer()
                     }

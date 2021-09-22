@@ -69,16 +69,14 @@ struct ItemListItem: View {
     // MARK: - Property
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
-    @ObservedObject private var viewModel: ItemListItemViewModel
+    @StateObject private var viewModel: ItemListItemViewModel
+
+    @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: ItemListItemViewModel) {
-        self.viewModel = viewModel
-
-        // FIXME: ここだけ例外的にonAppearではなくinitでやってる
-        // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
-        viewModel.checkIsStocked()
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -115,7 +113,11 @@ struct ItemListItem: View {
                 // Image.onTapGesture
                 if viewModel.isStocked {
                     Image(systemName: .folderFill)
-                        .onTapGesture { viewModel.unStock() }
+                        .onTapGesture {
+                            Task {
+                                await viewModel.unStock()
+                            }
+                        }
                         .frame(width: 32, height: 32)
                         .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)
@@ -124,7 +126,11 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 } else {
                     Image(systemName: .folder)
-                        .onTapGesture { viewModel.stock() }
+                        .onTapGesture {
+                            Task {
+                                await viewModel.stock()
+                            }
+                        }
                         .frame(width: 32, height: 32)
                         .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)
@@ -133,6 +139,13 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 }
             }.padding(.vertical, 8)
+        }.onAppear {
+            if isInitialOnAppear {
+                Task {
+                    await viewModel.checkIsStocked()
+                }
+                isInitialOnAppear = false
+            }
         }
     }
 }
