@@ -71,16 +71,12 @@ struct ItemListItem: View {
     @EnvironmentObject var repositoryContainer: RepositoryContainer
     @StateObject private var viewModel: ItemListItemViewModel
 
+    @State private var isInitialOnAppear = true
+
     // MARK: - Initializer
 
     init(viewModel: ItemListItemViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-
-        // FIXME: ここだけ例外的にonAppearではなくinitでやってる
-        // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
-        Task {
-            await viewModel.checkIsStocked()
-        }
     }
 
     // MARK: - Body
@@ -143,6 +139,13 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 }
             }.padding(.vertical, 8)
+        }.onAppear {
+            if isInitialOnAppear {
+                Task {
+                    await viewModel.checkIsStocked()
+                }
+                isInitialOnAppear = false
+            }
         }
     }
 }

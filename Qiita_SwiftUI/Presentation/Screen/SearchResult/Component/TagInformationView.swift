@@ -20,11 +20,6 @@ struct TagInformationView: View {
 
     init(viewModel: TagInformationViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
-
-        /// FIXME: ItemListItemと同様にonAppearでやると再描画されて状態が上書きされる
-        Task {
-            await viewModel.checkIsFollowed()
-        }
     }
 
     // MARK: - Body
@@ -70,6 +65,14 @@ struct TagInformationView: View {
                             await viewModel.follow()
                         }
                     }
+            }
+        }.onAppear {
+            if isInitialOnAppear {
+                Task {
+                    await viewModel.checkIsFollowed()
+                }
+                
+                isInitialOnAppear = false
             }
         }
     }
