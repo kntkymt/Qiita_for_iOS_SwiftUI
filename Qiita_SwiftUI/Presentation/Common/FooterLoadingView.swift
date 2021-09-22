@@ -14,7 +14,7 @@ private struct FooterLoadingView: UIViewRepresentable {
 
     @State private var observer: NSKeyValueObservation?
 
-    let onReachBottom: () -> Void
+    let action: () async -> Void
 
     private let indicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView()
@@ -49,10 +49,12 @@ private struct FooterLoadingView: UIViewRepresentable {
                 let threshold = max(0.0, tableView.contentSize.height - visibleHeight)
 
                 if y > threshold {
-                    indicatorView.startAnimating()
-                    onReachBottom()
-                } else {
-                    indicatorView.stopAnimating()
+                    Task(priority: .userInitiated) {
+                        indicatorView.startAnimating()
+                        await action()
+                        await Task.sleep(1_000_000_000)
+                        indicatorView.stopAnimating()
+                    }
                 }
             })
         }
@@ -77,8 +79,8 @@ private struct FooterLoadingView: UIViewRepresentable {
 }
 
 extension View {
-    public func footerLoading(onReachBottom: @escaping () -> Void) -> some View {
-        return overlay(FooterLoadingView(onReachBottom: onReachBottom)
+    public func moreLoadable(action: @escaping () async -> Void) -> some View {
+        return overlay(FooterLoadingView(action: action)
                         .frame(width: 0, height: 0))
     }
 }
