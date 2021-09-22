@@ -69,16 +69,18 @@ struct ItemListItem: View {
     // MARK: - Property
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
-    @ObservedObject private var viewModel: ItemListItemViewModel
+    @StateObject private var viewModel: ItemListItemViewModel
 
     // MARK: - Initializer
 
     init(viewModel: ItemListItemViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
 
         // FIXME: ここだけ例外的にonAppearではなくinitでやってる
         // 1回だけのonAppearでやると、onAppearの後にListの更新がなぜか走り、checkしたステータスが初期化されてしまう
-        viewModel.checkIsStocked()
+        Task {
+            await viewModel.checkIsStocked()
+        }
     }
 
     // MARK: - Body
@@ -115,7 +117,11 @@ struct ItemListItem: View {
                 // Image.onTapGesture
                 if viewModel.isStocked {
                     Image(systemName: .folderFill)
-                        .onTapGesture { viewModel.unStock() }
+                        .onTapGesture {
+                            Task {
+                                await viewModel.unStock()
+                            }
+                        }
                         .frame(width: 32, height: 32)
                         .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)
@@ -124,7 +130,11 @@ struct ItemListItem: View {
                         .cornerRadius(16)
                 } else {
                     Image(systemName: .folder)
-                        .onTapGesture { viewModel.stock() }
+                        .onTapGesture {
+                            Task {
+                                await viewModel.stock()
+                            }
+                        }
                         .frame(width: 32, height: 32)
                         .imageScale(.medium)
                         .border(Color("brand"), width: 1, cornerRadius: 22)

@@ -6,14 +6,13 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class SettingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Property
 
     private let authRepository: AuthRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -23,19 +22,13 @@ final class SettingViewModel: ObservableObject, Identifiable {
 
     // MARK: - Public
 
-    func logout(completion: @escaping () -> Void) {
-        authRepository.signout()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-                completion()
-            }).store(in: &cancellables)
+    func logout(completion: @escaping () -> Void) async {
+        do {
+            try await authRepository.signout()
+            completion()
+        } catch {
+            Logger.error(error)
+        }
     }
 }
 

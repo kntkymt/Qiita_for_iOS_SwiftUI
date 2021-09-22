@@ -13,25 +13,34 @@ struct StockView: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @ObservedObject private var viewModel: StockViewModel
+    @StateObject private var viewModel: StockViewModel
 
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: StockViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
 
     var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems)
-                .navigationBarTitle("Stock", displayMode: .inline)
+            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
+                Task {
+                    await viewModel.fetchItems()
+                }
+            }, onPaging: {
+                Task {
+                    await viewModel.fetchMoreItems()
+                }
+            }).navigationBarTitle("Stock", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {
-                viewModel.fetchItems()
+                Task {
+                    await viewModel.fetchItems()
+                }
                 isInitialOnAppear = false
             }
         }

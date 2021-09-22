@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class ProfileViewModel: ObservableObject {
 
     // MARK: - Property
@@ -21,7 +21,6 @@ final class ProfileViewModel: ObservableObject {
 
     private let authRepository: AuthRepository
     private let itemRepository: ItemRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -32,56 +31,35 @@ final class ProfileViewModel: ObservableObject {
 
     // MARK: - Public
 
-    func fetchUser() {
-        authRepository.getCurrentUser()
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { user in
-                self.user = user
-            }).store(in: &cancellables)
-    }
-
-    func fetchItems() {
-        itemRepository.getAuthenticatedUserItems(page: 1, perPage: 20)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                self.isRefreshing = false
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { items in
-                self.page = 1
-                self.items = items
-            }).store(in: &cancellables)
-    }
-
-    func fetchMoreItems() {
-            if isPageLoading { return }
-            isPageLoading = true
-            itemRepository.getAuthenticatedUserItems(page: page + 1, perPage: 20)
-                .receive(on: DispatchQueue.main)
-                .sink(receiveCompletion: { completion in
-                    self.isRefreshing = false
-                    self.isPageLoading = false
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        Logger.error(error)
-                    }
-                }, receiveValue: { items in
-                    self.page += 1
-                    self.items += items
-                }).store(in: &cancellables)
+    func fetchUser() async {
+        do {
+            user = try await authRepository.getCurrentUser()
+        } catch {
+            Logger.error(error)
         }
+    }
+
+    func fetchItems() async {
+        do {
+            items = try await itemRepository.getAuthenticatedUserItems(page: 1, perPage: 20)
+            page = 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
+    }
+
+    func fetchMoreItems() async {
+        if isPageLoading { return }
+        isPageLoading = true
+        do {
+            items += try await itemRepository.getAuthenticatedUserItems(page: page + 1, perPage: 20)
+            page += 1
+        } catch {
+            Logger.error(error)
+        }
+        isRefreshing = false
+        isPageLoading = false
+    }
 }
 

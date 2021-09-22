@@ -55,7 +55,7 @@ final class Auth {
     }
 
     func signout() async throws -> Void {
-        try await API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found")) as VoidModel
+        _ = try await API.shared.call(AuthTarget.deleteAccessToken(accessToken: accessToken ?? "accessToken not found")) as VoidModel
         accessToken = nil
     }
 

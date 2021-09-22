@@ -13,14 +13,14 @@ struct SearchResultView: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
-    @ObservedObject private var viewModel: SearchResultViewModel
+    @StateObject private var viewModel: SearchResultViewModel
 
     @State private var isInitialOnAppear = true
 
     // MARK: - Initializer
 
     init(viewModel: SearchResultViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     // MARK: - Body
@@ -29,7 +29,15 @@ struct SearchResultView: View {
         /// FIXME: ItemListViewのHeaderが左寄せになっている問題
         /// 現在はSearchResultの方で幅を指定して対応
         GeometryReader { reader in
-            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: viewModel.fetchItems, onPaging: viewModel.fetchMoreItems, header: {
+            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: {
+                Task {
+                    await viewModel.fetchItems()
+                }
+            }, onPaging: {
+                Task {
+                    await viewModel.fetchMoreItems()
+                }
+            }, header: {
                 if case .tag(let tag) = viewModel.searchType {
                     TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
                         .frame(width: reader.size.width - 32)
@@ -38,7 +46,9 @@ struct SearchResultView: View {
                 .navigationTitle(navigationTitle)
                 .onAppear {
                     if isInitialOnAppear {
-                        viewModel.fetchItems()
+                        Task {
+                            await viewModel.fetchItems()
+                        }
                         isInitialOnAppear = false
                     }
                 }

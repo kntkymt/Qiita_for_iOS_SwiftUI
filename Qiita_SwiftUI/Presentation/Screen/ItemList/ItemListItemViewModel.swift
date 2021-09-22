@@ -7,8 +7,8 @@
 
 import Foundation
 import SwiftUI
-import Combine
 
+@MainActor
 final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     // MARK: - Property
@@ -21,7 +21,6 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     private let stockRepository: StockRepository
     private let likeRepository: LikeRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -34,54 +33,36 @@ final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     // MARK: - Public
 
-    func stock() {
+    func stock() async {
         isStocked = true
         onItemStockChangedHandler?(item, true)
-        stockRepository.stock(id: item.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isStocked = false
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-            }).store(in: &cancellables)
+        do {
+            _ = try await stockRepository.stock(id: item.id)
+        } catch {
+            isStocked = false
+            Logger.error(error)
+        }
     }
 
-    func unStock() {
+    func unStock() async {
         isStocked = false
         onItemStockChangedHandler?(item, false)
-        stockRepository.unstock(id: item.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isStocked = true
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-            }).store(in: &cancellables)
+        do {
+            _ = try await stockRepository.unstock(id: item.id)
+        } catch {
+            isStocked = true
+            Logger.error(error)
+        }
     }
 
-    func checkIsStocked() {
-        stockRepository.checkIsStocked(id: item.id)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    self.isStocked = false
-                    Logger.error(error)
-                }
-            }, receiveValue: { _ in
-                self.isStocked = true
-            }).store(in: &cancellables)
+    func checkIsStocked() async {
+        do {
+            _ = try await stockRepository.checkIsStocked(id: item.id)
+            isStocked = true
+        } catch {
+            isStocked = false
+            Logger.error(error)
+        }
     }
 }
 

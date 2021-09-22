@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import Combine
 
+@MainActor
 final class SearchViewModel: ObservableObject {
 
     // MARK: - Property
@@ -15,7 +15,6 @@ final class SearchViewModel: ObservableObject {
     @Published var tags: [ItemTag] = []
 
     private let tagRepository: TagRepository
-    private var cancellables = [AnyCancellable]()
 
     // MARK: - Initializer
 
@@ -25,18 +24,11 @@ final class SearchViewModel: ObservableObject {
 
     // MARK: - Public
 
-    func fetchTags() {
-        tagRepository.getTags(page: 1, perPage: 30, sort: "count")
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    Logger.error(error)
-                }
-            }, receiveValue: { tags in
-                self.tags = tags
-            }).store(in: &cancellables)
+    func fetchTags() async {
+        do {
+            tags = try await tagRepository.getTags(page: 1, perPage: 30, sort: "count")
+        } catch {
+            Logger.error(error)
+        }
     }
 }
