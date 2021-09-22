@@ -14,7 +14,6 @@ final class ProfileViewModel: ObservableObject {
 
     @Published var user: User?
     @Published var items: [Item] = []
-    @Published var isRefreshing = false
 
     private var page = 1
     private var isPageLoading = false
@@ -46,7 +45,6 @@ final class ProfileViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
     }
 
     func fetchMoreItems() async {
@@ -58,7 +56,6 @@ final class ProfileViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
         isPageLoading = false
     }
 }

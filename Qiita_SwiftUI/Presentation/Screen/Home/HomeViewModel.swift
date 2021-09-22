@@ -13,7 +13,6 @@ final class HomeViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
-    @Published var isRefreshing = false
 
     private var page = 1
     private var isPageLoading = false
@@ -35,7 +34,6 @@ final class HomeViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
     }
 
     func fetchMoreItems() async {
@@ -47,7 +45,6 @@ final class HomeViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
         isPageLoading = false
     }
 }

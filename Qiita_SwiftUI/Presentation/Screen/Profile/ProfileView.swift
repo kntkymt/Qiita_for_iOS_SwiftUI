@@ -32,10 +32,8 @@ struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: {
-                            Task {
-                                await viewModel.fetchItems()
-                            }
+                        ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
+                            await viewModel.fetchItems()
                         }, onPaging: {
                             Task {
                                 await viewModel.fetchMoreItems()

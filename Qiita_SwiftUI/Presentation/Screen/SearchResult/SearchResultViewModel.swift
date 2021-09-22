@@ -13,7 +13,6 @@ final class SearchResultViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
-    @Published var isRefreshing = false
     let searchType: SearchType
 
     private var page = 1
@@ -37,7 +36,6 @@ final class SearchResultViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
     }
 
     func fetchMoreItems() async {
@@ -49,7 +47,6 @@ final class SearchResultViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
         isPageLoading = false
     }
 }

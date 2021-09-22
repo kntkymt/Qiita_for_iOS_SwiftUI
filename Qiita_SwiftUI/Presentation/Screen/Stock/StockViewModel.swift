@@ -13,7 +13,6 @@ final class StockViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
-    @Published var isRefreshing = false
 
     private(set) var onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
@@ -42,7 +41,6 @@ final class StockViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
     }
 
     func fetchMoreItems() async {
@@ -54,7 +52,6 @@ final class StockViewModel: ObservableObject {
         } catch {
             Logger.error(error)
         }
-        isRefreshing = false
         isPageLoading = false
     }
 }

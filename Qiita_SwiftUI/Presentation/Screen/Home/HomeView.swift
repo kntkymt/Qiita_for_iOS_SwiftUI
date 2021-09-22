@@ -28,10 +28,8 @@ struct HomeView: View {
 
     var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: nil, onRefresh: {
-                Task {
-                    await viewModel.fetchItems()
-                }
+            ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
+                await viewModel.fetchItems()
             }, onPaging: {
                 Task {
                     await  viewModel.fetchMoreItems()
