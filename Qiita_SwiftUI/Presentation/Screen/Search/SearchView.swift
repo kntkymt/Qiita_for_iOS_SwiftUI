@@ -62,11 +62,8 @@ struct SearchView: View {
                 }
             }
             .navigationBarTitle("Search", displayMode: .inline)
-            .navigationSearchBar {
-                SearchBar("キーワード検索", text: $searchText, isEditing: $isEditing, onCommit: { isPush.toggle() })
-                    .showsCancelButton(isEditing)
-
-            }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: Text("キーワード検索"))
+            .onSubmit(of: .search) { isPush.toggle() }
             .onAppear {
                 if isInitialOnAppear {
                     Task {
