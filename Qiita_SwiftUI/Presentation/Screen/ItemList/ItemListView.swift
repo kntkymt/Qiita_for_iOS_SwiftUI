@@ -14,20 +14,18 @@ struct ItemListView<HeaderView: View>: View {
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
     private let items: [Item]
-    @Binding private var isRefreshing: Bool
 
     private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
 
-    private let onRefresh: () -> Void
+    private let onRefresh: () async -> Void
     private let onPaging: () -> Void
 
     private var headerView: HeaderView
 
     // MARK: - Initializer
 
-    init(items: [Item], isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
-        self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
         self.onPaging = onPaging
@@ -35,9 +33,8 @@ struct ItemListView<HeaderView: View>: View {
     }
 
     // headerを使わない場合
-    init(items: [Item], isRefreshing: Binding<Bool>, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
+    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () -> Void) where HeaderView == EmptyView {
         self.items = items
-        self._isRefreshing = isRefreshing
         self.onItemStockChangedHandler = onItemStockChangedHandler
         self.onRefresh = onRefresh
         self.onPaging = onPaging
@@ -59,7 +56,7 @@ struct ItemListView<HeaderView: View>: View {
             }
         }
         .listStyle(PlainListStyle())
-        .pullToRefresh(isShowing: $isRefreshing, onRefresh: onRefresh)
+        .refreshable { await onRefresh() }
         .footerLoading { onPaging() }
     }
 }
@@ -153,10 +150,9 @@ struct ItemListItem: View {
 struct ItemListView_Previews: PreviewProvider {
 
     static let items: [Item] = ItemStubService.items
-    @State static var isLoading = false
 
     static var previews: some View {
-        ItemListView(items: items, isRefreshing: $isLoading, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
+        ItemListView(items: items, onItemStockChangedHandler: nil, onRefresh: { }, onPaging: { })
             .environmentObject(RepositoryContainerFactory.createStubs())
     }
 }

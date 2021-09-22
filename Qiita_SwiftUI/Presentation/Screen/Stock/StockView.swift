@@ -27,10 +27,8 @@ struct StockView: View {
 
     var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, isRefreshing: $viewModel.isRefreshing, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
-                Task {
-                    await viewModel.fetchItems()
-                }
+            ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
+                await viewModel.fetchItems()
             }, onPaging: {
                 Task {
                     await viewModel.fetchMoreItems()
