@@ -13,7 +13,7 @@
 		E20DD2E025FF325900735B0A /* Qiita_SwiftUIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20DD2DF25FF325900735B0A /* Qiita_SwiftUIUITests.swift */; };
 		E20DD3CF25FFA99100735B0A /* .env in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CD25FFA99100735B0A /* .env */; };
 		E20DD3D025FFA99100735B0A /* .env.sample in Resources */ = {isa = PBXBuildFile; fileRef = E20DD3CE25FFA99100735B0A /* .env.sample */; };
-		E2D930E02720560700CCBF73 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = E2D930DF2720560700CCBF73 /* Presentation */; };
+		E2D930E22720981100CCBF73 /* Release in Frameworks */ = {isa = PBXBuildFile; productRef = E2D930E12720981100CCBF73 /* Release */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2D930E02720560700CCBF73 /* Presentation in Frameworks */,
+				E2D930E22720981100CCBF73 /* Release in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +165,7 @@
 			);
 			name = Qiita_SwiftUI;
 			packageProductDependencies = (
-				E2D930DF2720560700CCBF73 /* Presentation */,
+				E2D930E12720981100CCBF73 /* Release */,
 			);
 			productName = Qiita_SwiftUI;
 			productReference = E20DD2BF25FF325600735B0A /* Qiita_SwiftUI.app */;
@@ -603,9 +603,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E2D930DF2720560700CCBF73 /* Presentation */ = {
+		E2D930E12720981100CCBF73 /* Release */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Presentation;
+			productName = Release;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

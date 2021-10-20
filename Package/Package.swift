@@ -7,8 +7,11 @@ let package = Package(
     platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
         .library(
-            name: "Presentation",
-            targets: ["Presentation", "Common", "Repository", "Service", "Network"])
+            name: "Release",
+            targets: ["Presentation", "Common", "Repository", "Service", "Network"]),
+        .library(
+            name: "Stub",
+            targets: ["Presentation", "Common", "Repository", "StubService"]),
     ],
     dependencies: [
         .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect", from: "0.1.3"),
@@ -47,6 +50,13 @@ let package = Package(
                 "Repository",
                 "Model",
                 "Network"
+            ]
+        ),
+        .target(
+            name: "StubService",
+            dependencies: [
+                "Repository",
+                "Model"
             ]
         ),
         .target(
