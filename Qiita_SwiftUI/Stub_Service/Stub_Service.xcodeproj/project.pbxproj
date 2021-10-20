@@ -14,8 +14,8 @@
 
 /* Begin PBXFileReference section */
 		E25070042720ACDB00013FF1 /* Qiita_SwiftUI.stub_service.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qiita_SwiftUI.stub_service.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E25070212720AD9D00013FF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		E25070222720AD9D00013FF1 /* Qiita_SwiftUI_StubApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUI_StubApp.swift; sourceTree = SOURCE_ROOT; };
+		E25070212720AD9D00013FF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = App/Resource/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		E25070222720AD9D00013FF1 /* Qiita_SwiftUI_StubApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Qiita_SwiftUI_StubApp.swift; path = App/Qiita_SwiftUI_StubApp.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +33,7 @@
 		E2506FFB2720ACDB00013FF1 = {
 			isa = PBXGroup;
 			children = (
-				E25070252720ADC000013FF1 /* App */,
+				E25070312720B92F00013FF1 /* App */,
 				E25070052720ACDB00013FF1 /* Products */,
 				E250702B2720B19000013FF1 /* Frameworks */,
 			);
@@ -47,15 +47,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E25070252720ADC000013FF1 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E25070222720AD9D00013FF1 /* Qiita_SwiftUI_StubApp.swift */,
-				E250702E2720B1A300013FF1 /* Resource */,
-			);
-			name = App;
-			sourceTree = "<group>";
-		};
 		E250702B2720B19000013FF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,12 +54,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E250702E2720B1A300013FF1 /* Resource */ = {
+		E25070312720B92F00013FF1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E25070222720AD9D00013FF1 /* Qiita_SwiftUI_StubApp.swift */,
+				E25070322720B93B00013FF1 /* Resource */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		E25070322720B93B00013FF1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
 				E25070212720AD9D00013FF1 /* Assets.xcassets */,
 			);
-			name = Resource;
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

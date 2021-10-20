@@ -19,7 +19,7 @@
 		E25070162720AD5B00013FF1 /* .env.sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env.sample; sourceTree = "<group>"; };
 		E25070172720AD5B00013FF1 /* .env */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		E250701A2720AD5B00013FF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E250701B2720AD5B00013FF1 /* Qiita_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Qiita_SwiftUIApp.swift; sourceTree = SOURCE_ROOT; };
+		E250701B2720AD5B00013FF1 /* Qiita_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Qiita_SwiftUIApp.swift; path = App/Qiita_SwiftUIApp.swift; sourceTree = SOURCE_ROOT; };
 		E250702F2720B4C600013FF1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -38,7 +38,7 @@
 		E2506FE12720AC6800013FF1 = {
 			isa = PBXGroup;
 			children = (
-				E25070262720ADD000013FF1 /* App */,
+				E25070332720B94A00013FF1 /* App */,
 				E2506FEB2720AC6800013FF1 /* Products */,
 				E25070282720B0B900013FF1 /* Frameworks */,
 			);
@@ -59,7 +59,8 @@
 				E25070162720AD5B00013FF1 /* .env.sample */,
 				E25070172720AD5B00013FF1 /* .env */,
 			);
-			path = Configuration;
+			name = Configuration;
+			path = App/Configuration;
 			sourceTree = SOURCE_ROOT;
 		};
 		E25070192720AD5B00013FF1 /* Resource */ = {
@@ -67,24 +68,25 @@
 			children = (
 				E250701A2720AD5B00013FF1 /* Assets.xcassets */,
 			);
-			path = Resource;
+			name = Resource;
+			path = App/Resource;
 			sourceTree = SOURCE_ROOT;
-		};
-		E25070262720ADD000013FF1 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				E250701B2720AD5B00013FF1 /* Qiita_SwiftUIApp.swift */,
-				E25070152720AD5B00013FF1 /* Configuration */,
-				E25070192720AD5B00013FF1 /* Resource */,
-			);
-			name = App;
-			sourceTree = "<group>";
 		};
 		E25070282720B0B900013FF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E25070332720B94A00013FF1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E250701B2720AD5B00013FF1 /* Qiita_SwiftUIApp.swift */,
+				E25070152720AD5B00013FF1 /* Configuration */,
+				E25070192720AD5B00013FF1 /* Resource */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +301,7 @@
 				DEVELOPMENT_TEAM = B825Q6Y75U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Configuration/Info.plist;
+				INFOPLIST_FILE = App/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
@@ -333,7 +335,7 @@
 				DEVELOPMENT_TEAM = B825Q6Y75U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Configuration/Info.plist;
+				INFOPLIST_FILE = App/Configuration/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
