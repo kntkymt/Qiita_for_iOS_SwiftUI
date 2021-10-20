@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Qiita_SwiftUI.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Qiita_SwiftUI_Stub/Qiita_SwiftUI_Stub.xcodeproj">
+   </FileRef>
 </Workspace>
