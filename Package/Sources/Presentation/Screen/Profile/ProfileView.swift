@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Model
-import Environment
 
 public struct ProfileView: View {
 

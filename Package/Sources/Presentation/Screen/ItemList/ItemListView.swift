@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Model
-import Environment
 
 public struct ItemListView<HeaderView: View>: View {
 

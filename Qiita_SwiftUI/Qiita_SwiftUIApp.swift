@@ -8,16 +8,21 @@
 import SwiftUI
 import Presentation
 import Common
-import Environment
+import Repository
+import Service
+import Network
 
 @main
 struct Qiita_SwiftUIApp: App {
+
+    private let repositoryContainer = RepositoryContainer(itemRepository: ItemService(), tagRepository: TagService(), stockRepository: StockService(), userRepository: UserService(), likeRepository: LikeService(), authRepository: AuthService())
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             LaunchView()
-                .environmentObject(AppContainer.shared.repositoryContainer)
-                .environmentObject(AuthState(authRepository: AppContainer.shared.repositoryContainer.authRepository))
+                .environmentObject(repositoryContainer)
+                .environmentObject(AuthState(authRepository: repositoryContainer.authRepository))
         }
     }
 }
@@ -26,6 +31,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         setupLogger()
+        setupAPI()
         readEnvironmentVariables()
 
         return true
@@ -36,6 +42,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupLogger() {
         Logger.setup()
         Logger.info("💫 Application will finish launching")
+    }
+
+    private func setupAPI() {
+        API.setup(provider: APIProviderFactory.createDefault())
     }
 
     private func readEnvironmentVariables() {

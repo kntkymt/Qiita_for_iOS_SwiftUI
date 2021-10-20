@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftUIX
 import Model
-import Environment
 
 public struct SearchView: View {
 

@@ -14,7 +14,7 @@ public final class API {
 
     // MARK: - Static
 
-    public static let shared = API()
+    public static var shared: API!
 
     // MARK: - Property
 
@@ -29,6 +29,10 @@ public final class API {
     }()
 
     // MARK: - Public
+
+    public static func setup(provider: MoyaProvider<MultiTarget>) {
+        self.shared = API(provider: provider)
+    }
 
     public func call<T: Decodable, Target: TargetType>(_ request: Target) async throws -> T {
         return try await withCheckedThrowingContinuation { continuation in
@@ -61,8 +65,7 @@ public final class API {
 
     // MARK: - Initializer
 
-    private init() {
-        provider = APIProviderFactory.createDefault()
-//        provider = AppContainer.shared.apiProvider
+    private init(provider: MoyaProvider<MultiTarget>) {
+        self.provider = provider
     }
 }

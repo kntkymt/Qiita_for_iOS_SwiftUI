@@ -4,11 +4,11 @@ import PackageDescription
 
 let package = Package(
     name: "Package",
-    platforms: [.iOS(.v15), .macOS("99.0")],
+    platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
         .library(
             name: "Presentation",
-            targets: ["Presentation", "Common", "Environment"])
+            targets: ["Presentation", "Common", "Repository", "Service", "Network"])
     ],
     dependencies: [
         .package(name: "Introspect", url: "https://github.com/siteline/SwiftUI-Introspect", from: "0.1.3"),
@@ -27,20 +27,11 @@ let package = Package(
             ]
         ),
         .target(
-            name: "Environment",
-            dependencies: [
-                "Repository",
-                "Service",
-                "Moya",
-            ]
-        ),
-        .target(
             name: "Presentation",
             dependencies: [
                 "Common",
                 "Model",
                 "Repository",
-                "Service",
                 "Introspect",
                 "SwiftUIX"
             ]),
