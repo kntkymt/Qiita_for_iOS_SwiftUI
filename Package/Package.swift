@@ -25,7 +25,6 @@ let package = Package(
             name: "Common",
             dependencies: [
                 "SwiftyBeaver",
-                "KeychainAccess",
                 "Moya"
             ]
         ),
@@ -64,7 +63,8 @@ let package = Package(
             dependencies: [
                 "Common",
                 "Model",
-                "Moya"
+                "Moya",
+                "KeychainAccess"
             ]
         ),
     ]

@@ -6,6 +6,7 @@
 //
 
 import KeychainAccess
+import Common
 
 @propertyWrapper
 public struct KeyChain {
