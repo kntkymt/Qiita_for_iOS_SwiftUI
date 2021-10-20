@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Presentation
+import Common
+import Environment
 
 @main
 struct Qiita_SwiftUIApp: App {
