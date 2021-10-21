@@ -31,7 +31,7 @@ public final class Auth {
     public func handleDeepLink(url: URL) {
         let parameters = url.queryParameters
         guard let code = parameters["code"] else {
-            continuation.resume(throwing: NetworkingError.internal(message: "there is no parameter named code in this deeplink"))
+            continuation.resume(throwing: AuthError.deeplink)
             return
         }
 
@@ -41,7 +41,7 @@ public final class Auth {
                 self.accessToken = authModel.token
                 continuation.resume(returning: authModel)
             } catch {
-                continuation.resume(throwing: error)
+                continuation.resume(throwing: AuthError.response(error))
             }
         }
     }

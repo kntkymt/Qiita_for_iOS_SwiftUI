@@ -24,8 +24,7 @@ let package = Package(
         .target(
             name: "Common",
             dependencies: [
-                "SwiftyBeaver",
-                "Moya"
+                "SwiftyBeaver"
             ]
         ),
         .target(
