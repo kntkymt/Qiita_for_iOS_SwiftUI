@@ -35,7 +35,9 @@ let package = Package(
                 "Repository",
                 "Introspect",
                 "SwiftUIX"
-            ]),
+            ],
+            resources: [.process("Common/Resources")]
+        ),
         .target(name: "Model"),
         .target(
             name: "Repository",

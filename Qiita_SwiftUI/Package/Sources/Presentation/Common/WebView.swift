@@ -17,7 +17,7 @@ public struct WebView: UIViewRepresentable {
         let userContentController = WKUserContentController()
         let fileName = "WebViewRuleList.json"
 
-        if let jsonFilePath = Bundle.main.path(forResource: fileName, ofType: nil),
+        if let jsonFilePath = Bundle.module.path(forResource: fileName, ofType: nil),
             let jsonFileContent = try? String(contentsOfFile: jsonFilePath, encoding: String.Encoding.utf8) {
             WKContentRuleListStore.default().compileContentRuleList(forIdentifier: "qiita", encodedContentRuleList: jsonFileContent) { contentRuleList, error in
                 if let error = error {
