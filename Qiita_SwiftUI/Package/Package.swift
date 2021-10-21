@@ -24,7 +24,7 @@ let package = Package(
         .target(
             name: "Common",
             dependencies: [
-                "SwiftyBeaver"
+                .product(name: "SwiftyBeaver", package: "SwiftyBeaver", condition: .when(platforms: [.iOS])),
             ]
         ),
         .target(
@@ -33,8 +33,8 @@ let package = Package(
                 "Common",
                 "Model",
                 "Repository",
-                "Introspect",
-                "SwiftUIX"
+                .product(name: "Introspect", package: "Introspect", condition: .when(platforms: [.iOS])),
+                .product(name: "SwiftUIX", package: "SwiftUIX", condition: .when(platforms: [.iOS])),
             ],
             resources: [.process("Common/Resources")]
         ),
@@ -64,8 +64,8 @@ let package = Package(
             dependencies: [
                 "Common",
                 "Model",
-                "Moya",
-                "KeychainAccess"
+                .product(name: "Moya", package: "Moya", condition: .when(platforms: [.iOS])),
+                .product(name: "KeychainAccess", package: "KeychainAccess", condition: .when(platforms: [.iOS])),
             ]
         ),
     ]
