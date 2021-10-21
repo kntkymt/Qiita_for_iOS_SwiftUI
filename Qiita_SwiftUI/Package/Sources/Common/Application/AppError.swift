@@ -107,6 +107,9 @@ public enum AuthError: Error {
     /// レスポンスを受け取れなかった(ネットワーク不良など)
     case response(Error)
 
+    /// ログインしているのにトークンがない
+    case tokenNotFound
+
     /// Deeplinkの設定ミス
     case deeplink
 
@@ -114,6 +117,9 @@ public enum AuthError: Error {
         switch self {
         case .response(let error):
             return error
+
+        case .tokenNotFound:
+            return nil
 
         case .deeplink:
             return nil

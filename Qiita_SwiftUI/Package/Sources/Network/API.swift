@@ -76,6 +76,10 @@ public final class API {
         switch error {
         case .statusCode(let response):
             return APIError.statusCode(.init(statusCode: response.statusCode))
+            
+        case .underlying(let authError as AuthError, _):
+            // AuthErrorはトップレベルエラーとして扱いたいのでそのまま返す
+            return authError
 
         case .underlying(let underlyingError, _):
             // underlyingの場合は情報量がないので展開して返す
