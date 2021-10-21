@@ -14,7 +14,7 @@ public final class API {
 
     // MARK: - Static
 
-    public static var shared: API!
+    public static private(set) var shared: API!
 
     // MARK: - Property
 

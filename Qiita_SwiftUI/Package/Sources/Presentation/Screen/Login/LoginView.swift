@@ -35,7 +35,7 @@ public struct LoginView: View {
                 }
             }
         }.sheet(isPresented: $isPresented, content: {
-            SafariView(url: AppConstant.Auth.signinURL)
+            SafariView(url: AppConstant.shared.auth.signinURL)
         }).onOpenURL { url in
             Logger.debug("DeepLink: \(url)")
             viewModel.handleDeepLink(url: url)

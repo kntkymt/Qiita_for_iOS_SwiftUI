@@ -15,7 +15,7 @@ protocol BaseTarget: TargetType {
 extension BaseTarget {
 
     public var baseURL: URL {
-        return URL(string: AppConstant.API.baseURL)!
+        return URL(string: AppConstant.shared.api.baseURL)!
     }
 
     public var headers: [String: String]? {

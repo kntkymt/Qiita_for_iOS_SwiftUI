@@ -28,12 +28,30 @@ struct Qiita_SwiftUI_StubApp: App {
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        setupConstant()
         setupLogger()
 
         return true
     }
 
     // MARK: - Private
+
+    private func setupConstant() {
+        let link = AppConstant.Link(developer: "https://github.com/kntkymt",
+                                    repository: "https://github.com/kntkymt/Qiita_for_iOS_SwiftUI")
+
+        let domain = "qiita.com"
+        let api = AppConstant.API(domain: domain,
+                                  baseURL: "https://\(domain)/api/v2")
+
+        let auth = AppConstant.Auth(baseURL: "\(api.baseURL)/oauth/authorize",
+                                    scope: "",
+                                    cliendId: "",
+                                    clientSecret: "",
+                                    keychainID: "kntk_qiita_swiftui")
+
+        AppConstant.setup(constants: .init(link: link, api: api, auth: auth))
+    }
 
     private func setupLogger() {
         Logger.setup()

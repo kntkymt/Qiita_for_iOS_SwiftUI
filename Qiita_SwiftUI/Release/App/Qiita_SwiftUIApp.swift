@@ -30,14 +30,33 @@ struct Qiita_SwiftUIApp: App {
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        setupConstant()
         setupLogger()
         setupAPI()
-        readEnvironmentVariables()
 
         return true
     }
 
     // MARK: - Private
+
+    private func setupConstant() {
+        let env = readEnvironmentVariables()
+
+        let link = AppConstant.Link(developer: "https://github.com/kntkymt",
+                                    repository: "https://github.com/kntkymt/Qiita_for_iOS_SwiftUI")
+
+        let domain = "qiita.com"
+        let api = AppConstant.API(domain: domain,
+                                  baseURL: "https://\(domain)/api/v2")
+
+        let auth = AppConstant.Auth(baseURL: "\(api.baseURL)/oauth/authorize",
+                                    scope: "read_qiita write_qiita",
+                                    cliendId: env["QIITA_AUTH_CLIENT_ID"]!,
+                                    clientSecret: env["QIITA_AUTH_CLIENT_SECRET"]!,
+                                    keychainID: "kntk_qiita_swiftui")
+
+        AppConstant.setup(constants: .init(link: link, api: api, auth: auth))
+    }
 
     private func setupLogger() {
         Logger.setup()
@@ -48,7 +67,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         API.setup(provider: APIProviderFactory.createDefault())
     }
 
-    private func readEnvironmentVariables() {
+    private func readEnvironmentVariables() -> [String: String] {
         guard let path = Bundle.main.path(forResource: ".env", ofType: nil) else {
             fatalError("Not found: 'Qiita_SwiftUI/Configuration/.env'.\nPlease create .env file reference from .env.sample")
         }
@@ -70,7 +89,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         let env = ProcessInfo.processInfo.environment
-        AppConstant.Auth.clientId = env["QIITA_AUTH_CLIENT_ID"]!
-        AppConstant.Auth.clientSecret = env["QIITA_AUTH_CLIENT_SECRET"]!
+        return env
     }
 }

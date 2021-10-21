@@ -49,8 +49,8 @@ extension AuthTarget: BaseTarget {
         switch self {
         case .getAccessToken(let code):
             let parameters: Parameters = [
-                "client_id": AppConstant.Auth.clientId,
-                "client_secret": AppConstant.Auth.clientSecret,
+                "client_id": AppConstant.shared.auth.clientId,
+                "client_secret": AppConstant.shared.auth.clientSecret,
                 "code": code
             ]
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)

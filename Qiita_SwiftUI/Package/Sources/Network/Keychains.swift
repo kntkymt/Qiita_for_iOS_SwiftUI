@@ -54,6 +54,6 @@ struct KeyChains {
     // MARK: - Initializer
 
     private init() {
-        keychain = Keychain(service: AppConstant.Auth.keychainID)
+        keychain = Keychain(service: AppConstant.shared.auth.keychainID)
     }
 }
