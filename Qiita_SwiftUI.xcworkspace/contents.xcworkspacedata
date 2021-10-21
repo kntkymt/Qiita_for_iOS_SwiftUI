@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Qiita_SwiftUI/Package">
+   </FileRef>
+   <FileRef
+      location = "group:Qiita_SwiftUI/Stub_Service/Stub_Service.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Qiita_SwiftUI/Release/Release.xcodeproj">
+   </FileRef>
+</Workspace>
