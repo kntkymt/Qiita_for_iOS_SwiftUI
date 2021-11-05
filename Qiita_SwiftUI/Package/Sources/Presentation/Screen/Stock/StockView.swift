@@ -27,11 +27,18 @@ public struct StockView: View {
 
     public var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
-                await viewModel.fetchItems()
-            }, onPaging: {
-                await viewModel.fetchMoreItems()
-            }).navigationBarTitle("Stock", displayMode: .inline)
+            GeometryReader { reader in
+                ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
+                    await viewModel.fetchItems()
+                }, onPaging: {
+                    await viewModel.fetchMoreItems()
+                }, header: {
+                    if !viewModel.isLoading && viewModel.items.isEmpty {
+                        EmptyContentView(title: "ストックされた記事がありません")
+                            .frame(width: reader.size.width - 32, height: reader.size.height)
+                    }
+                })
+            }.navigationBarTitle("Stock", displayMode: .inline)
         }.onAppear {
             if isInitialOnAppear {
                 Task {
