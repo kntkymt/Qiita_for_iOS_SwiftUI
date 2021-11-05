@@ -26,17 +26,12 @@ public struct StockView: View {
     public var body: some View {
         NavigationView {
             GeometryReader { reader in
-                ItemListView(items: viewModel.items, onItemStock: viewModel.onItemStock, onInit: {
+                ItemListView(items: viewModel.items, emptyTitle: "ストックした記事はありません", onItemStock: viewModel.onItemStock, onInit: {
                     await viewModel.fetchItems()
                 }, onRefresh: {
                     await viewModel.fetchItems()
                 }, onPaging: {
                     await viewModel.fetchMoreItems()
-                }, header: {
-                    if viewModel.items.isEmpty {
-                        EmptyContentView(title: "ストックされた記事がありません")
-                            .frame(height: reader.size.height)
-                    }
                 })
             }.navigationBarTitle("Stock", displayMode: .inline)
         }

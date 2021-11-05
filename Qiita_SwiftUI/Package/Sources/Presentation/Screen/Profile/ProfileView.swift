@@ -35,17 +35,12 @@ public struct ProfileView: View {
                     }
 
                     GeometryReader { reader in
-                        ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+                        ItemListView(items: viewModel.items, emptyTitle: "投稿記事がありません", onItemStock: nil, onInit: {
                             await viewModel.fetchItems()
                         }, onRefresh: {
                             await viewModel.fetchItems()
                         }, onPaging: {
                             await viewModel.fetchMoreItems()
-                        }, header: {
-                            if let items = viewModel.items, items.isEmpty {
-                                EmptyContentView(title: "投稿記事がありません")
-                                    .frame(height: reader.size.height)
-                            }
                         })
                     }
                 }

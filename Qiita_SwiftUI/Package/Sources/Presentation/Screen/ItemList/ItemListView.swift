@@ -25,12 +25,14 @@ public struct ItemListView<HeaderView: View>: View {
     private let onRefresh: () async -> Void
     private let onPaging: () async -> Void
 
+    private let emptyTitle: String
     private var headerView: HeaderView
 
     // MARK: - Initializer
 
-    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], emptyTitle: String, onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
+        self.emptyTitle = emptyTitle
         self.onItemStock = onItemStock
         self.onInit = onInit
         self.onRefresh = onRefresh
@@ -39,8 +41,9 @@ public struct ItemListView<HeaderView: View>: View {
     }
 
     // headerを使わない場合
-    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
+    init(items: [Item], emptyTitle: String, onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
         self.items = items
+        self.emptyTitle = emptyTitle
         self.onItemStock = onItemStock
         self.onInit = onInit
         self.onRefresh = onRefresh
@@ -60,6 +63,10 @@ public struct ItemListView<HeaderView: View>: View {
                     ProgressView()
                         .scaleEffect(x: 2, y: 2, anchor: .center)
                         .progressViewStyle(CircularProgressViewStyle())
+                        .frame(maxWidth: .infinity)
+                        .frame(height: reader.size.height)
+                } else if items.isEmpty {
+                    EmptyContentView(title: emptyTitle)
                         .frame(maxWidth: .infinity)
                         .frame(height: reader.size.height)
                 } else {

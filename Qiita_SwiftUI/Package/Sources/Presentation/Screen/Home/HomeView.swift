@@ -25,7 +25,7 @@ public struct HomeView: View {
 
     public var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+            ItemListView(items: viewModel.items, emptyTitle: "記事がありません", onItemStock: nil, onInit: {
                 await viewModel.fetchItems()
             }, onRefresh: {
                 await viewModel.fetchItems()
