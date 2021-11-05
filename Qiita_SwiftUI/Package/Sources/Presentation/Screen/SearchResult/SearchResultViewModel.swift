@@ -16,6 +16,8 @@ public final class SearchResultViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
+    @Published var isLoading: Bool = false
+
     let searchType: SearchType
 
     private var page = 1
@@ -33,19 +35,21 @@ public final class SearchResultViewModel: ObservableObject {
     // MARK: - Public
 
     func fetchItems() async {
+        isLoading = true
         do {
             items = try await itemRepository.getItems(with: searchType, page: 1)
             page = 1
         } catch {
             Logger.error(error)
         }
+        isLoading = false
     }
 
     func fetchMoreItems() async {
         if isPageLoading { return }
         isPageLoading = true
         do {
-            items += try await itemRepository.getItems(page: page + 1)
+            items += try await itemRepository.getItems(with: searchType, page: page + 1)
             page += 1
         } catch {
             Logger.error(error)

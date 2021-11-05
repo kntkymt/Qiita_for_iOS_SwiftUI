@@ -33,13 +33,16 @@ public struct SearchResultView: View {
             ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
-                Task {
-                    await viewModel.fetchMoreItems()
-                }
+                await viewModel.fetchMoreItems()
             }, header: {
-                if case .tag(let tag) = viewModel.searchType {
-                    TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
-                        .frame(width: reader.size.width - 32)
+                if !viewModel.isLoading && viewModel.items.isEmpty {
+                    EmptyContentView(title: "記事がありません")
+                        .frame(width: reader.size.width - 32, height: reader.size.height)
+                } else {
+                    if case .tag(let tag) = viewModel.searchType {
+                        TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
+                            .frame(width: reader.size.width - 32)
+                    }
                 }
             })
             .navigationTitle(navigationTitle)
