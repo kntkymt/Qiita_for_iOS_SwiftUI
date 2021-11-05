@@ -28,7 +28,7 @@ public struct StockView: View {
     public var body: some View {
         NavigationView {
             GeometryReader { reader in
-                ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
+                ItemListView(items: viewModel.items, onItemStock: viewModel.onItemStock, onRefresh: {
                     await viewModel.fetchItems()
                 }, onPaging: {
                     await viewModel.fetchMoreItems()

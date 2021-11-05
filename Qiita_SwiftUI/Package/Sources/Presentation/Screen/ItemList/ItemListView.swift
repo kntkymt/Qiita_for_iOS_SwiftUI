@@ -16,7 +16,7 @@ public struct ItemListView<HeaderView: View>: View {
 
     private let items: [Item]
 
-    private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    private let onItemStock: ((_ item: Item, _ status: Bool) -> Void)?
 
     private let onRefresh: () async -> Void
     private let onPaging: () async -> Void
@@ -25,18 +25,18 @@ public struct ItemListView<HeaderView: View>: View {
 
     // MARK: - Initializer
 
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
-        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.onItemStock = onItemStock
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = header()
     }
 
     // headerを使わない場合
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
+    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
         self.items = items
-        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.onItemStock = onItemStock
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = EmptyView()
@@ -53,7 +53,7 @@ public struct ItemListView<HeaderView: View>: View {
             headerView
 
             ForEach(items) { item in
-                ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
+                ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStock: onItemStock, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
             }
         }
         .listStyle(PlainListStyle())

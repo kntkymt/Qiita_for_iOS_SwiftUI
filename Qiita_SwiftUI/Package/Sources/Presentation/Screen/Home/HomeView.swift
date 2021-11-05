@@ -28,7 +28,7 @@ public struct HomeView: View {
 
     public var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
+            ItemListView(items: viewModel.items, onItemStock: nil, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
                 await  viewModel.fetchMoreItems()

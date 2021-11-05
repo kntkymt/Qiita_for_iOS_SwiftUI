@@ -34,7 +34,7 @@ public struct ProfileView: View {
                         UserInformationView(user: user)
 
                         GeometryReader { reader in
-                            ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
+                            ItemListView(items: viewModel.items, onItemStock: nil, onRefresh: {
                                 await viewModel.fetchItems()
                             }, onPaging: {
                                 await viewModel.fetchMoreItems()
