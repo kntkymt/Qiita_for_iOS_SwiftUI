@@ -15,7 +15,7 @@ public struct ItemListView<HeaderView: View>: View {
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
     @State private var isInitialOnAppear = true
-    @State private var isInitialLoading = false
+    @State private var isInitialLoading = true
 
     private let items: [Item]
 
