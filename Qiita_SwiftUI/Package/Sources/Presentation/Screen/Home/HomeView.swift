@@ -15,9 +15,6 @@ public struct HomeView: View {
 
     @StateObject private var viewModel: HomeViewModel
 
-    @State private var isInitialOnAppear = true
-
-
     // MARK: - Initializer
 
     init(viewModel: HomeViewModel) {
@@ -28,18 +25,13 @@ public struct HomeView: View {
 
     public var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, onItemStock: nil, onRefresh: {
+            ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+                await viewModel.fetchItems()
+            }, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
                 await  viewModel.fetchMoreItems()
             }).navigationBarTitle("Home", displayMode: .inline)
-        }.onAppear {
-            if isInitialOnAppear {
-                Task {
-                    await viewModel.fetchItems()
-                }
-                isInitialOnAppear = false
-            }
         }
     }
 }

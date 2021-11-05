@@ -16,8 +16,6 @@ public struct SearchResultView: View {
 
     @StateObject private var viewModel: SearchResultViewModel
 
-    @State private var isInitialOnAppear = true
-
     // MARK: - Initializer
 
     init(viewModel: SearchResultViewModel) {
@@ -30,7 +28,9 @@ public struct SearchResultView: View {
         /// FIXME: ItemListViewのHeaderが左寄せになっている問題
         /// 現在はSearchResultの方で幅を指定して対応
         GeometryReader { reader in
-            ItemListView(items: viewModel.items, onItemStock: nil, onRefresh: {
+            ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+                await viewModel.fetchItems()
+            }, onRefresh: {
                 await viewModel.fetchItems()
             }, onPaging: {
                 await viewModel.fetchMoreItems()
@@ -46,14 +46,6 @@ public struct SearchResultView: View {
                 }
             })
             .navigationTitle(navigationTitle)
-            .onAppear {
-                if isInitialOnAppear {
-                    Task {
-                        await viewModel.fetchItems()
-                    }
-                    isInitialOnAppear = false
-                }
-            }
         }
     }
 

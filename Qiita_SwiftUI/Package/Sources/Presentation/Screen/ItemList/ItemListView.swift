@@ -14,10 +14,13 @@ public struct ItemListView<HeaderView: View>: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
+    @State private var isInitialOnAppear = true
+
     private let items: [Item]
 
     private let onItemStock: ((_ item: Item, _ status: Bool) -> Void)?
 
+    private let onInit: () async -> Void
     private let onRefresh: () async -> Void
     private let onPaging: () async -> Void
 
@@ -25,18 +28,20 @@ public struct ItemListView<HeaderView: View>: View {
 
     // MARK: - Initializer
 
-    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
         self.onItemStock = onItemStock
+        self.onInit = onInit
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = header()
     }
 
     // headerを使わない場合
-    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
+    init(items: [Item], onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
         self.items = items
         self.onItemStock = onItemStock
+        self.onInit = onInit
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = EmptyView()
@@ -59,6 +64,15 @@ public struct ItemListView<HeaderView: View>: View {
         .listStyle(PlainListStyle())
         .refreshable { await onRefresh() }
         .moreLoadable { await onPaging() }
+        .onAppear {
+            if isInitialOnAppear {
+                Task {
+                    await onInit()
+                }
+
+                isInitialOnAppear = false
+            }
+        }
     }
 }
 

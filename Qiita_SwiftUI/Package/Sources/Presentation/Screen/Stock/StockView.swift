@@ -15,8 +15,6 @@ public struct StockView: View {
 
     @StateObject private var viewModel: StockViewModel
 
-    @State private var isInitialOnAppear = true
-
     // MARK: - Initializer
 
     init(viewModel: StockViewModel) {
@@ -28,7 +26,9 @@ public struct StockView: View {
     public var body: some View {
         NavigationView {
             GeometryReader { reader in
-                ItemListView(items: viewModel.items, onItemStock: viewModel.onItemStock, onRefresh: {
+                ItemListView(items: viewModel.items, onItemStock: viewModel.onItemStock, onInit: {
+                    await viewModel.fetchItems()
+                }, onRefresh: {
                     await viewModel.fetchItems()
                 }, onPaging: {
                     await viewModel.fetchMoreItems()
@@ -39,13 +39,6 @@ public struct StockView: View {
                     }
                 })
             }.navigationBarTitle("Stock", displayMode: .inline)
-        }.onAppear {
-            if isInitialOnAppear {
-                Task {
-                    await viewModel.fetchItems()
-                }
-                isInitialOnAppear = false
-            }
         }
     }
 }

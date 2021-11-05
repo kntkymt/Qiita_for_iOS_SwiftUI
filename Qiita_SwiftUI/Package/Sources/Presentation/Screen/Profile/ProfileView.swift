@@ -34,7 +34,9 @@ public struct ProfileView: View {
                         UserInformationView(user: user)
 
                         GeometryReader { reader in
-                            ItemListView(items: viewModel.items, onItemStock: nil, onRefresh: {
+                            ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+                                await viewModel.fetchItems()
+                            }, onRefresh: {
                                 await viewModel.fetchItems()
                             }, onPaging: {
                                 await viewModel.fetchMoreItems()
@@ -59,7 +61,7 @@ public struct ProfileView: View {
         }.onAppear {
             if isInitialOnAppear {
                 Task {
-                    await (viewModel.fetchUser(), viewModel.fetchItems())
+                    await viewModel.fetchUser()
                 }
 
                 isInitialOnAppear = false
