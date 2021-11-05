@@ -33,11 +33,18 @@ public struct ProfileView: View {
                     VStack(spacing: 0) {
                         UserInformationView(user: user)
 
-                        ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
-                            await viewModel.fetchItems()
-                        }, onPaging: {
-                            await viewModel.fetchMoreItems()
-                        })
+                        GeometryReader { reader in
+                            ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
+                                await viewModel.fetchItems()
+                            }, onPaging: {
+                                await viewModel.fetchMoreItems()
+                            }, header: {
+                                if !viewModel.isItemLoading && viewModel.items.isEmpty {
+                                    EmptyContentView(title: "投稿記事がありません")
+                                        .frame(width: reader.size.width - 32, height: reader.size.height)
+                                }
+                            })
+                        }
                     }
                 } else {
                     ProgressView()
