@@ -15,8 +15,6 @@ public struct StockView: View {
 
     @StateObject private var viewModel: StockViewModel
 
-    @State private var isInitialOnAppear = true
-
     // MARK: - Initializer
 
     init(viewModel: StockViewModel) {
@@ -27,18 +25,15 @@ public struct StockView: View {
 
     public var body: some View {
         NavigationView {
-            ItemListView(items: viewModel.items, onItemStockChangedHandler: viewModel.onItemStockChangedHandler, onRefresh: {
-                await viewModel.fetchItems()
-            }, onPaging: {
-                await viewModel.fetchMoreItems()
-            }).navigationBarTitle("Stock", displayMode: .inline)
-        }.onAppear {
-            if isInitialOnAppear {
-                Task {
+            GeometryReader { reader in
+                ItemListView(items: viewModel.items, emptyTitle: "ストックした記事はありません", onItemStock: viewModel.onItemStock, onInit: {
                     await viewModel.fetchItems()
-                }
-                isInitialOnAppear = false
-            }
+                }, onRefresh: {
+                    await viewModel.fetchItems()
+                }, onPaging: {
+                    await viewModel.fetchMoreItems()
+                })
+            }.navigationBarTitle("Stock", displayMode: .inline)
         }
     }
 }

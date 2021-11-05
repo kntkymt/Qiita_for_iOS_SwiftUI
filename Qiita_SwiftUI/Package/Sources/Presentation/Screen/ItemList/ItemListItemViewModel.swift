@@ -20,16 +20,16 @@ public final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     @Published var isStocked: Bool = false
 
-    let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    let onItemStock: ((_ item: Item, _ status: Bool) -> Void)?
 
     private let stockRepository: StockRepository
     private let likeRepository: LikeRepository
 
     // MARK: - Initializer
 
-    init(item: Item, onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
+    init(item: Item, onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, stockRepository: StockRepository, likeRepository: LikeRepository) {
         self.item = item
-        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.onItemStock = onItemStock
         self.stockRepository = stockRepository
         self.likeRepository = likeRepository
     }
@@ -38,7 +38,7 @@ public final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     func stock() async {
         isStocked = true
-        onItemStockChangedHandler?(item, true)
+        onItemStock?(item, true)
         do {
             _ = try await stockRepository.stock(id: item.id)
         } catch {
@@ -49,7 +49,7 @@ public final class ItemListItemViewModel: ObservableObject, Identifiable {
 
     func unStock() async {
         isStocked = false
-        onItemStockChangedHandler?(item, false)
+        onItemStock?(item, false)
         do {
             _ = try await stockRepository.unstock(id: item.id)
         } catch {

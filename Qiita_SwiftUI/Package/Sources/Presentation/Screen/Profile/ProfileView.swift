@@ -29,18 +29,18 @@ public struct ProfileView: View {
     public var body: some View {
         NavigationView {
             Group {
-                if let user = viewModel.user {
-                    VStack(spacing: 0) {
+                VStack(spacing: 0) {
+                    if let user = viewModel.user {
                         UserInformationView(user: user)
-
-                        ItemListView(items: viewModel.items, onItemStockChangedHandler: nil, onRefresh: {
-                            await viewModel.fetchItems()
-                        }, onPaging: {
-                            await viewModel.fetchMoreItems()
-                        })
                     }
-                } else {
-                    ProgressView()
+
+                    ItemListView(items: viewModel.items, emptyTitle: "投稿記事がありません", onItemStock: nil, onInit: {
+                        await viewModel.fetchItems()
+                    }, onRefresh: {
+                        await viewModel.fetchItems()
+                    }, onPaging: {
+                        await viewModel.fetchMoreItems()
+                    })
                 }
             }
             .navigationBarTitle("Profile", displayMode: .inline)
@@ -52,7 +52,7 @@ public struct ProfileView: View {
         }.onAppear {
             if isInitialOnAppear {
                 Task {
-                    await (viewModel.fetchUser(), viewModel.fetchItems())
+                    await viewModel.fetchUser()
                 }
 
                 isInitialOnAppear = false

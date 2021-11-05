@@ -16,8 +16,9 @@ public final class StockViewModel: ObservableObject {
     // MARK: - Property
 
     @Published var items: [Item] = []
+    @Published var isLoading: Bool = false
 
-    private(set) var onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    private(set) var onItemStock: ((_ item: Item, _ status: Bool) -> Void)?
 
     private var page = 1
     private var isPageLoading = false
@@ -29,7 +30,7 @@ public final class StockViewModel: ObservableObject {
     init(stockRepository: StockRepository) {
         self.stockRepository = stockRepository
 
-        self.onItemStockChangedHandler = { [weak self] (item, status) in
+        self.onItemStock = { [weak self] (item, status) in
             guard let self = self, let targetIndex = self.items.firstIndex(where: { $0.id == item.id }) else { return }
             self.items.remove(at: targetIndex)
         }
@@ -38,12 +39,14 @@ public final class StockViewModel: ObservableObject {
     // MARK: - Public
 
     func fetchItems() async {
+        isLoading = true
         do {
             items = try await stockRepository.getStocks(page: 1, perPage: 20)
             page = 1
         } catch {
             Logger.error(error)
         }
+        isLoading = false
     }
 
     func fetchMoreItems() async {

@@ -14,29 +14,38 @@ public struct ItemListView<HeaderView: View>: View {
 
     @EnvironmentObject var repositoryContainer: RepositoryContainer
 
+    @State private var isInitialOnAppear = true
+    @State private var isInitialLoading = true
+
     private let items: [Item]
 
-    private let onItemStockChangedHandler: ((Item, Bool) -> Void)?
+    private let onItemStock: ((_ item: Item, _ status: Bool) -> Void)?
 
+    private let onInit: () async -> Void
     private let onRefresh: () async -> Void
     private let onPaging: () async -> Void
 
+    private let emptyTitle: String
     private var headerView: HeaderView
 
     // MARK: - Initializer
 
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
+    init(items: [Item], emptyTitle: String, onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void, @ViewBuilder header: () -> HeaderView) {
         self.items = items
-        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.emptyTitle = emptyTitle
+        self.onItemStock = onItemStock
+        self.onInit = onInit
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = header()
     }
 
     // headerを使わない場合
-    init(items: [Item], onItemStockChangedHandler: ((Item, Bool) -> Void)? = nil, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
+    init(items: [Item], emptyTitle: String, onItemStock: ((_ item: Item, _ status: Bool) -> Void)? = nil, onInit: @escaping () async -> Void, onRefresh: @escaping () async -> Void, onPaging: @escaping () async -> Void) where HeaderView == EmptyView {
         self.items = items
-        self.onItemStockChangedHandler = onItemStockChangedHandler
+        self.emptyTitle = emptyTitle
+        self.onItemStock = onItemStock
+        self.onInit = onInit
         self.onRefresh = onRefresh
         self.onPaging = onPaging
         self.headerView = EmptyView()
@@ -45,20 +54,42 @@ public struct ItemListView<HeaderView: View>: View {
     // MARK: - Body
 
     public var body: some View {
-        List {
-            /// FIXME: 左寄せになっている問題
-            /// GeometryReaderやSpacer()を使えば中心寄せにできるが
-            /// それをするとEmptyViewの場合でも高さを持ってしまい、ヘッダーに空白が出来てしまう
-            /// 現在はSearchResultの方で幅を指定して対応
-            headerView
+        GeometryReader { reader in
+            List {
+                headerView
+                    .frame(maxWidth: .infinity)
 
-            ForEach(items) { item in
-                ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStockChangedHandler: onItemStockChangedHandler, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
+                if isInitialLoading {
+                    ProgressView()
+                        .scaleEffect(x: 2, y: 2, anchor: .center)
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .frame(maxWidth: .infinity)
+                        .frame(height: reader.size.height)
+                } else if items.isEmpty {
+                    EmptyContentView(title: emptyTitle)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: reader.size.height)
+                } else {
+                    ForEach(items) { item in
+                        ItemListItem(viewModel: ItemListItemViewModel(item: item, onItemStock: onItemStock, stockRepository: repositoryContainer.stockRepository, likeRepository: repositoryContainer.likeRepository))
+                    }
+                }
+            }
+            .listStyle(PlainListStyle())
+            .refreshable { await onRefresh() }
+            .moreLoadable { await onPaging() }
+            .onAppear {
+                if isInitialOnAppear {
+                    Task {
+                        isInitialLoading = true
+                        await onInit()
+                        isInitialLoading = false
+                    }
+
+                    isInitialOnAppear = false
+                }
             }
         }
-        .listStyle(PlainListStyle())
-        .refreshable { await onRefresh() }
-        .moreLoadable { await onPaging() }
     }
 }
 
