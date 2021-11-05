@@ -34,15 +34,13 @@ public struct ProfileView: View {
                         UserInformationView(user: user)
                     }
 
-                    GeometryReader { reader in
-                        ItemListView(items: viewModel.items, emptyTitle: "投稿記事がありません", onItemStock: nil, onInit: {
-                            await viewModel.fetchItems()
-                        }, onRefresh: {
-                            await viewModel.fetchItems()
-                        }, onPaging: {
-                            await viewModel.fetchMoreItems()
-                        })
-                    }
+                    ItemListView(items: viewModel.items, emptyTitle: "投稿記事がありません", onItemStock: nil, onInit: {
+                        await viewModel.fetchItems()
+                    }, onRefresh: {
+                        await viewModel.fetchItems()
+                    }, onPaging: {
+                        await viewModel.fetchMoreItems()
+                    })
                 }
             }
             .navigationBarTitle("Profile", displayMode: .inline)
