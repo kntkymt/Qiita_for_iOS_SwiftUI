@@ -17,7 +17,6 @@ public final class ProfileViewModel: ObservableObject {
 
     @Published var user: User?
     @Published var items: [Item] = []
-    @Published var isItemLoading: Bool = false
 
     private var page = 1
     private var isPageLoading = false
@@ -43,14 +42,12 @@ public final class ProfileViewModel: ObservableObject {
     }
 
     func fetchItems() async {
-        isItemLoading = true
         do {
             items = try await itemRepository.getAuthenticatedUserItems(page: 1, perPage: 20)
             page = 1
         } catch {
             Logger.error(error)
         }
-        isItemLoading = false
     }
 
     func fetchMoreItems() async {

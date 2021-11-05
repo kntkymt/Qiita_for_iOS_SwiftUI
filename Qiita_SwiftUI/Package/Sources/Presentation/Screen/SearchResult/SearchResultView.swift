@@ -25,8 +25,6 @@ public struct SearchResultView: View {
     // MARK: - Body
 
     public var body: some View {
-        /// FIXME: ItemListViewのHeaderが左寄せになっている問題
-        /// 現在はSearchResultの方で幅を指定して対応
         GeometryReader { reader in
             ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
                 await viewModel.fetchItems()
@@ -35,14 +33,13 @@ public struct SearchResultView: View {
             }, onPaging: {
                 await viewModel.fetchMoreItems()
             }, header: {
-                if !viewModel.isLoading && viewModel.items.isEmpty {
+                if case .tag(let tag) = viewModel.searchType {
+                    // タグ検索の場合、結果が空にならないという想定
+                    TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
+                } else if let items = viewModel.items, items.isEmpty {
+                    // タグ検索以外 かつ 結果が読み込まれた かつ 結果が空
                     EmptyContentView(title: "記事がありません")
-                        .frame(width: reader.size.width - 32, height: reader.size.height)
-                } else {
-                    if case .tag(let tag) = viewModel.searchType {
-                        TagInformationView(viewModel: TagInformationViewModel(tag: tag, tagRepository: repositoryContainer.tagRepository))
-                            .frame(width: reader.size.width - 32)
-                    }
+                        .frame(height: reader.size.height)
                 }
             })
             .navigationTitle(navigationTitle)

@@ -29,27 +29,25 @@ public struct ProfileView: View {
     public var body: some View {
         NavigationView {
             Group {
-                if let user = viewModel.user {
-                    VStack(spacing: 0) {
+                VStack(spacing: 0) {
+                    if let user = viewModel.user {
                         UserInformationView(user: user)
-
-                        GeometryReader { reader in
-                            ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
-                                await viewModel.fetchItems()
-                            }, onRefresh: {
-                                await viewModel.fetchItems()
-                            }, onPaging: {
-                                await viewModel.fetchMoreItems()
-                            }, header: {
-                                if !viewModel.isItemLoading && viewModel.items.isEmpty {
-                                    EmptyContentView(title: "投稿記事がありません")
-                                        .frame(width: reader.size.width - 32, height: reader.size.height)
-                                }
-                            })
-                        }
                     }
-                } else {
-                    ProgressView()
+
+                    GeometryReader { reader in
+                        ItemListView(items: viewModel.items, onItemStock: nil, onInit: {
+                            await viewModel.fetchItems()
+                        }, onRefresh: {
+                            await viewModel.fetchItems()
+                        }, onPaging: {
+                            await viewModel.fetchMoreItems()
+                        }, header: {
+                            if let items = viewModel.items, items.isEmpty {
+                                EmptyContentView(title: "投稿記事がありません")
+                                    .frame(height: reader.size.height)
+                            }
+                        })
+                    }
                 }
             }
             .navigationBarTitle("Profile", displayMode: .inline)

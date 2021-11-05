@@ -33,9 +33,9 @@ public struct StockView: View {
                 }, onPaging: {
                     await viewModel.fetchMoreItems()
                 }, header: {
-                    if !viewModel.isLoading && viewModel.items.isEmpty {
+                    if viewModel.items.isEmpty {
                         EmptyContentView(title: "ストックされた記事がありません")
-                            .frame(width: reader.size.width - 32, height: reader.size.height)
+                            .frame(height: reader.size.height)
                     }
                 })
             }.navigationBarTitle("Stock", displayMode: .inline)
